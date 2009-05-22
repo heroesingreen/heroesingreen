@@ -1,0 +1,48 @@
+<h1>Editing mission</h1>
+
+<% form_for(@mission) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :intro %><br />
+    <%= f.text_field :intro %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :task %><br />
+    <%= f.text_field :task %>
+  </p>
+  <p>
+    <%= f.label :reward %><br />
+    <%= f.text_field :reward %>
+  </p>
+  <p>
+    <%= f.label :points %><br />
+    <%= f.text_field :points %>
+  </p>
+  <p>
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </p>
+  <p>
+    <%= f.label :unitPoints %><br />
+    <%= f.text_field :unitPoints %>
+  </p>
+  <p>
+    <%= f.label :unit %><br />
+    <%= f.text_field :unit %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @mission %> |
+<%= link_to 'Back', missions_path %>

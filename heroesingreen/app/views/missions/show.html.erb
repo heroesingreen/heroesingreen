@@ -1,0 +1,48 @@
+<p>
+  <b>Title:</b>
+  <%=h @mission.title %>
+</p>
+
+<p>
+  <b>Intro:</b>
+  <%=h @mission.intro %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @mission.description %>
+</p>
+
+<p>
+  <b>Task:</b>
+  <%=h @mission.task %>
+</p>
+
+<p>
+  <b>Reward:</b>
+  <%=h @mission.reward %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%=h @mission.points %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @mission.type %>
+</p>
+
+<p>
+  <b>Unitpoints:</b>
+  <%=h @mission.unitPoints %>
+</p>
+
+<p>
+  <b>Unit:</b>
+  <%=h @mission.unit %>
+</p>
+
+
+<%= link_to 'Edit', edit_mission_path(@mission) %> |
+<%= link_to 'Back', missions_path %>

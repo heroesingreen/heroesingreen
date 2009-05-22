@@ -1,19 +1,1 @@
 <div>Your first heroic mission:</div>
-<div>
-	Get up and walk around your living space. Wherever you find a light on (and nobody is in the room), turn it off.<br/>
-	Wherever you find a thermostat, turn it down just one degree.
-</div>
-<div>
-	When you get back, tell us how many lights you found to turn down, and how many thermostats you lowered.
-	<% form_for :mission, :url => { :action => :do_mission } do |form| %>
-       <p>
-        <%=
-          form.select ,["1 light bulb"]
-                       Order::PAYMENT_TYPES, 
-                      :prompt => "Select number of bulbs"
-        %>
-      </p>
-    
-      <%= submit_tag "Mission Accomplished", :class => "submit" %>
-    <% end %>  
-</div>

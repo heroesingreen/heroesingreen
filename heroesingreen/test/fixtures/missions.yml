@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  intro: MyString
+  description: MyString
+  task: MyString
+  reward: MyString
+  points: 1
+  type: 1
+  unitPoints: 1
+
+two:
+  title: MyString
+  intro: MyString
+  description: MyString
+  task: MyString
+  reward: MyString
+  points: 1
+  type: 1
+  unitPoints: 1

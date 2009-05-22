@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  mission_id: 1
+  status: 1
+  int_data: 1
+  startDate: 2009-05-21
+
+two:
+  mission_id: 1
+  status: 1
+  int_data: 1
+  startDate: 2009-05-21
