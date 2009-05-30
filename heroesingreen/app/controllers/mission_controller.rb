@@ -4,6 +4,11 @@ class MissionController < ApplicationController
   end
   
   def start
-    
+    all_missions = Mission.all
+    @mission = all_missions[rand(all_missions.length)] #Pick a random mission
+  end
+  
+  def accept
+  	@mission = Mission.find(params[:id])  	
   end
 end

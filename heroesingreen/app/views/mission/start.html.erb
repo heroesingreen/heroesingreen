@@ -1,1 +1,8 @@
-<div>Your first heroic mission:</div>
+<div>Your heroic mission:</div>
+
+<p>
+  <%=h @mission.intro %>
+</p>
+
+<%=button_to "Accept mission!", :action=>:accept, :id=>@mission%>
+
