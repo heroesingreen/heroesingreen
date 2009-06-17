@@ -10,5 +10,9 @@ class MissionController < ApplicationController
   
   def accept
   	@mission = Mission.find(params[:id])  	
-  end
+ end
+ 
+ def complete
+   @mission = Mission.find(params[:id])
+ end
 end

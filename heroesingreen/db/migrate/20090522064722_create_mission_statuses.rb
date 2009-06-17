@@ -2,6 +2,7 @@ class CreateMissionStatuses < ActiveRecord::Migration
   def self.up
     create_table :mission_statuses do |t|
       t.integer :mission_id
+      t.integer :user_id
       t.integer :status
       t.integer :int_data
       t.date :startDate

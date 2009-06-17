@@ -2,3 +2,5 @@
 <p>
   <%=h @mission.task %>
 </p>
+
+<%=button_to "Complete mission!", :action=>:complete, :id=>@mission%>
