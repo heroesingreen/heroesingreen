@@ -70,7 +70,19 @@ class UsersController < ApplicationController
       end
     end
   end
-
+  
+  def login
+    session[:user_id] = nil
+    if request.post?
+      user = User.authenticate(params[:email], params[:password])
+      if user
+        session[:user_id] = user.id
+        redirect_to(:action => "index")
+      else
+        flash[:notice] = "Invalid user/password combination"
+      end
+    end
+  end
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
