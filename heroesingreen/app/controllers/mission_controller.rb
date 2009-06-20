@@ -9,10 +9,20 @@ class MissionController < ApplicationController
   end
   
   def accept
-  	@mission = Mission.find(params[:id])  	
- end
+  	@mission = Mission.find(params[:id])
+    @mission_status = find_mission_status
+    @mission_status.activate
+  end
  
- def complete
-   @mission = Mission.find(params[:id])
- end
+  def complete
+    @mission = Mission.find(params[:id])
+    @mission_status = find_mission_status
+    @mission_status.complete
+  end
+ 
+  private
+  
+  def find_mission_status
+    session[:mission_status] ||= Mission_status.new
+  end
 end
