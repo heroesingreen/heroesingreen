@@ -26,8 +26,9 @@ class AddTestData < ActiveRecord::Migration
     
 
   end
-    Mission.delete_all
-    User.delete_all
+
   def self.down
+  	Mission.delete_all
+    User.delete_all
   end
 end
