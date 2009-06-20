@@ -13,6 +13,7 @@ ActiveRecord::Schema.define(:version => 20090617044610) do
 
   create_table "mission_statuses", :force => true do |t|
     t.integer  "mission_id"
+    t.integer  "user_id"
     t.integer  "status"
     t.integer  "int_data"
     t.date     "startDate"

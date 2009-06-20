@@ -23,6 +23,6 @@ class MissionController < ApplicationController
   private
   
   def find_mission_status
-    session[:mission_status] ||= Mission_status.new
+    session[:mission_status] ||= MissionStatus.new
   end
 end
