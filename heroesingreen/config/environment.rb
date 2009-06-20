@@ -38,7 +38,16 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
-  
+
+  # Your secret key for verifying cookie session data integrity.
+  # If you change this key, all old sessions will become invalid!
+  # Make sure the secret is at least 30 characters and all random, 
+  # no regular words or you'll be exposed to dictionary attacks.
+  config.action_controller.session = {
+    :session_key => '_heroesingreen_session',
+    :secret      => 'ff268ae3794fa00a02367c2212f47cf883e5320eb9bfe9a9c67a63c1fb4e3167fcbe49a92f669f33374e2c8fdcadc43d0af520a7d04f2eb63ac1ec6e100361ca'
+  }
+    
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
   config.action_controller.session_store = :active_record_store
