@@ -17,3 +17,9 @@ div.mainContent {
 	top:400px;
 	width: 100%;
 }
+
+div.loginModule {
+	float: right;
+	position: relative;
+	top: 300px;
+}
