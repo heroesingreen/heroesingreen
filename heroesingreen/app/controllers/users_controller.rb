@@ -86,6 +86,12 @@ class UsersController < ApplicationController
     end
   end
   
+  # GET /users/logout
+  # GET /users/logout.xml
+  def logout
+    session[:user_id]=nil
+    redirect_to(:action => "index")
+  end
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy

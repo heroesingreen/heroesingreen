@@ -11,7 +11,10 @@
 		<h1 class="heroesBanner">Heroes In Green</h1>
 		<%= yield :layout%>
 		</div>
-
+	<% if session[:user_id] %>
+		User: <%=h session[:user_id] %>
+		<%=button_to "Log out", :action=>:logout%>
+	<% else %>
 		<div class="user-login">
 			<fieldset>
 				<legend>Please log in</legend>
@@ -32,5 +35,6 @@
 				<% end %>
 			</fieldset>
 		</div>
+	<% end %>
 	</body>
 </html>
