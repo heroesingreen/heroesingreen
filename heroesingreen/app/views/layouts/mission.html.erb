@@ -7,7 +7,33 @@
 		<%= stylesheet_link_tag 'mission' %>
 	</head>
 	<body>
+<<<<<<< .mine
+		<div class="mission-info">
+=======
 		<h1 class="heroesBanner">Heroes In Green</h1>
+>>>>>>> .r12
 		<%= yield :layout%>
+		</div>
+
+		<div class="user-login">
+			<fieldset>
+				<legend>Please log in</legend>
+				<% form_tag :controller => "users", :action => "login" do %>
+				<p>
+					<label for="email">Email:</label>
+					<%= text_field_tag :email, params[:email] %>
+				</p>
+				
+				<p>
+					<label for="password">Password:</label>
+					<%= password_field_tag :password, params[:password] %>
+				</p>
+				
+				<p>
+					<%= submit_tag "Login" %>
+				</p>
+				<% end %>
+			</fieldset>
+		</div>
 	</body>
 </html>

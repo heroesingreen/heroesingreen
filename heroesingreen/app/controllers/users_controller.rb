@@ -70,7 +70,9 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
+  # GET /users/login
+  # GET /users/login.xml
   def login
     session[:user_id] = nil
     if request.post?
@@ -83,6 +85,7 @@ class UsersController < ApplicationController
       end
     end
   end
+  
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy

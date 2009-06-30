@@ -12,12 +12,14 @@ class MissionController < ApplicationController
   	@mission = Mission.find(params[:id])
     @mission_status = find_mission_status
     @mission_status.activate
+    @user_id = session[:user_id]
   end
  
   def complete
     @mission = Mission.find(params[:id])
     @mission_status = find_mission_status
     @mission_status.complete
+    @user_id = session[:user_id]
   end
  
   private

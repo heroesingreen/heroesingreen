@@ -2,6 +2,8 @@
 <p>
   <%=h @mission.task %>
   Mission status: <%=h @mission_status.status %>
+  <br>
+  User: <%=h @user_id %>
 </p>
 
 <%=button_to "Complete mission!", :action=>:complete, :id=>@mission%>
