@@ -1,9 +1,1 @@
-<h1><%=h @mission.title%></h1>
-<p>
-  <%=h @mission.task %>
-  Mission status: <%=h @mission_status.status %>
-  <br>
-  User: <%=h @user_id %>
-</p>
-
-<%=button_to "Complete mission!", :action=>:complete, :id=>@mission%>
+<div class="IntroChallenge">	<h1><%=h @mission.title%></h1>	<p>	  <%=h @mission.task %>	  Mission status: <%=h @mission_status.status %>	  User: <%=h @user_id %>	</p>	<%=button_to "Complete mission!", :action=>:complete, :id=>@mission%></div>

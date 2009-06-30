@@ -1,8 +1,10 @@
-<h1><%=h @mission.title%></h1>
+<div class="IntroChallenge">
+	<h1><%=h @mission.title%></h1>
+	
+	<p>
+	  <%=h @mission.reward %>
+	    Mission status: <%=h @mission_status.status %>
+	</p>
+	<%= button_to "Give me a different mission!", :action=>:start%>
+</div>
 
-<p>
-  <%=h @mission.reward %>
-    Mission status: <%=h @mission_status.status %>
-</p>
-
-<%= button_to "Give me a different mission!", :action=>:start%>
