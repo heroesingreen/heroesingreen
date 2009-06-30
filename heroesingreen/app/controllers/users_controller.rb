@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout :choose_layout	
+	
   # GET /users
   # GET /users.xml
   def index
@@ -79,7 +81,12 @@ class UsersController < ApplicationController
       user = User.authenticate(params[:email], params[:password])
       if user
         session[:user_id] = user.id
-        redirect_to(:action => "index")
+        flash[:notice] = nil
+        if(request.xhr?)
+        	render :partial => 'shared/login_module'
+        else
+        	redirect_to(:action => "index")
+    	end
       else
         flash[:notice] = "Invalid user/password combination"
       end
@@ -90,8 +97,10 @@ class UsersController < ApplicationController
   # GET /users/logout.xml
   def logout
     session[:user_id]=nil
-    redirect_to(:action => "index")
+    flash[:notice] = "You have been successfully logged out"
+    render :action => "login"
   end
+  
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
@@ -103,4 +112,16 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+  def choose_layout
+    if (request.xhr?)
+    	@ajax=true
+    	false
+	else
+		'users'
+	end
+  end
+  
 end

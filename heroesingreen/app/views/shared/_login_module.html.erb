@@ -1,11 +1,11 @@
-<% if session[:user_id] %>
-	User: <%=h session[:user_id] %>
-	<%=button_to "Log out", :action=>:logout%>
-<% else %>
-	<div class="user-login">
+<div id="login_widget" class="user-login">
+	<% if session[:user_id] %>
+		Welcome back <%=h User.find(session[:user_id]).email%>!
+		<%=button_to_remote "Log out", :update=>"login_widget", :url=>{:controller => "users", :action=>:logout}%>
+	<% else %>	
 		<fieldset>
-			<legend>Please log in</legend>
-			<% form_tag :controller => "users", :action => "login" do %>
+			<legend>Please log in</legend>			
+			<% form_remote_tag :update=>"login_widget", :url=>{:controller => "users", :action => "login"} do %>
 			<p>
 				<label for="email">Email:</label>
 				<%= text_field_tag :email, params[:email] %>
@@ -20,6 +20,6 @@
 				<%= submit_tag "Login" %>
 			</p>
 			<% end %>
-		</fieldset>
-	</div>
-<% end %>
+		</fieldset>	
+	<% end %>
+</div>

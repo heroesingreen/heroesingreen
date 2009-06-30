@@ -9,10 +9,10 @@
   <%= stylesheet_link_tag 'scaffold' %>
 </head>
 <body>
-
-<p style="color: green"><%= flash[:notice] %></p>
-
-<%= yield %>
-
+		<div class="heroesBanner"><%=image_tag 'heroes_header.gif'%></div>
+		<%unless flash[:notice]==nil%>
+			<div class="errorContent"><p style="color: red"><%= flash[:notice] %></p></div>
+		<%end%>
+		<div class="mainContent"><%= yield :layout%></div>		
 </body>
 </html>
