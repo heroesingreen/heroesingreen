@@ -29,4 +29,7 @@ div.loginModule {
 	float: right;
 	position: relative;
 	top: 300px;
+	width: 200px;
+	text-align: left;
+	background: white;
 }

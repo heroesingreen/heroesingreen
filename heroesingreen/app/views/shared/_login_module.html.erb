@@ -1,6 +1,8 @@
 <div id="login_widget" class="user-login">
-	<% if session[:user_id] %>
-		Welcome back <%=h User.find(session[:user_id]).email%>!
+	<% if session[:user_id] && User.find(session[:user_id])%>
+		<%loggedin_user = User.find(session[:user_id])%>
+		Welcome back <%=h loggedin_user.email%>!<br/>
+		Gosh! You are such a hero! You have saved <b><%=h loggedin_user.total_points%></b> trees!<br/>
 		<%=button_to_remote "Log out", :update=>"login_widget", :url=>{:controller => "users", :action=>:logout}%>
 	<% else %>	
 		<fieldset>
