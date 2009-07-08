@@ -93,6 +93,11 @@ class UsersController < ApplicationController
     end
   end
   
+  def stats
+  	user_id = session[:user_id]
+  	@user = User.find(user_id)
+  end
+  
   # GET /users/logout
   # GET /users/logout.xml
   def logout

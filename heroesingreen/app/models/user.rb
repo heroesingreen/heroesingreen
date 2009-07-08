@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :mision_statuses
+  has_many :missionStatuses
   validates_presence_of :email, :password
   
   def self.authenticate(email, password)
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     nil
   end
   
-  def add_mission_status(new_mission_status)
-	#TODO
+  def add_mission_status(newMissionStatus)
+  	self.missionStatuses.find_or_create_by_mission_id(newMissionStatus.mission.id)
   end
 end

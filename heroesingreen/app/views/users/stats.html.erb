@@ -1,0 +1,16 @@
+<h1>Welcome <%=@user.email%></h1>
+List of accomplishments
+<table border=1>
+	<tr>
+		<td>Mission Title</td>
+		<td>Points awarded</td>
+		<td>Mission status</td>
+	</tr>
+<% @user.missionStatuses.each do |missionStatus| %>
+	<tr>
+		<td><%=missionStatus.mission.title%></td>	
+		<td><%=missionStatus.mission.points%></td>
+		<td><%=missionStatus.status_string%></td>
+	</tr>
+<%end%>
+</table>

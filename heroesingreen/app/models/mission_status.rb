@@ -1,25 +1,41 @@
 class MissionStatus < ActiveRecord::Base
   belongs_to :user
   belongs_to :mission
-  attr_reader :status
+  validates_presence_of :mission_id
+  
   ACTIVATED_STATUS = 1
   COMPLETED_STATUS = 2
   
+  def after_initialize
+  	self.activate #always initialize the status
+  end
+  
   def activate
-    @status = ACTIVATED_STATUS
+    self.status = ACTIVATED_STATUS
   end
   
   def activated?
-    @status == ACTIVATED_STATUS
+    self.status == ACTIVATED_STATUS
   end
   
   def complete
-    @status = COMPLETED_STATUS
+    self.status = COMPLETED_STATUS
   end
   
   def completed?
-    @status == COMPLETED_STATUS
+    self.status == COMPLETED_STATUS
   end
+  
+  def status_string
+  	if self.activated?
+  		'Active'
+  	elsif self.completed?
+  		'Completed'
+  	else
+  		'Unknown'
+  	end
+  end
+  
 #  def status
 #    @mission_status.status
 #  end

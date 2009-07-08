@@ -8,33 +8,41 @@ class MissionController < ApplicationController
     @mission = all_missions[rand(all_missions.length)] #Pick a random mission
   end
   
+  #Mission status is always created when you accept a mission
   def accept
   	@mission = Mission.find(params[:id])
-    @mission_status = find_mission_status
-    @mission_status.activate
+  	session[:mission_status] = MissionStatus.new(:mission=>@mission)
+    @mission_status = session[:mission_status]    
     
     verify_user(session[:user_id])
     if(@logged_in_user)
-   		@logged_in_user.add_mission_status(@mission_status)
+   		@mission_status= @logged_in_user.add_mission_status(@mission_status)
+   		@mission_status.activate
+   		@mission_status.save!
    	end
   end
  
   def complete
-    @mission = Mission.find(params[:id])
-    @mission_status = find_mission_status
-    @mission_status.complete
+    unless(session[:mission_status]!=nil)
+    	#session not found, restart mission
+    	redirect_to(:action=>:start)
+    	return
+    end
+    @mission_status = session[:mission_status]
+    @mission  = @mission_status.mission
     
     verify_user(session[:user_id])
     if(@logged_in_user)
-   		@logged_in_user.add_mission_status(@mission_status)
+   		@mission_status = @logged_in_user.add_mission_status(@mission_status)
+   		@mission_status.complete
+   		@mission_status.save!
    	end
+   	
+   	#mission complete, clear session
+   	session[:mission_status] = nil
   end
  
   private
-  
-  def find_mission_status
-    session[:mission_status] ||= MissionStatus.new
-  end
   
   def verify_user(user_id)
   	 if user_id!=nil
