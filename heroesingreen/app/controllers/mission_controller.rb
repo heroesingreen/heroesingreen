@@ -11,46 +11,44 @@ class MissionController < ApplicationController
   #Mission status is always created when you accept a mission
   def accept
   	@mission = Mission.find(params[:id])
-  	session[:mission_status] = MissionStatus.new(:mission=>@mission)
-    @mission_status = session[:mission_status]    
-    
-    verify_user(session[:user_id])
-    if(@logged_in_user)
-   		@mission_status= @logged_in_user.add_mission_status(@mission_status)
-   		@mission_status.activate
+     
+    logged_in_user = get_user(session[:user_id])
+    if(logged_in_user)
+    	@mission_status = logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
+    	@mission_status.activate!
    		@mission_status.save!
    	end
   end
  
   def complete
-    unless(session[:mission_status]!=nil)
-    	#session not found, restart mission
+    unless(params[:id]!=nil)
+    	#mission id not found
     	redirect_to(:action=>:start)
     	return
-    end
-    @mission_status = session[:mission_status]
-    @mission  = @mission_status.mission
+    end    
+    @mission  = Mission.find(params[:id])
+    @not_logged_in = true
+    @force_refresh_on_login = true
     
-    verify_user(session[:user_id])
-    if(@logged_in_user)
-   		@mission_status = @logged_in_user.add_mission_status(@mission_status)
-   		@mission_status.complete
+    logged_in_user = get_user(session[:user_id])
+    if(logged_in_user)
+   		@mission_status = logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
+   		@mission_status.complete!
    		@mission_status.save!
+   		@not_logged_in = false
    	end
-   	
-   	#mission complete, clear session
-   	session[:mission_status] = nil
   end
  
   private
   
-  def verify_user(user_id)
+  def get_user(user_id)
   	 if user_id!=nil
-	  @logged_in_user = User.find(session[:user_id])
-	  if @logged_in_user == nil #user id is invalid, remove it from session  		   
-	  	@user_id = nil
+	  logged_in_user = User.find(session[:user_id])
+	  if logged_in_user == nil #user id is invalid, remove it from session  		   
+	  	user_id = nil
 	  	session[:user_id] = nil
 	  end
+	  logged_in_user
 	end
   end
 end

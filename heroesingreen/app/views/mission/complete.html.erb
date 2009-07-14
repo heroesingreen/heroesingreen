@@ -3,8 +3,14 @@
 	
 	<p>
 	  <%=h @mission.reward %>
-	    Mission status: <%=h @mission_status.status %>
 	</p>
-	<%= button_to "Give me a different mission!", :action=>:start%>
+	
+	<%if @not_logged_in%>
+	<p>
+		Great work on doing your part for the environment! But there's so much more we can do. Log in or create your free account today to plant the trees you have earned and see what you can build. Log in or create your account here ==>
+	</p>
+	<%else%>
+		<%= button_to "Give me a different mission!", :action=>:start%>
+	<%end%>	
 </div>
 

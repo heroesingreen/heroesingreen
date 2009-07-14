@@ -10,8 +10,4 @@ class User < ActiveRecord::Base
     end
     nil
   end
-  
-  def add_mission_status(newMissionStatus)
-  	self.missionStatuses.find_or_create_by_mission_id(newMissionStatus.mission.id)
-  end
 end

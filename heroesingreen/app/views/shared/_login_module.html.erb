@@ -2,17 +2,25 @@
 	<%unless flash[:notice]==nil%>
 		<div class="error_content"><p style="color: red"><%= flash[:notice] %></p></div>
 	<%end%>
+
 	<div class="login_content">
 		<% if session[:user_id] && User.find(session[:user_id])%>
-			<%loggedin_user = User.find(session[:user_id])%>
-			Welcome back <%=h loggedin_user.email%>!<br/>
-			Gosh! You are such a hero! You have saved <b><%=h loggedin_user.total_points%></b> trees!<br/>
-			<%=link_to "Show accomplished missions", :controller => "users", :action=>:stats%><br/>
-			<%=button_to_remote "Log out", :update=>"login_widget", :url=>{:controller => "users", :action=>:logout}%>
+			<%if @force_refresh%>
+				<script>window.location = location.href;</script>
+			<%else%>
+				<%loggedin_user = User.find(session[:user_id])%>
+				Welcome back <%=h loggedin_user.email%>!<br/>
+				Gosh! You are such a hero! You have saved <b><%=h loggedin_user.total_points%></b> trees!<br/>
+				<%=link_to "Show accomplished missions", :controller => "users", :action=>:stats%><br/>
+				<%=button_to_remote "Log out", :update=>"login_widget", :url=>{:controller => "users", :action=>:logout}%>			
+			<%end%>
 		<% else %>	
 			<fieldset>
 				<legend>Please log in</legend>			
 				<% form_remote_tag :update=>"login_widget", :url=>{:controller => "users", :action => "login"} do %>
+				<%if @force_refresh_on_login%>
+					<%=hidden_field_tag :refresh, 1%>
+				<%end%>
 				<p>
 					<label for="email">Email:</label>
 					<%= text_field_tag :email, params[:email] %>
@@ -21,8 +29,7 @@
 				<p>
 					<label for="password">Password:</label>
 					<%= password_field_tag :password, params[:password] %>
-				</p>
-				
+				</p>				
 				<p>
 					<%= submit_tag "Login" %>
 				</p>

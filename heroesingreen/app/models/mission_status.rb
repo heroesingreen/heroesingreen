@@ -6,11 +6,7 @@ class MissionStatus < ActiveRecord::Base
   ACTIVATED_STATUS = 1
   COMPLETED_STATUS = 2
   
-  def after_initialize
-  	self.activate #always initialize the status
-  end
-  
-  def activate
+  def activate!
     self.status = ACTIVATED_STATUS
   end
   
@@ -18,7 +14,7 @@ class MissionStatus < ActiveRecord::Base
     self.status == ACTIVATED_STATUS
   end
   
-  def complete
+  def complete!
     self.status = COMPLETED_STATUS
   end
   
