@@ -1,0 +1,27 @@
+#START:dev
+development:
+  adapter: mysql
+  database: namelist_development
+  username: root
+  password:
+  host: localhost
+  #START_HIGHLIGHT
+  encoding: utf8
+  #END_HIGHLIGHT
+#END:dev
+
+test:
+  adapter: mysql
+  database: namelist_test
+  username: root
+  password:
+  host: localhost
+  encoding: utf8
+
+production:
+  adapter: mysql
+  database: namelist_production
+  username: root
+  password: 
+  host: localhost
+  encoding: utf8

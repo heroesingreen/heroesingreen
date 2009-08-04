@@ -1,0 +1,31 @@
+<!--
+ ! Excerpted from "Agile Web Development with Rails, 2nd Ed.",
+ ! published by The Pragmatic Bookshelf.
+ ! Copyrights apply to this code. It may not be used to create training material, 
+ ! courses, books, articles, and the like. Contact us if you are in doubt.
+ ! We make no guarantees that this code is fit for any purpose. 
+ ! Visit http://www.pragmaticprogrammer.com/titles/rails2 for more book information.
+-->
+<h1>Todo list for <%= @user.username %></h1>
+<!-- User database id is <%= @user.id %> -->
+
+<h2>Pending</h2>
+<div id="pending_todos">
+  <ul id='pending_todo_list'>
+    <% @pending_todos.each do |item| %>
+      <% domid = "todo_#{item.id}" %>
+      <li id='<%= domid %>'><%= item.name %></li>
+    <% end %> 
+  </ul>
+</div>
+
+<h2>Completed</h2>
+<div id="completed_todos">
+  <ul>
+    <% @completed_todos.each do |item| %>
+      <% domid = "todo_#{item.id}" %>
+      <li id='<%= domid %>'><%= item.name %></li>
+    <% end %>
+  </ul>
+</div>
+

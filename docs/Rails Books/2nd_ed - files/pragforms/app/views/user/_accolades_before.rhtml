@@ -1,0 +1,41 @@
+<!--
+ ! Excerpted from "Agile Web Development with Rails, 2nd Ed.",
+ ! published by The Pragmatic Bookshelf.
+ ! Copyrights apply to this code. It may not be used to create training material, 
+ ! courses, books, articles, and the like. Contact us if you are in doubt.
+ ! We make no guarantees that this code is fit for any purpose. 
+ ! Visit http://www.pragmaticprogrammer.com/titles/rails2 for more book information.
+-->
+<h1>Accolades for <%= @user.username %></h1>
+
+<table>
+  <tr>
+  <% for column in Accolade.user_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for accolade in @accolades %>
+  <tr>
+  <% for column in Accolade.user_columns %>
+    <td><%=h accolade.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Destroy', { :action => 'destroy_accolade', :id => accolade, :only_path=>false }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+
+<div class="add_accolade">
+<h1>Add accolade</h1>
+<% form_tag :action => 'add_accolade', :only_path => false do %>
+<%= error_messages_for 'accolade' %>
+  <%= hidden_field 'user', 'id' %>
+  <p><label for="accolade_name">Name</label><br/>
+  <%= text_field 'accolade', 'name', :autocomplete=>"off"  %></p>
+  <p><label for="accolade_received">Received</label><br/>
+  <%= date_select 'accolade', 'received'  %></p>
+  <%= submit_tag "Add" %>
+<% end %>
+</div>
+

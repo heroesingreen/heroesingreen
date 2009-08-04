@@ -1,0 +1,20 @@
+development:
+  adapter: mysql
+  database: depot_development
+  username: root
+  password:
+  host: localhost
+
+test:
+  adapter: mysql
+  database: depot_test
+  username: root
+  password:
+  host: localhost
+
+production:
+  adapter: mysql
+  database: depot_production
+  username: root
+  password: 
+  host: localhost

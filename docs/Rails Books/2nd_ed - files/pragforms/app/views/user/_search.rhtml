@@ -1,0 +1,34 @@
+<!--
+ ! Excerpted from "Agile Web Development with Rails, 2nd Ed.",
+ ! published by The Pragmatic Bookshelf.
+ ! Copyrights apply to this code. It may not be used to create training material, 
+ ! courses, books, articles, and the like. Contact us if you are in doubt.
+ ! We make no guarantees that this code is fit for any purpose. 
+ ! Visit http://www.pragmaticprogrammer.com/titles/rails2 for more book information.
+-->
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Favorite Language</th>
+  </tr>
+  
+<% for user in @users %>
+  <tr>
+    <td><%=h user.username %></td>
+    <td><%=h user.favorite_language %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => user %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => user %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => user }, 
+               :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', 
+     { :page => @user_pages.current.previous } if @user_pages.current.previous %>
+<%= link_to 'Next page', 
+     { :page => @user_pages.current.next } if @user_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New user', :action => 'new' %>
