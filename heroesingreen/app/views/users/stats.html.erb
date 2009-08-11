@@ -7,14 +7,21 @@ List of accomplishments
 		<td>Mission status</td>
 		<td>Date completed</td>
 	</tr>
-<% @user.missionStatuses.each do |missionStatus| %>
+<% @user.missionStatuses.find(:all, :order => 'status').each do |missionStatus| %>
 	<tr>
 		<td><%=missionStatus.mission.title%></td>	
 		<td><%=missionStatus.mission.points%></td>
-		<td><%=missionStatus.status_string%></td>
+		<td><%=missionStatus.status_string%>
+		<% if missionStatus.activated? %>
+		<%= link_to "Complete mission!", :controller => "mission", :action=>:accept, :id=>missionStatus.mission %>
+		<% end %>
+		</td>
 		<td><%=missionStatus.updated_at.to_date%></td>
 	</tr>
 <%end%>
 </table>
+<hr>
+Total points: <%=@user.total_points%>
+<hr>
 <%= button_to "Earn more points", :controller=>:mission, :action=>:start%>
 <%= button_to "View Garden", :controller=>:garden, :action=>:view %>

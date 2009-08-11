@@ -4,7 +4,24 @@ class MissionController < ApplicationController
   end
   
   def start
-    all_missions = Mission.all
+  	logged_in_user = get_user(session[:user_id])
+  	all_missions = Mission.all
+  	done_missions = nil
+  	if(logged_in_user) 		
+  		done_missionStatuses = logged_in_user.missionStatuses
+  		done_missionStatuses.each{
+  			|missionStatus| 
+  			all_missions.delete_if{
+  				|mission|
+  				mission==missionStatus.mission
+  				}
+  			}
+   	end
+   	if all_missions.empty?
+   		flash[:notice] = "Sorry, there are no more missions for now!"
+   		redirect_to(:controller=>:users, :action=>:stats)
+    	return
+    end
     @mission = all_missions[rand(all_missions.length)] #Pick a random mission
   end
   

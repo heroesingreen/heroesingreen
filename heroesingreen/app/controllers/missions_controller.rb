@@ -1,4 +1,6 @@
 class MissionsController < ApplicationController
+  layout nil
+  
   # GET /missions
   # GET /missions.xml
   def index

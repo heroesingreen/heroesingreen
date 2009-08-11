@@ -10,4 +10,14 @@ class User < ActiveRecord::Base
     end
     nil
   end
+  
+  def total_points
+  	all_statuses = self.missionStatuses.find_all_by_status(MissionStatus::COMPLETED_STATUS)
+  	total_points = 0
+  	all_statuses.each{
+  	|status| 
+  	total_points += status.mission.points
+  	}
+  	total_points  		
+  end 
 end
