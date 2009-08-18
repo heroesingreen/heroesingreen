@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   	total_points = 0
   	all_statuses.each{
   	|status| 
-  	total_points += status.mission.points
+  	total_points += status.mission_points
   	}
   	total_points  		
   end 

@@ -11,7 +11,7 @@ List of accomplishments
 <% @user.missionStatuses.find(:all, :order => 'status').each do |missionStatus| %>
 	<tr>
 		<td><%=missionStatus.mission.title%></td>	
-		<td><%=missionStatus.mission.points%></td>
+		<td><%=missionStatus.mission_points%></td>
 		<td><%=missionStatus.status_string%></td>
 		<td><% if missionStatus.activated? %>
 		<%= button_to "Complete mission!", :controller => "mission_game", :action=>:accept, :id=>missionStatus.mission %>
@@ -40,5 +40,5 @@ List of accomplishments
 <hr>
 Total points: <%=@user.total_points%>
 <hr>
-<%= button_to "Earn more points", :controller=>:mission, :action=>:start%>
+<%= button_to "Earn more points", :controller=>:mission_game, :action=>:start%>
 <%= button_to "View Garden", :controller=>:garden, :action=>:view %>

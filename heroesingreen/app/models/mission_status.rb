@@ -35,6 +35,18 @@ class MissionStatus < ActiveRecord::Base
   		'Unknown'
   	end
   end
+
+# => Mission points calculation 
+
+  def mission_points
+  	if self.mission.repeatable?
+  		self.repeats * self.mission.points
+  	else
+  		self.mission.points
+  	end
+  end
+  	
+ 
   
 #  def status
 #    @mission_status.status
