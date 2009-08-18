@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090818041018) do
+ActiveRecord::Schema.define(:version => 20090818051606) do
 
   create_table "mission_statuses", :force => true do |t|
     t.integer  "mission_id"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20090818041018) do
     t.date     "startDate"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "repeats"
+    t.integer  "repeats",    :default => 0
   end
 
   create_table "missions", :force => true do |t|
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20090818041018) do
     t.string   "task"
     t.string   "reward"
     t.integer  "points"
-    t.integer  "type"
+    t.integer  "repeatable"
     t.integer  "unitPoints"
     t.string   "unit"
     t.datetime "created_at"

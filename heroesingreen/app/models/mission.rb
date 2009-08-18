@@ -6,15 +6,15 @@ class Mission < ActiveRecord::Base
 	REPEATABLE_TYPE = 1
 	EPIC_TYPE = 2
 	def oneshot?
-		self.type == ONESHOT_TYPE
+		self.repeatable == ONESHOT_TYPE
 	end
 	
 	def repeatable?
-		self.type == REPEATABLE_TYPE
+		self.repeatable == REPEATABLE_TYPE
 	end
 	
 	def epic?
-		self.type == EPIC_TYPE
+		self.repeatable == EPIC_TYPE
 	end
 	
 end

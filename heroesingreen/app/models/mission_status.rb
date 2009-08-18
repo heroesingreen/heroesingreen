@@ -17,6 +17,9 @@ class MissionStatus < ActiveRecord::Base
   
   def complete!
     self.status = COMPLETED_STATUS
+    if self.mission.repeatable?
+    	self.repeats+=1
+	end
   end
   
   def completed?

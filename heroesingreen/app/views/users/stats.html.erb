@@ -6,6 +6,7 @@ List of accomplishments
 		<td>Points awarded</td>
 		<td>Mission status</td>
 		<td>Date completed</td>
+		<td>Times completed</td>
 	</tr>
 <% @user.missionStatuses.find(:all, :order => 'status').each do |missionStatus| %>
 	<tr>
@@ -13,12 +14,25 @@ List of accomplishments
 		<td><%=missionStatus.mission.points%></td>
 		<td><%=missionStatus.status_string%></td>
 		<td><% if missionStatus.activated? %>
-		<%= button_to "Complete mission!", :controller => "mission", :action=>:accept, :id=>missionStatus.mission %>
+		<%= button_to "Complete mission!", :controller => "mission_game", :action=>:accept, :id=>missionStatus.mission %>
 		<% elsif missionStatus.completed? %>
 		<%=missionStatus.updated_at.to_date%>
 		<% else %>
 		Weird status
 		<% end %>
+		</td>
+		<td>
+			<% if missionStatus.mission.repeatable? %>
+				Completed <b><%= missionStatus.repeats %></b> times. 
+				<% if missionStatus.completed? %>
+					<%= button_to "Do it again!", :controller => "mission_game", :action=>:accept, :id=>missionStatus.mission %>
+				<% end %>
+				
+			<% elsif missionStatus.mission.oneshot? %>
+				Oneshot mission only.
+			<% else %>
+				No type defined
+			<% end %>
 		</td>
 	</tr>
 <%end%>
