@@ -2,7 +2,8 @@ class MissionStatus < ActiveRecord::Base
   belongs_to :user
   belongs_to :mission
   validates_presence_of :mission_id
-  
+
+# => Status information
   ACTIVATED_STATUS = 1
   COMPLETED_STATUS = 2
   
@@ -35,4 +36,5 @@ class MissionStatus < ActiveRecord::Base
 #  def status
 #    @mission_status.status
 #  end
+
 end
