@@ -15,8 +15,11 @@ List of accomplishments
 		<td><%=missionStatus.status_string%></td>
 		<td><% if missionStatus.activated? %>
 		<%= button_to "Complete mission!", :controller => "mission_game", :action=>:accept, :id=>missionStatus.mission %>
+		<%= button_to "Drop this mission.", :controller => "mission_game", :action=>:drop, :id=>missionStatus.mission %>
 		<% elsif missionStatus.completed? %>
 		<%=missionStatus.updated_at.to_date%>
+		<% elsif missionStatus.deactivated? %>
+		Inactive. <%= button_to "Accept this mission.", :controller => "mission_game", :action=>:accept, :id=>missionStatus.mission %>
 		<% else %>
 		Weird status
 		<% end %>

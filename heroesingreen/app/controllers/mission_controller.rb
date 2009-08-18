@@ -1,4 +1,4 @@
-class MissionGameController < ApplicationController
+class MissionController < ApplicationController
   def index
     
   end
@@ -13,7 +13,7 @@ class MissionGameController < ApplicationController
   			|missionStatus| 
   			all_missions.delete_if{
   				|mission|
-  				(mission==missionStatus.mission) && missionStatus.mission.oneshot? && !missionStatus.deactivated?
+  				mission==missionStatus.mission
   				}
   			}
    	end
@@ -57,22 +57,8 @@ class MissionGameController < ApplicationController
   end
   
   def drop
-  	unless(params[:id]!=nil)
-  		#mission id not found
-  		redirect_to(:action=>:start) 
-  		return
-  	end
-  	@mission  = Mission.find(params[:id])
-    @not_logged_in = true
-    @force_refresh_on_login = true
-  	if(logged_in_user)
-   		@mission_status = logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
-   		@mission_status.drop!
-   		@mission_status.save!
-   		@not_logged_in = false
-   	end
-  end
-   	
+  	
+ 
   private
   
   def get_user(user_id)
