@@ -1,0 +1,52 @@
+<h1>Editing plant_template</h1>
+
+<% form_for(@plant_template) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost %>
+  </p>
+  <p>
+    <%= f.label :max_health %><br />
+    <%= f.text_field :max_health %>
+  </p>
+  <p>
+    <%= f.label :virility %><br />
+    <%= f.text_field :virility %>
+  </p>
+  <p>
+    <%= f.label :stength %><br />
+    <%= f.text_field :stength %>
+  </p>
+  <p>
+    <%= f.label :min_light %><br />
+    <%= f.text_field :min_light %>
+  </p>
+  <p>
+    <%= f.label :shade_generated %><br />
+    <%= f.text_field :shade_generated %>
+  </p>
+  <p>
+    <%= f.label :min_water %><br />
+    <%= f.text_field :min_water %>
+  </p>
+  <p>
+    <%= f.label :water_consumption %><br />
+    <%= f.text_field :water_consumption %>
+  </p>
+  <p>
+    <%= f.label :layer_req %><br />
+    <%= f.text_field :layer_req %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @plant_template %> |
+<%= link_to 'Back', plant_templates_path %>

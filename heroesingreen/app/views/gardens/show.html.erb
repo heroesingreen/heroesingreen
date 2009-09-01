@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @garden.name %>
+</p>
+
+<p>
+  <b>Size x:</b>
+  <%=h @garden.size_x %>
+</p>
+
+<p>
+  <b>Size y:</b>
+  <%=h @garden.size_y %>
+</p>
+
+
+<%= link_to 'Edit', edit_garden_path(@garden) %> |
+<%= link_to 'Back', gardens_path %>

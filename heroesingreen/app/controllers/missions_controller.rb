@@ -63,7 +63,8 @@ class MissionsController < ApplicationController
 
     respond_to do |format|
       if @mission.update_attributes(params[:mission])
-        flash[:notice] = 'Mission was successfully updated.'
+        flash[:notice] = params[:mission]["type"]
+        #flash[:notice] = 'Mission was successfully updated.'
         format.html { redirect_to(@mission) }
         format.xml  { head :ok }
       else

@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090818051606) do
+ActiveRecord::Schema.define(:version => 20090818062121) do
+
+  create_table "gardens", :force => true do |t|
+    t.string   "name"
+    t.integer  "size_x"
+    t.integer  "size_y"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mission_statuses", :force => true do |t|
     t.integer  "mission_id"
@@ -35,6 +44,38 @@ ActiveRecord::Schema.define(:version => 20090818051606) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "tags"
+  end
+
+  create_table "plant_templates", :force => true do |t|
+    t.string   "name"
+    t.integer  "cost"
+    t.integer  "max_health"
+    t.integer  "virility"
+    t.integer  "stength"
+    t.integer  "min_light"
+    t.integer  "shade_generated"
+    t.integer  "min_water"
+    t.integer  "water_consumption"
+    t.integer  "layer_req"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plants", :force => true do |t|
+    t.integer  "plant_template_id"
+    t.integer  "plot_id"
+    t.integer  "health"
+    t.integer  "x"
+    t.integer  "y"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plots", :force => true do |t|
+    t.integer  "garden_id"
+    t.integer  "layer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sessions", :force => true do |t|

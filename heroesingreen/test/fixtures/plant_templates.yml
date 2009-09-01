@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  cost: 1
+  max_health: 1
+  virility: 1
+  stength: 1
+  min_light: 1
+  shade_generated: 1
+  min_water: 1
+  water_consumption: 1
+  layer_req: 1
+
+two:
+  name: MyString
+  cost: 1
+  max_health: 1
+  virility: 1
+  stength: 1
+  min_light: 1
+  shade_generated: 1
+  min_water: 1
+  water_consumption: 1
+  layer_req: 1

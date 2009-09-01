@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  plant_template_id: 1
+  health: 1
+
+two:
+  plant_template_id: 1
+  health: 1

@@ -1,0 +1,53 @@
+<p>
+  <b>Name:</b>
+  <%=h @plant_template.name %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%=h @plant_template.cost %>
+</p>
+
+<p>
+  <b>Max health:</b>
+  <%=h @plant_template.max_health %>
+</p>
+
+<p>
+  <b>Virility:</b>
+  <%=h @plant_template.virility %>
+</p>
+
+<p>
+  <b>Stength:</b>
+  <%=h @plant_template.stength %>
+</p>
+
+<p>
+  <b>Min light:</b>
+  <%=h @plant_template.min_light %>
+</p>
+
+<p>
+  <b>Shade generated:</b>
+  <%=h @plant_template.shade_generated %>
+</p>
+
+<p>
+  <b>Min water:</b>
+  <%=h @plant_template.min_water %>
+</p>
+
+<p>
+  <b>Water consumption:</b>
+  <%=h @plant_template.water_consumption %>
+</p>
+
+<p>
+  <b>Layer req:</b>
+  <%=h @plant_template.layer_req %>
+</p>
+
+
+<%= link_to 'Edit', edit_plant_template_path(@plant_template) %> |
+<%= link_to 'Back', plant_templates_path %>
