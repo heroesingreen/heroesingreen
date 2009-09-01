@@ -13,12 +13,21 @@ class User < ActiveRecord::Base
   end
   
   def total_points
-  	all_statuses = self.missionStatuses.find_all_by_status(MissionStatus::COMPLETED_STATUS)
+  	
   	total_points = 0
+  	all_statuses = self.missionStatuses.find_all_by_status(MissionStatus::COMPLETED_STATUS)
   	all_statuses.each{
   	|status| 
   	total_points += status.mission_points
   	}
-  	total_points  		
+  	
+  	active_statuses = self.missionStatuses.find_all_by_status(MissionStatus::ACTIVATED_STATUS)
+  	active_statuses.each{
+  	|status|
+  	if status.mission.repeatable?
+  		total_points += status.mission_points
+  	end
+  	}
+    return total_points
   end 
 end

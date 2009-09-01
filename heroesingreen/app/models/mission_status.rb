@@ -53,12 +53,6 @@ class MissionStatus < ActiveRecord::Base
   	end
   end
   
-  
-  
-  	
-  		
-  		
-  			
 
 # => Mission points calculation 
 
