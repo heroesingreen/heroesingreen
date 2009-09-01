@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
     nil
   end
   
-  def total_points
-  	
+  def total_points  	
   	total_points = 0
   	all_statuses = self.missionStatuses.find_all_by_status(MissionStatus::COMPLETED_STATUS)
   	all_statuses.each{
@@ -30,4 +29,19 @@ class User < ActiveRecord::Base
   	}
     return total_points
   end 
+  
+  def get_garden
+  		  
+	
+  end
+  
+  def add_garden
+  	new_garden = Garden.new
+  	self.gardens.push(new_garden)
+  	self.save!
+    new_garden.save!
+    new_garden.initialize_plots
+    return new_garden
+  end
+  	    
 end

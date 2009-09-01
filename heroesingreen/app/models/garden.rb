@@ -10,12 +10,13 @@ class Garden < ActiveRecord::Base
     self.plots.push(Plot.new(:layer_id =>Plot::SMALL_TREE_LAYER))
     
     self.save!
-    self.plots.save!
+    
+    self.plots.each{|plot|	plot.save!}
   end
   
   def add_plant(plant_type)
     found_plot = self.plots.find_by_layer_id(plant_type.layer_req)
-    unless(found_plot==nil) do
+    unless(found_plot==nil) then
       new_plant = plant_type.createPlant(found_plot)
       found_plot.place_plant(new_plant)
       new_plant.save!
@@ -32,4 +33,5 @@ class Garden < ActiveRecord::Base
   
   def garden_grow(points)
   end
+  
 end

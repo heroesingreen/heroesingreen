@@ -7,7 +7,7 @@ class Plant < ActiveRecord::Base
   
   def tick
     self.grow
-    if(self.alive?) do
+    if(self.alive?) then
       self.reproduce
     else
       self.destroy!
