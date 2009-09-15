@@ -9,16 +9,15 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   def get_current_garden
-# => figure out what user we have
-	logged_in_user = User.find(session[:user_id])
-# => get all that users gardens
-	all_gardens = logged_in_user.gardens
-# => If there are not any, create one
-# => if there are one or more, then return the first one
-	if all_gardens.empty?
-		logged_in_user.add_garden
-	end
-	return all_gardens.first
+  # => figure out what user we have
+  	logged_in_user = User.find(session[:user_id])
+  # => get all that users gardens
+  	all_gardens = logged_in_user.gardens
+  # => If there are not any, create one
+  # => if there are one or more, then return the first one
+  	if all_gardens.empty?
+  		logged_in_user.add_garden
+  	end
+  	return all_gardens.first
   end
-  	
 end

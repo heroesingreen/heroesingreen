@@ -4,5 +4,6 @@ class GardenController < ApplicationController
 	end
 	
 	def view
+	  @garden = get_current_garden
 	end
 end

@@ -26,4 +26,8 @@ class Plant < ActiveRecord::Base
   def reproduce
     
   end
+  
+  def name
+    self.plant_template.name
+  end
 end

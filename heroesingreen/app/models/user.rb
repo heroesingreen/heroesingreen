@@ -35,8 +35,10 @@ class User < ActiveRecord::Base
 	
   end
   
-  def add_garden
+  def add_garden(size_x=10, size_y=10)
   	new_garden = Garden.new
+  	new_garden.size_x = size_x
+  	new_garden.size_y = size_y
   	self.gardens.push(new_garden)
   	self.save!
     new_garden.save!
