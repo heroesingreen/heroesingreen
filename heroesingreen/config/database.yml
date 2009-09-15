@@ -44,5 +44,5 @@ production:
   database: heroesingreen_production
   pool: 5
   username: root
-  password: 
+  password: password
   host: localhost
