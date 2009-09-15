@@ -20,4 +20,16 @@ class ApplicationController < ActionController::Base
   	end
   	return all_gardens.first
   end
+  
+  def get_user(user_id)
+  	if user_id!=nil
+	  logged_in_user = User.find(session[:user_id])
+	  if logged_in_user == nil #user id is invalid, remove it from session  		   
+	  	user_id = nil
+	  	session[:user_id] = nil
+	  end
+	  logged_in_user
+	end
+  end
+  	
 end

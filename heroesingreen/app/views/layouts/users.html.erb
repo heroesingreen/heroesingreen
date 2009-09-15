@@ -13,6 +13,7 @@
 		<%unless flash[:notice]==nil%>
 			<div class="errorContent"><p style="color: red"><%= flash[:notice] %></p></div>
 		<%end%>
-		<div class="mainContent"><%= yield :layout%></div>		
+		<div class="mainContent"><%= yield :layout%></div>	
+		<div class="loginModule"><%= render :partial => 'shared/login_module' %></div>	
 </body>
 </html>

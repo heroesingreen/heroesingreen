@@ -5,7 +5,7 @@ class CreatePlantTemplates < ActiveRecord::Migration
       t.integer :cost
       t.integer :max_health
       t.integer :virility
-      t.integer :stength
+      t.integer :strength
       t.integer :min_light
       t.integer :shade_generated
       t.integer :min_water

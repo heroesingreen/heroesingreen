@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20090818062121) do
     t.integer  "cost"
     t.integer  "max_health"
     t.integer  "virility"
-    t.integer  "stength"
+    t.integer  "strength"
     t.integer  "min_light"
     t.integer  "shade_generated"
     t.integer  "min_water"
