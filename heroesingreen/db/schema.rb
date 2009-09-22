@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090818062121) do
+ActiveRecord::Schema.define(:version => 20090922051543) do
 
   create_table "gardens", :force => true do |t|
     t.string   "name"
@@ -49,16 +49,23 @@ ActiveRecord::Schema.define(:version => 20090818062121) do
   create_table "plant_templates", :force => true do |t|
     t.string   "name"
     t.integer  "cost"
-    t.integer  "max_health"
+    t.integer  "health_max"
     t.integer  "virility"
-    t.integer  "strength"
-    t.integer  "min_light"
-    t.integer  "shade_generated"
-    t.integer  "min_water"
+    t.integer  "light_min"
+    t.integer  "water_min"
     t.integer  "water_consumption"
-    t.integer  "layer_req"
+    t.integer  "layer_max"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_path"
+    t.integer  "water_max"
+    t.integer  "light_max"
+    t.integer  "nutrients_min"
+    t.integer  "nutrients_max"
+    t.integer  "nutrients_consumption"
+    t.float    "vertical_rate"
+    t.float    "radial_rate"
+    t.float    "density_rate"
   end
 
   create_table "plants", :force => true do |t|
