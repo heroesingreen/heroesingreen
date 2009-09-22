@@ -15,7 +15,7 @@ class Garden < ActiveRecord::Base
   end
   
   def add_plant(plant_type)
-    found_plot = self.plots.find_by_layer_id(plant_type.layer_req)
+    found_plot = self.plots.find_by_layer_id(plant_type.layer_max)
     unless(found_plot==nil) then
       new_plant = plant_type.createPlant(found_plot)
       found_plot.place_plant(new_plant)

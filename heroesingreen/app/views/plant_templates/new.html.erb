@@ -12,36 +12,65 @@
     <%= f.text_field :cost %>
   </p>
   <p>
-    <%= f.label :max_health %><br />
-    <%= f.text_field :max_health %>
-  </p>
-  <p>
     <%= f.label :virility %><br />
     <%= f.text_field :virility %>
   </p>
-  <p>
-    <%= f.label :strength %><br />
-    <%= f.text_field :strength %>
+    <p>
+    <%= f.label :image_path %><br />
+    <%= f.text_field :image_path %>
+  </p>
+      <p>
+    <%= f.label :ilayer_max %><br />
+    <%= f.text_field :layer_max %>
   </p>
   <p>
-    <%= f.label :min_light %><br />
-    <%= f.text_field :min_light %>
+    <%= f.label :health_max %><br />
+    <%= f.text_field :health_max %>
+  </p>
+    <p>
+    <%= f.label :water_min %><br />
+    <%= f.text_field :water_min %>
   </p>
   <p>
-    <%= f.label :shade_generated %><br />
-    <%= f.text_field :shade_generated %>
-  </p>
-  <p>
-    <%= f.label :min_water %><br />
-    <%= f.text_field :min_water %>
+    <%= f.label :water_max %><br />
+    <%= f.text_field :water_max %>
   </p>
   <p>
     <%= f.label :water_consumption %><br />
     <%= f.text_field :water_consumption %>
   </p>
+      <p>
+    <%= f.label :light_min %><br />
+    <%= f.text_field :light_min %>
+  </p>
   <p>
-    <%= f.label :layer_req %><br />
-    <%= f.text_field :layer_req %>
+    <%= f.label :light_max %><br />
+    <%= f.text_field :light_max %>
+  </p>
+      <p>
+    <%= f.label :nutrients_min %><br />
+    <%= f.text_field :nutrients_min %>
+  </p>
+      <p>
+    <%= f.label :nutrients_max %><br />
+    <%= f.text_field :nutrients_max %>
+  </p>
+        <p>
+    <%= f.label :nutrients_consumption %><br />
+    <%= f.text_field :nutrients_consumption %>
+  </p>
+    
+  <p>
+    <%= f.label :vertical_rate %><br />
+    <%= f.text_field :vertical_rate %>
+  </p>
+  <p>
+    <%= f.label :radial_rate %><br />
+    <%= f.text_field :radial_rate %>
+  </p>
+  <p>
+    <%= f.label :density_rate %><br />
+    <%= f.text_field :density_rate %>
   </p>
   <p>
     <%= f.submit 'Create' %>

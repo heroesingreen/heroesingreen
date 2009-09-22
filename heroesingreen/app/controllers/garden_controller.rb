@@ -1,4 +1,6 @@
 class GardenController < ApplicationController
+	layout "mission_game"
+	
 	def index
 		redirect_to(:action=>:view)
 	end

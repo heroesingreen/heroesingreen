@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
   
   def self.authenticate(email, password)
     user = self.find_by_email(email)
-    if user
-      password == user.password
+    if user && password == user.password
       return user
     end
     nil
@@ -35,10 +34,8 @@ class User < ActiveRecord::Base
 	
   end
   
-  def add_garden(size_x=10, size_y=10)
+  def add_garden
   	new_garden = Garden.new
-  	new_garden.size_x = size_x
-  	new_garden.size_y = size_y
   	self.gardens.push(new_garden)
   	self.save!
     new_garden.save!
