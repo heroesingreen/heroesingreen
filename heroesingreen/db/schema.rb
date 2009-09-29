@@ -9,13 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090922055355) do
+ActiveRecord::Schema.define(:version => 20090929043042) do
 
   create_table "gardens", :force => true do |t|
     t.string   "name"
     t.integer  "size_x"
     t.integer  "size_y"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "default_wetness"
+    t.integer  "default_nutrients"
+  end
+
+  create_table "grounds", :force => true do |t|
+    t.integer  "garden_id"
+    t.integer  "x"
+    t.integer  "y"
+    t.integer  "wetness"
+    t.integer  "nutrients"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,14 +82,13 @@ ActiveRecord::Schema.define(:version => 20090922055355) do
 
   create_table "plants", :force => true do |t|
     t.integer  "plant_template_id"
-    t.integer  "plot_id"
     t.integer  "health"
-    t.integer  "x"
-    t.integer  "y"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "height"
     t.integer  "radius"
+    t.integer  "ground_id"
+    t.integer  "layer_id"
   end
 
   create_table "plots", :force => true do |t|

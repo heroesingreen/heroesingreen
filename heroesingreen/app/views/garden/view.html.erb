@@ -1,19 +1,19 @@
 <h1>Your garden</h1>
 
-<%@garden.plots.each do |plot|%>
-	<h2>Layer ID: <%=plot.layer_id%></h2>
 	<div>
 	<table cellpadding="0" cellspacing="0" style="background:#563215;">
 	<%@garden.size_y.times do |y|%>
 		<tr>
 			<%@garden.size_x.times do |x|%>
 				<td>
-					<%plant = plot.plants.find_by_x_and_y(x,y)%>
-					<%if plant != nil%>
-						<%if plant.plant_template.image_path != nil%>
-							<%=image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name)%><br>
-						<%else%>
-							<%=image_tag("plants/Drought_Leaf_48x48.png",:title => plant.name)%>
+					<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
+					<%if ground != nil%>
+						<%ground.plants.each do |plant|%>
+							<%if plant.plant_template.image_path != nil%>
+								<%=image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name)%><br>
+							<%else%>
+								<%=image_tag("plants/Drought_Leaf_48x48.png",:title => plant.name)%>
+							<%end%>
 						<%end%>
 					<%else%>
 						<%=image_tag("plants/Dirt_48x48.png")%>
@@ -24,7 +24,6 @@
 	<%end%>
 	</table>
 	</div>
-<%end%>
 
 <% %><%= button_to "Back to your profile", :controller=>:users, :action=>:stats%>
 <%= button_to "Purchase plants", :controller=>:store, :action=>:view %>

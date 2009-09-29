@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
   	new_garden = Garden.new
   	self.gardens.push(new_garden)
   	self.save!
+  	new_garden.set_defaults
     new_garden.save!
-    new_garden.initialize_plots
     return new_garden
   end
   	    

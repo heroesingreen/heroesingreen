@@ -1,8 +1,8 @@
 class Plant < ActiveRecord::Base
-  belongs_to :plot
+  belongs_to :ground
   belongs_to :plant_template
   
-  validates_presence_of :plot_id
+  validates_presence_of :ground_id
   validates_presence_of :plant_template_id
   
   def tick
