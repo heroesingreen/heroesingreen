@@ -32,6 +32,7 @@ Your garden measures your progress.
 	</table>
 	</div>
 
-<%= button_to "Tick!", :controller=>:garden, :action=>:tick, :id=>@garden %>
+
+<%= button_to "Tick!", :controller=>:garden, :action=>:tick, :repeat=>1, :id=>@garden %>
 <%= button_to "Back to your profile", :controller=>:users, :action=>:stats%>
 <%= button_to "Purchase plants", :controller=>:store, :action=>:view %>

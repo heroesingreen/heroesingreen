@@ -11,7 +11,9 @@ class GardenController < ApplicationController
 	
 	def tick
 		@garden  = Garden.find(params[:id])
-		@garden.tick
+		repeat=params[:repeat]
+		repeat ||= 1
+		@garden.tick(repeat)
 		redirect_to(:action=>:view)
 	end
 	

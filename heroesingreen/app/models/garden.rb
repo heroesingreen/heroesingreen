@@ -37,10 +37,9 @@ class Garden < ActiveRecord::Base
  	
 
   def tick(repeat)
-  	repeat.times
-  	{
+  	repeat.times{
     	self.grounds.each{ |ground|
-      		ground.tick    }
+ 		ground.tick }
   	}
   end
   

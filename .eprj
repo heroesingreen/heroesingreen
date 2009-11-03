@@ -5,7 +5,7 @@
         <key>fileTriggers</key>
         <dict>
             <key>garden</key>
-            <string>heroesingreen\app\models\garden.rb</string>
+            <string>heroesingreen\app\controllers\garden_controller.rb</string>
             <key>ground</key>
             <string>heroesingreen\app\models\ground.rb</string>
             <key>sche</key>
