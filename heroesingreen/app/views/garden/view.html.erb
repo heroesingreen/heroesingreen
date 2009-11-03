@@ -8,7 +8,14 @@ Your garden measures your progress.
 				<td>
 					<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
 					<%if ground != nil%>
+						<p>Wetness:<%=h ground.wetness %></p>
+						<p>Nutrients:<%=h ground.nutrients %>
 						<%ground.plants.each do |plant|%>
+							<p>Health:<%=h plant.health %></p>
+							<p>Height:<%=h plant.height %></p>
+							<p>Radius:<%=h plant.radius %></p>
+							<p>Water needed:<%=h plant.plant_template.water_min %></p>
+							<p>Nutrients needed:<%=h plant.plant_template.nutrients_min %></p>
 							<%if plant.plant_template.image_path != nil%>
 								<%=image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name)%><br>
 							<%else%>
@@ -25,5 +32,6 @@ Your garden measures your progress.
 	</table>
 	</div>
 
-<% %><%= button_to "Back to your profile", :controller=>:users, :action=>:stats%>
+<%= button_to "Tick!", :controller=>:garden, :action=>:tick, :id=>@garden %>
+<%= button_to "Back to your profile", :controller=>:users, :action=>:stats%>
 <%= button_to "Purchase plants", :controller=>:store, :action=>:view %>

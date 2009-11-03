@@ -8,4 +8,11 @@ class GardenController < ApplicationController
 	def view
 	  @garden = get_current_garden
 	end
+	
+	def tick
+		@garden  = Garden.find(params[:id])
+		@garden.tick
+		redirect_to(:action=>:view)
+	end
+	
 end
