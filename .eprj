@@ -6,10 +6,18 @@
         <dict>
             <key>garden</key>
             <string>heroesingreen\app\controllers\garden_controller.rb</string>
+            <key>gardn</key>
+            <string>heroesingreen\app\models\garden.rb</string>
             <key>ground</key>
             <string>heroesingreen\app\models\ground.rb</string>
             <key>sche</key>
             <string>heroesingreen\db\schema.rb</string>
+            <key>schema</key>
+            <string>heroesingreen\db\schema.rb</string>
+            <key>user</key>
+            <string>heroesingreen\test\unit\user_test.rb</string>
+            <key>view</key>
+            <string>heroesingreen\app\views\garden\view.html.erb</string>
         </dict>
     </dict>
 </plist>

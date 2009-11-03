@@ -34,13 +34,29 @@ class Garden < ActiveRecord::Base
   
   def garden_grow(points)
   end
- 	
+
+  def garden_tick
+  	since_last_update = Time.now - self.updated_at
+  	ticks_since_last = since_last_update/time_per_tick
+  	ticks_since_last = ticks_since_last.to_i
+  	tick(ticks_since_last)
+  end
 
   def tick(repeat)
-  	repeat.times{
-    	self.grounds.each{ |ground|
- 		ground.tick }
-  	}
+  	if repeat > 0
+  		repeat.times{
+    		self.grounds.each{ |ground|
+ 			ground.tick }
+	  	}
+	  	self.updated_at=Time.now
+	  	self.save
+  	end
+  		
+  end
+  
+  def time_per_tick
+  	time_per_tick = 24*60*60
+  	return time_per_tick
   end
   
 end
