@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :missionStatuses
   has_many :gardens
   validates_presence_of :email, :password
+  validates_uniqueness_of :email
   
   def self.authenticate(email, password)
     user = self.find_by_email(email)

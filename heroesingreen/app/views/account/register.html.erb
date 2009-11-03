@@ -1,0 +1,17 @@
+<h1>Create Account</h1>
+
+<% form_for :user, @user, :url=>{:controller=>:account, :action=>:create, :id=>@mission_id} do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
