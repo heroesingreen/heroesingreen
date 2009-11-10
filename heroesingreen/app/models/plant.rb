@@ -75,4 +75,8 @@ class Plant < ActiveRecord::Base
   def name
     self.plant_template.name
   end
+  
+  def cost
+    self.plant_template.cost
+  end
 end

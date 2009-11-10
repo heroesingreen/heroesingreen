@@ -55,8 +55,8 @@ class Garden < ActiveRecord::Base
   end
   
   def time_per_tick
-  	time_per_tick = 24*60*60
-  	return time_per_tick
+  	time_per_tck = 24*60*60  #1 day
+  	return time_per_tck
   end
   
 end

@@ -12,27 +12,18 @@ class User < ActiveRecord::Base
     nil
   end
   
-  def total_points  	
-  	total_points = 0
-  	all_statuses = self.missionStatuses.find_all_by_status(MissionStatus::COMPLETED_STATUS)
-  	all_statuses.each{
-  	|status| 
-  	total_points += status.mission_points
-  	}
-  	
-  	active_statuses = self.missionStatuses.find_all_by_status(MissionStatus::ACTIVATED_STATUS)
-  	active_statuses.each{
-  	|status|
-  	if status.mission.repeatable?
-  		total_points += status.mission_points
-  	end
-  	}
-    return total_points
-  end 
+  def points  	
+    return self.total_points
+  end
   
-  def get_garden
-  		  
-	
+  def add_points(points)
+    self.total_points += points
+    self.save!
+  end
+  
+  def pay(points)
+    self.total_points -= points
+    self.save!
   end
   
   def add_garden
@@ -43,5 +34,5 @@ class User < ActiveRecord::Base
     new_garden.save!
     return new_garden
   end
-  	    
+        
 end

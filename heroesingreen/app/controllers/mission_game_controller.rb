@@ -46,11 +46,12 @@ class MissionGameController < ApplicationController
     @mission  = Mission.find(params[:id])
     @not_logged_in = true
     @force_refresh_on_login = true    
-    logged_in_user = get_user(session[:user_id])
-    if(logged_in_user)
-   		@mission_status = logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
+    @logged_in_user = get_user(session[:user_id])
+    if(@logged_in_user)
+   		@mission_status = @logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
    		@mission_status.complete!
    		@mission_status.save!
+      @logged_in_user.add_points(@mission.points)
    		@not_logged_in = false
    	end
   end

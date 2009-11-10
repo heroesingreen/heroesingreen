@@ -9,7 +9,7 @@ class AccountController < ApplicationController
     end
   end
 
-  # Actually create an account
+  # Create an account
   def create
     @user = User.new(params[:user])
     respond_to do |format|
