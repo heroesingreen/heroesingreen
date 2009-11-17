@@ -41,7 +41,8 @@ List of accomplishments
 <%end%>
 </table>
 <hr>
-Total points: <%=@user.points%>
+Earned points: <%=@user.totl_points%><br>
+Available Points: <%=@user.avail_points%>
 <hr>
 <%= button_to "Earn more points", :controller=>:mission_game, :action=>:start%>
 <%= button_to "View Garden", :controller=>:garden, :action=>:view %>

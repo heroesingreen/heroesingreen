@@ -10,7 +10,7 @@
 			<%else%>
 				<%loggedin_user = User.find(session[:user_id])%>
 				Welcome back <%=h loggedin_user.email%>!<br/>
-				Gosh! You are such a hero! You have saved <b><%=h loggedin_user.points%></b> trees!<br/>
+				Gosh! You are such a hero! You have saved <b><%=h loggedin_user.totl_points%></b> trees!<br/>
 				<%=link_to "Show accomplished missions", :controller => "users", :action=>:stats%><br/>
 				<%=button_to_remote "Log out", :update=>"login_widget", :url=>{:controller => "users", :action=>:logout}%>			
 			<%end%>

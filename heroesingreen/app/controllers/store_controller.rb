@@ -24,7 +24,7 @@ class StoreController < ApplicationController
           
       @plant_template = PlantTemplate.find(params[:id])
       if(@plant_template != nil)
-        @user_can_buy = @logged_in_user.points >= @plant_template.cost
+        @user_can_buy = @logged_in_user.avail_points >= @plant_template.cost
             
         if @user_can_buy
           get_current_garden.add_plant(@plant_template)

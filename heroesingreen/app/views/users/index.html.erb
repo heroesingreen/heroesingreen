@@ -5,13 +5,15 @@
     <th>Email</th>
     <th>Password</th>
     <th>Total Points</th>
+	<th>Available Points</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
     <td><%=h user.email %></td>
     <td><%=h user.password %></td>
-    <td><%=h user.points %></td>
+    <td><%=h user.totl_points %></td>
+	<td><%=h user.avail_points %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>

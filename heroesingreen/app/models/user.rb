@@ -12,17 +12,22 @@ class User < ActiveRecord::Base
     nil
   end
   
-  def points  	
+  def avail_points  	
+    return self.available_points
+  end
+
+  def totl_points
     return self.total_points
   end
   
   def add_points(points)
     self.total_points += points
+    self.available_points += points
     self.save!
   end
   
   def pay(points)
-    self.total_points -= points
+    self.available_points -= points
     self.save!
   end
   
