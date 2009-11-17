@@ -1,4 +1,6 @@
 class GardensController < ApplicationController
+  before_filter :ensure_user
+  
   # GET /gardens
   # GET /gardens.xml
   def index

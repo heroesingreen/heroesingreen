@@ -4,7 +4,7 @@ class MissionGameController < ApplicationController
   end
   
   def start
-  	logged_in_user = get_user(session[:user_id])
+  	logged_in_user = get_user
   	all_missions = Mission.all
   	done_missions = nil
   	if(logged_in_user) 		
@@ -29,7 +29,7 @@ class MissionGameController < ApplicationController
   def accept
   	@mission = Mission.find(params[:id])
      
-    logged_in_user = get_user(session[:user_id])
+    logged_in_user = get_user
     if(logged_in_user)
     	@mission_status = logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
     	@mission_status.activate!
@@ -46,7 +46,7 @@ class MissionGameController < ApplicationController
     @mission  = Mission.find(params[:id])
     @not_logged_in = true
     @force_refresh_on_login = true    
-    @logged_in_user = get_user(session[:user_id])
+    @logged_in_user = get_user
     if(@logged_in_user)
    		@mission_status = @logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
    		@mission_status.complete!
@@ -65,7 +65,7 @@ class MissionGameController < ApplicationController
   	@mission  = Mission.find(params[:id])
     @not_logged_in = true
     @force_refresh_on_login = true
-    logged_in_user = get_user(session[:user_id])
+    logged_in_user = get_user
   	if(logged_in_user)
    		@mission_status = logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
    		@mission_status.drop!

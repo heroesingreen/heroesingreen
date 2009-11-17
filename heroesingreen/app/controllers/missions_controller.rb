@@ -1,4 +1,6 @@
 class MissionsController < ApplicationController
+  before_filter :ensure_user
+  
   layout nil
   
   # GET /missions

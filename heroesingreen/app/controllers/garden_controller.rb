@@ -1,4 +1,6 @@
 class GardenController < ApplicationController
+  before_filter :ensure_user
+  
 	layout "mission_game"
 	
 	def index

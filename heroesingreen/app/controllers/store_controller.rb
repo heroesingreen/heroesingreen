@@ -12,7 +12,7 @@ class StoreController < ApplicationController
   end
   	
   def buy
-   @logged_in_user = get_user(session[:user_id])
+   @logged_in_user = get_user
     
     #try to buy if user is logged in        
     if(@logged_in_user)
@@ -43,6 +43,5 @@ class StoreController < ApplicationController
       flash[:notice] = "Please log in to purchase plants!"
       redirect_to(:controller=>:store, :action=>:view)    
     end
-  end
-      
+  end      
 end

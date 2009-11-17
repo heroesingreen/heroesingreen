@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :ensure_user, :only => [:stats]
+  
   layout :choose_layout	
 	
   # GET /users

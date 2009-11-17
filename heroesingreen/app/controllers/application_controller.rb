@@ -21,15 +21,28 @@ class ApplicationController < ActionController::Base
   	return all_gardens.first
   end
   
-  def get_user(user_id)
-  	if user_id!=nil
-	    logged_in_user = User.find(session[:user_id])
-  	  if logged_in_user == nil #user id is invalid, remove it from session  		   
-  	  	user_id = nil
-  	  	session[:user_id] = nil
-  	  end
-	    return logged_in_user
+  def get_user
+    if(!session[:user_id])
+      return nil
+    end
+    
+	  logged_in_user = User.find(session[:user_id])
+	  if logged_in_user == nil #user id is invalid, remove it from session  		   
+	  	session[:user_id] = nil
+	  	redirect_to :controller=>'users', :action=>'login'
 	  end
+	  return logged_in_user
   end
-  	
+  
+  def ensure_user
+    begin
+      unless(session[:user_id] && User.find(session[:user_id]))
+        session[:user_id] = nil
+  	  	redirect_to :controller=>'users', :action=>'login'      
+      end
+    rescue ActiveRecord::RecordNotFound
+        session[:user_id] = nil
+      	redirect_to :controller=>'users', :action=>'login'      
+    end
+	end
 end
