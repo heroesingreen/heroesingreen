@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
   
   MIN_PASSWORD_LENGTH = 4
     
+  SECURITY_ROLES = {:user => 0,
+                    :admin => 1}
+                    
+  SECURITY_ROLES_INVERT = SECURITY_ROLES.invert
+    
   def validate
     errors.add_to_base("Password is missing") if hashed_password.blank?
     if(@password_changed)
@@ -89,4 +94,19 @@ class User < ActiveRecord::Base
     return new_garden
   end
         
+  def security_role=(new_role)
+    self.role = SECURITY_ROLES[new_role]
+  end
+        
+  def security_role
+    return SECURITY_ROLES_INVERT[self.role]
+  end
+  
+  def admin
+    return SECURITY_ROLES_INVERT[self.role] == :admin
+  end
+  
+  def admin=(adminBool)
+    self.role = adminBool ? SECURITY_ROLES[:admin] : SECURITY_ROLES[:user]
+  end
 end

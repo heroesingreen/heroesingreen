@@ -4,6 +4,6 @@ class AddingAvailPointsToUser < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :users, :available_points, :integer, :default => 0
+    remove_column :users, :available_points
   end
 end
