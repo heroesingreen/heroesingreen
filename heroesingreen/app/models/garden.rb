@@ -23,6 +23,11 @@ class Garden < ActiveRecord::Base
   	new_plant = plant_type.createPlant(found_ground)
   	new_plant.save!
   end
+ 
+  def remove_plant(plant)
+    plant.destroy  #TODO Should we call plant.die here? Anything else to be done or just a destroy?
+  end
+ 
   		
   def createGround(x,y)
     new_ground = Ground.new(:garden=>self,:x=>x,:y=>y,:wetness=>(self.default_wetness+rand(default_wetness)),:nutrients=>(self.default_nutrients+rand(default_nutrients)))

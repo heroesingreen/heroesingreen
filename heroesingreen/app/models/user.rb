@@ -46,24 +46,6 @@ class User < ActiveRecord::Base
   
   def encrypted_password(password)
     Digest::SHA1.hexdigest("#{password}1337#{self.salt}")
-  end
-  
-  def total_points  	
-  	total_points = 0
-  	all_statuses = self.missionStatuses.find_all_by_status(MissionStatus::COMPLETED_STATUS)
-  	all_statuses.each{
-  	|status| 
-  	total_points += status.mission_points
-  	}
-  	
-  	active_statuses = self.missionStatuses.find_all_by_status(MissionStatus::ACTIVATED_STATUS)
-  	active_statuses.each{
-  	|status|
-  	if status.mission.repeatable?
-  		total_points += status.mission_points
-  	end
-  	}
-    return total_points
   end 
 
   def avail_points  	
@@ -76,6 +58,11 @@ class User < ActiveRecord::Base
   
   def add_points(points)
     self.total_points += points
+    self.available_points += points
+    self.save!
+  end
+  
+  def add_to_available_points(points)
     self.available_points += points
     self.save!
   end

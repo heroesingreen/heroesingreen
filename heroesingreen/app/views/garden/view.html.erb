@@ -21,9 +21,9 @@ Your garden measures your progress.
 								<p>Nutrients needed:<%=h plant.plant_template.nutrients_consumption %></p>
 							<%end%>
 							<%if plant.plant_template.image_path != nil%>
-								<%=image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name)%><br>
+								<%= link_to image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name), :action => :remove_plant, :plant_id => plant.id %><br>
 							<%else%>
-								<%=image_tag("plants/Drought_Leaf_48x48.png",:title => plant.name)%>
+								<%= link_to image_tag("plants/Drought_Leaf_48x48.png",:title => plant.name), :action => :remove_plant, :plant_id => plant.id %>
 							<%end%>								
 						<%end%>
 					<%else%>

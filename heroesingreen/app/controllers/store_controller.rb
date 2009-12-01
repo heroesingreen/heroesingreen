@@ -43,5 +43,6 @@ class StoreController < ApplicationController
       flash[:notice] = "Please log in to purchase plants!"
       redirect_to(:controller=>:store, :action=>:view)    
     end
-  end      
+  end    
+  
 end
