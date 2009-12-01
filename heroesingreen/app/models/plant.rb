@@ -6,16 +6,16 @@ class Plant < ActiveRecord::Base
   validates_presence_of :plant_template_id
   
   def tick
-  	if (self.alive?) then
-  		if(self.nourished?) then
-  			self.grow
-  		else 
-  			self.wither
-  		end
-  		if (self.fertile?) then
-  			self.reproduce
-  		end
-    else
+  	if self.ground.consume_water(self.plant_template.water_consumption) && self.ground.consume_nutrients(self.plant_template.nutrients_consumption)
+  	then
+  		self.grow
+  	else 
+  		self.wither
+  	end
+  	if (self.fertile?) then
+  		self.reproduce
+  	end
+    if (!self.alive?)
       self.die
     end
     self.save!
@@ -26,18 +26,10 @@ class Plant < ActiveRecord::Base
   def alive?
     health > 0
   end
-  
-  def nourished?
-  	if self.ground.wetness >= self.plant_template.water_min and self.ground.nutrients >= self.plant_template.nutrients_min
-  		return true
-  	else
-  		return false
-  	end
-  end
-  
+    
   def fertile?
   	## Nourished shouldn't be a precondition, and need to go back and add a plant specific fertility threshold - for now just hardcoding at 80%.
-  	if self.nourished? and health > (self.plant_template.health_max*0.8)
+  	if growth_ticks > 10 && health > (self.plant_template.health_max*0.8)
   		return true
   	else
   		return false
@@ -46,19 +38,17 @@ class Plant < ActiveRecord::Base
   
   ## Actions the plant can take
   def grow
-  	self.height += self.plant_template.vertical_rate
-  	self.radius += self.plant_template.radial_rate
+  	self.growth_ticks += 1
+  	self.height = self.plant_template.vertical_rate + self.plant_template.vertical_rate*Math.log(self.growth_ticks)
+  	self.radius = self.plant_template.radial_rate + self.plant_template.radial_rate*Math.log(self.growth_ticks)
   	if health < self.plant_template.health_max
   		self.health += 1
   	end
-  	self.ground.nutrients -= self.plant_template.nutrients_consumption
-  	self.ground.wetness -= self.plant_template.water_consumption
-  	self.ground.save
   	self.save
   end
   
   def wither
-  	self.health -= 10 
+  	self.health -= 5 
   	self.save	
   	## Need physical withering effects (slower than growth)
   end  

@@ -5,6 +5,12 @@ class Mission < ActiveRecord::Base
 	ONESHOT_TYPE = 0
 	REPEATABLE_TYPE = 1
 	EPIC_TYPE = 2
+	
+	MISSION_TYPE_NAMES = {
+	ONESHOT_TYPE=>"Oneshot",
+	REPEATABLE_TYPE=>"Repeatable",
+	EPIC_TYPE=>"Epic"}
+	
 	def oneshot?
 		self.repeatable == ONESHOT_TYPE
 	end
