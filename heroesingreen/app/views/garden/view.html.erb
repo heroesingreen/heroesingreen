@@ -8,19 +8,23 @@ Your garden measures your progress.
 				<td>
 					<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
 					<%if ground != nil%>
-						<p>Wetness:<%=h ground.wetness %></p>
-						<p>Nutrients:<%=h ground.nutrients %>
+						<%if get_user.email.match(/cooley/)%>
+							<p>Wetness:<%=h ground.wetness %></p>
+							<p>Nutrients:<%=h ground.nutrients %>
+						<%end%>
 						<%ground.plants.each do |plant|%>
-							<p>Health:<%=h plant.health %></p>
-							<p>Height:<%=h plant.height %></p>
-							<p>Radius:<%=h plant.radius %></p>
-							<p>Water needed:<%=h plant.plant_template.water_consumption %></p>
-							<p>Nutrients needed:<%=h plant.plant_template.nutrients_consumption %></p>
+							<%if get_user.email.match(/cooley/)%>
+								<p>Health:<%=h plant.health %></p>
+								<p>Height:<%=h plant.height %></p>
+								<p>Radius:<%=h plant.radius %></p>
+								<p>Water needed:<%=h plant.plant_template.water_consumption %></p>
+								<p>Nutrients needed:<%=h plant.plant_template.nutrients_consumption %></p>
+							<%end%>
 							<%if plant.plant_template.image_path != nil%>
 								<%=image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name)%><br>
 							<%else%>
 								<%=image_tag("plants/Drought_Leaf_48x48.png",:title => plant.name)%>
-							<%end%>
+							<%end%>								
 						<%end%>
 					<%else%>
 						<%=image_tag("plants/Dirt_48x48.png")%>

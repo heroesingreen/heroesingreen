@@ -5,8 +5,8 @@ class Garden < ActiveRecord::Base
   validates_presence_of :user_id
   
   def set_defaults
-  	self.default_wetness = 5
-  	self.default_nutrients = 3
+  	self.default_wetness = 10
+  	self.default_nutrients = 7
   	self.size_x = 5
   	self.size_y = 5	
   end
