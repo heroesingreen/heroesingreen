@@ -49,5 +49,5 @@ Estimated number of ticks: <%= (Time.now - @garden.updated_at).to_i/@garden.time
   </p>
 <% end %>
 <%= button_to "Tick once!", :controller=>:garden, :action=>:tick, :repeat=>1, :id=>@garden %>
-<%= button_to "Back to your profile", :controller=>:users, :action=>:stats%>
+<%= button_to "Back to your profile", :controller=>:account, :action=>:home%>
 <%= button_to "Purchase plants", :controller=>:store, :action=>:view %>

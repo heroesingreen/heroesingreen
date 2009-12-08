@@ -11,6 +11,8 @@
 	<body>
 		<div class="heroesBanner"><%=image_tag 'heroes_header.gif'%></div>
 		<div class="mainContent"><%= yield :layout%></div>
-		<div class="loginModule"><%= render :partial => 'shared/login_module' %></div>
+		<%unless @suppress_ajax_login%>
+			<div class="loginModule"><%= render :partial => 'shared/login_module' %></div>
+		<%end%>
 	</body>
 </html>

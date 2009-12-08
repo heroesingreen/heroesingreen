@@ -1,8 +1,4 @@
-class UsersController < ApplicationController
-  before_filter :ensure_user, :only => [:stats]
-  
-  layout :choose_layout	
-	
+class UsersController < ApplicationController  	
   # GET /users
   # GET /users.xml
   def index
@@ -74,42 +70,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # GET /users/login
-  # GET /users/login.xml
-  def login
-    session[:user_id] = nil
-    if request.post?
-      user = User.authenticate(params[:email], params[:password])
-      if user #login success
-        session[:user_id] = user.id
-        flash[:notice] = nil        
-        if(request.xhr?) #AJAX?
-        	if(params[:refresh]) #Some pages need the whole page to be refreshed
-        		@force_refresh = true
-        	end        	
-        	render :partial => 'shared/login_module'
-        else
-        	redirect_to(:action => "index")
-    	end
-      else
-        flash[:notice] = "Invalid user/password combination"
-      end
-    end
-  end
-  
-  def stats
-  	user_id = session[:user_id]
-  	@user = User.find(user_id)
-  end
-  
-  # GET /users/logout
-  # GET /users/logout.xml
-  def logout
-    session[:user_id]=nil
-    flash[:notice] = "You have been successfully logged out"
-    render :action => "login"
-  end
   
   # DELETE /users/1
   # DELETE /users/1.xml
@@ -122,16 +82,4 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
- private
-  
-  def choose_layout
-    if (request.xhr?)
-    	@ajax=true
-    	false
-	else
-		'users'
-	end
-  end
-  
 end

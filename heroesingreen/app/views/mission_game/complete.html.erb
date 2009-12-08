@@ -10,7 +10,7 @@
 		Great work on doing your part for the environment! But there's so much more we can do. Log in or create your free account today to plant the trees you have earned and see what you can build. Log in or <%= link_to "create your account here", :controller=>:account, :action=>:register, :id=>@mission.id%>
 	</p>
 	<%else%>
-		<%= button_to "Continue", :controller=>:users, :action=>:stats%>
+		<%= button_to "Continue", :controller=>:account, :action=>:home%>
 	<%end%>	
 </div>
 

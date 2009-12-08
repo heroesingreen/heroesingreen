@@ -19,7 +19,7 @@ class MissionGameController < ApplicationController
    	end
    	if all_missions.empty?
    		flash[:notice] = "Sorry, there are no more missions for now!"
-   		redirect_to(:controller=>:users, :action=>:stats)
+   		redirect_to(:controller=>:account, :action=>:home)
     	return
     end
     @mission = all_missions[rand(all_missions.length)] #Pick a random mission
@@ -71,7 +71,7 @@ class MissionGameController < ApplicationController
    		@mission_status.drop!
    		@mission_status.save!
    		@not_logged_in = false
-   		redirect_to(:controller=>:users, :action=>:stats)
+   		redirect_to(:controller=>:account, :action=>:home)
    	end
   end
    	

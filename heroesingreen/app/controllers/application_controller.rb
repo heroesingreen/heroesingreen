@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 	  logged_in_user = User.find(session[:user_id])
 	  if logged_in_user == nil #user id is invalid, remove it from session  		   
 	  	session[:user_id] = nil
-	  	redirect_to :controller=>'users', :action=>'login'
+	  	redirect_to :controller=>'account', :action=>'login'
 	  end
 	  return logged_in_user
   end
@@ -38,11 +38,11 @@ class ApplicationController < ActionController::Base
     begin
       unless(session[:user_id] && User.find(session[:user_id]))
         session[:user_id] = nil
-  	  	redirect_to :controller=>'users', :action=>'login'      
+  	  	redirect_to :controller=>'account', :action=>'login'      
       end
     rescue ActiveRecord::RecordNotFound
         session[:user_id] = nil
-      	redirect_to :controller=>'users', :action=>'login'      
+      	redirect_to :controller=>'account', :action=>'login'      
     end
 	end
 end
