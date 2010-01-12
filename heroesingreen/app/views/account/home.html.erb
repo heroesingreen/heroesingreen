@@ -1,5 +1,15 @@
 <%= render :partial=>'name_module' %>
 <br/>
+<hr>
+Level <b><%=@level.number%></b> - You are a <b><%=@level.title%></b>!<br/>
+<%=@points_required%> more points till level up.<br/>
+<br/>
+Earned points: <%=@user.totl_points%><br/>
+Available Points: <%=@user.avail_points%>
+<hr>
+
+<br/>
+<br/>
 You are totally awesome because you...
 <table border=1>
 	<tr>
@@ -41,8 +51,5 @@ You are totally awesome because you...
 	</tr>
 <%end%>
 </table>
-<hr>
-Earned points: <%=@user.totl_points%><br>
-Available Points: <%=@user.avail_points%>
-<hr>
+
 

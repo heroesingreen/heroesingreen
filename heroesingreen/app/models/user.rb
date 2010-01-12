@@ -96,4 +96,8 @@ class User < ActiveRecord::Base
   def admin=(adminBool)
     self.role = adminBool ? SECURITY_ROLES[:admin] : SECURITY_ROLES[:user]
   end
+  
+  def get_level
+    Level.find(:first, :conditions=>["points_required <= ?",self.total_points], :order=>"points_required desc")
+  end
 end

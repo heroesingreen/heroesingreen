@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :levels
+
   map.resources :plant_templates
 
   map.resources :gardens
