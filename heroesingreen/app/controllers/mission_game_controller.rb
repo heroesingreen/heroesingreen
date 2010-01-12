@@ -1,6 +1,9 @@
 class MissionGameController < ApplicationController
   def index
-    
+    if(get_user)
+      redirect_to(:controller=>:account,:action=>:home)
+    end
+    @force_refresh_on_login = true
   end
   
   def start

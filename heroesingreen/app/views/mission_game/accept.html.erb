@@ -1,5 +1,5 @@
 <div class="IntroChallenge">	
-	<h1><%=h @mission.title%></h1>	
-	<p><%=h @mission.task %></p>	
+	<h1><%= @mission.title%></h1>	
+	<p><%= @mission.task %></p>	
 	<%=button_to "Complete mission!", :action=>:complete, :id=>@mission%>
 </div>

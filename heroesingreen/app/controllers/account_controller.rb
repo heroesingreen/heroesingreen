@@ -1,5 +1,5 @@
 class AccountController < ApplicationController
-  before_filter :ensure_user, :only => [:home]
+  before_filter :ensure_user, :only => [:home, :password]
   layout :choose_layout
 
   # Show the registration page
@@ -63,7 +63,18 @@ class AccountController < ApplicationController
     if(params[:refresh]) #Some pages need the whole page to be refreshed
   		@force_refresh = true
   	end
-    render :action => "login"
+    redirect_to :controller => 'mission_game', :action => 'index'
+  end
+  
+  # Change password
+  def password
+    @user = get_user
+    if request.post?
+      if @user.update_attributes(params[:user])
+        flash[:notice] = 'Successfully updated password!'
+        redirect_to (:action => "home")
+      end
+    end
   end
   
   private
@@ -73,7 +84,12 @@ class AccountController < ApplicationController
     	@ajax=true
     	false
 	  else
-  		'mission_game'
+	    case(action_name)
+      when 'home'
+        return 'account'
+      else
+  		  return 'mission_game'
+		  end
   	end
   end
 end
