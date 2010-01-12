@@ -30,6 +30,11 @@ class AccountController < ApplicationController
   def home
     @force_refresh_on_login = true
   	@user = get_user
+  	
+  	#Update first name if any
+  	if(request.post? && params[:user])
+  	   @user.update_attributes(params[:user])
+	  end
   end
   
   # Allow user login
