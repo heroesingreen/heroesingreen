@@ -1,0 +1,18 @@
+<p>
+  <b>Number:</b>
+  <%=h @level.number %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @level.title %>
+</p>
+
+<p>
+  <b>Points required:</b>
+  <%=h @level.points_required %>
+</p>
+
+
+<%= link_to 'Edit', edit_level_path(@level) %> |
+<%= link_to 'Back', levels_path %>
