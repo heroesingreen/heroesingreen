@@ -1,10 +1,12 @@
 <%if @user.first_name%>
-	<h1>Welcome <%=@user.first_name%>!</h1>
+	<span class="name">Welcome <%=@user.first_name%>!</span>
 <%else%>
-	<h1>Welcome <%=@user.email%>!</h1>
+	<span class="name">Welcome <%=@user.email%>!</span><br/>
+	<span class="enter_name">
 	Hey! I have a name you know...
 	<% form_for :user, @user do |f| %>
-	    <%= f.text_field :first_name %>
+	    <%= f.text_field :first_name, :size=>30, :maxlength=>30%><br/>
 	    <%= f.submit 'Remember my name!' %>
 	<% end %>
+	</span>
 <%end%>

@@ -1,5 +1,5 @@
 class AccountController < ApplicationController
-  before_filter :ensure_user, :only => [:home, :password]
+  before_filter :ensure_user, :only => [:home, :accomplishments, :quest_log, :password]
   layout :choose_layout
 
   # Show the registration page
@@ -42,6 +42,17 @@ class AccountController < ApplicationController
   	if(request.post? && params[:user])
   	   @user.update_attributes(params[:user])
 	  end
+  end
+  
+  # Show upcoming missions
+  def quest_log
+    @upcoming_quests = get_user.missionStatuses.find(:all)
+    @upcoming_quests = @upcoming_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
+  end
+  
+  # Show accomplishments
+  def accomplishments
+    @completed_missions = get_user.missionStatuses.find(:all, :conditions=>["status = ?", MissionStatus::COMPLETED_STATUS])
   end
   
   # Allow user login
@@ -98,6 +109,10 @@ class AccountController < ApplicationController
 	  else
 	    case(action_name)
       when 'home'
+        return 'account'
+      when 'accomplishments'
+        return 'account'
+      when 'quest_log'
         return 'account'
       else
   		  return 'mission_game'

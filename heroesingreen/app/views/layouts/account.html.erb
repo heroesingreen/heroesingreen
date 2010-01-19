@@ -12,11 +12,15 @@
 		<div class="heroesBanner"><%=image_tag 'heroes_header.gif'%></div>
 		<div class="mainContent">
 			<div class="navigation">
-				<%= link_to "Home", :controller=>:account, :action=>:home%><br/>
-				<%= link_to "Do Missions", :controller=>:mission_game, :action=>:start%><br/>
-				<%= link_to "View Garden", :controller=>:garden, :action=>:view %><br/>
-				<%= link_to "Change Password", :controller=>:account, :action=>:password %><br/>
-				<%= link_to "Logout", :controller=>:account, :action=>:logout %><br/>
+				<div class="navigation_box">				
+					<%= link_to "Home", :controller=>:account, :action=>:home%><br/>
+					<%= link_to "Do Missions", :controller=>:mission_game, :action=>:start%><br/>
+					<%= link_to "Quest Log", :controller=>:account, :action=>:quest_log %><br/>
+					<%= link_to "View Accomplishments", :controller=>:account, :action=>:accomplishments %><br/>
+					<%= link_to "View Garden", :controller=>:garden, :action=>:view %><br/>
+					<%= link_to "Change Password", :controller=>:account, :action=>:password %><br/>
+					<%= link_to "Logout", :controller=>:account, :action=>:logout %><br/>
+				</div>
 			</div>
 			<div class="content">
 				<%unless flash[:notice]==nil%>
@@ -26,7 +30,8 @@
 					<%= yield :layout%>
 				</div>
 			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="clear"></div>
+		<%= render :partial => 'shared/footer'%>
 	</body>
 </html>
