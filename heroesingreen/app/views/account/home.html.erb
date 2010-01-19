@@ -1,9 +1,13 @@
 <%= render :partial=>'name_module' %>
 <br/>
 <hr>
-Level <b><%=@level.number%></b> - You are a <b><%=@level.title%></b>!<br/>
-<%=@points_required%> more points till level up.<br/>
-<br/>
+<%if @level%>
+	Level <b><%=@level.number%></b> - You are a <b><%=@level.title%></b>!<br/>
+<%end%>
+<%if @points_required%>
+	<%=@points_required%> more points till level up.<br/>
+	<br/>
+<%end%>
 Earned points: <%=@user.totl_points%><br/>
 Available Points: <%=@user.avail_points%>
 <hr>

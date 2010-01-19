@@ -31,7 +31,10 @@ class AccountController < ApplicationController
     @force_refresh_on_login = true
   	@user = get_user
     @level = @user.get_level
-    @points_required = @level.get_next_level.points_required - @user.total_points
+    next_level = @level.get_next_level
+    if(next_level)
+      @points_required = next_level.points_required - @user.total_points
+    end
     
   	#Update first name if any
   	if(request.post? && params[:user])
