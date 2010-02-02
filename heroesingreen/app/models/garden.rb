@@ -7,6 +7,8 @@ class Garden < ActiveRecord::Base
   def set_defaults
   	self.default_wetness = 10
   	self.default_nutrients = 7
+  	self.wetness_replenish = 2
+  	self.nutrients_replenish = 3
   	self.size_x = 5
   	self.size_y = 5	
   end
@@ -30,7 +32,7 @@ class Garden < ActiveRecord::Base
  
   		
   def createGround(x,y)
-    new_ground = Ground.new(:garden=>self,:x=>x,:y=>y,:wetness=>(self.default_wetness+rand(default_wetness)),:nutrients=>(self.default_nutrients+rand(default_nutrients)))
+    new_ground = Ground.new(:garden=>self,:x=>x,:y=>y,:wetness=>(self.default_wetness),:nutrients=>(self.default_nutrients))
     new_ground.save!
     return new_ground
   end

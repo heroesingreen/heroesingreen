@@ -10,15 +10,22 @@ Your garden measures your progress.
 					<%if ground != nil%>
 						<%if get_user.email.match(/cooley/)%>
 							<p>Wetness:<%=h ground.wetness %></p>
-							<p>Nutrients:<%=h ground.nutrients %>
+							<p>Wetness replenishing:<%=h ground.garden.wetness_replenish %></p>
+							<p>Nutrients:<%=h ground.nutrients %></p>
+							<p>Nutrient replenishing:<%=h ground.garden.nutrients_replenish %></p>
 						<%end%>
 						<%ground.plants.each do |plant|%>
 							<%if get_user.email.match(/cooley/)%>
 								<p>Health:<%=h plant.health %></p>
 								<p>Height:<%=h plant.height %></p>
 								<p>Radius:<%=h plant.radius %></p>
+								<p>Optimum wetness:<%=h plant.plant_template.wetness_optimum%></p>
+								<p>Wetness tolerance:<%=h plant.plant_template.wetness_tolerance%></p>
 								<p>Water needed:<%=h plant.plant_template.water_consumption %></p>
+								<p>Optimum nutrients:<%=h plant.plant_template.nutrients_optimum%></p>
+								<p>Nutrients tolerance:<%=h plant.plant_template.nutrients_tolerance%></p>
 								<p>Nutrients needed:<%=h plant.plant_template.nutrients_consumption %></p>
+								
 							<%end%>
 							<%if plant.plant_template.image_path != nil%>
 								<%= link_to image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name), :action => :remove_plant, :plant_id => plant.id %><br>

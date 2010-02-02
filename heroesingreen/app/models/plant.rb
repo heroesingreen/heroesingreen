@@ -7,8 +7,14 @@ class Plant < ActiveRecord::Base
   
   def tick
   	## Have the plant 'eat' and 'drink'. Also make sure it isn't drowning (cactus in a rainforest). If everything is good, go ahead and grow.
-  	if self.ground.consume_water(self.plant_template.water_consumption) && self.ground.consume_nutrients(self.plant_template.nutrients_consumption) && self.plant_template.water_max > self.ground.wetness
-  	then
+
+  	shouldgrow = ((self.ground.wetness - self.plant_template.wetness_optimum).abs < self.plant_template.wetness_tolerance)
+  	shouldgrow &= ((self.ground.nutrients - self.plant_template.nutrients_optimum).abs < self.plant_template.nutrients_tolerance)
+	shouldgrow = self.ground.consume_water(self.plant_template.water_consumption) && shouldgrow
+  	shouldgrow = self.ground.consume_nutrients(self.plant_template.nutrients_consumption) && shouldgrow
+
+  	if shouldgrow
+  		then
   		self.grow
   	else 
   		self.wither
@@ -29,11 +35,11 @@ class Plant < ActiveRecord::Base
     
   def fertile?
   	## Nourished shouldn't be a precondition, and need to go back and add a plant specific fertility threshold - for now just hardcoding at 80%.
-  	if growth_ticks > 10 && health > (self.plant_template.health_max*0.8)
+  	if growth_ticks > 100 && health > (self.plant_template.health_max*0.8)
   		return true
   	else
   		return false
-  	end  	
+  	end 	 
   end
   
   ## Actions the plant can take
