@@ -1,4 +1,34 @@
 <div class="footer">
-	<hr/>
+
+	<% if session[:user_id] && User.find(session[:user_id])%>
+		<%loggedin_user = User.find(session[:user_id])%>
+		Hello <%=h loggedin_user.email%>! You have <b><%=h loggedin_user.avail_points%></b> points available.<br/>
+
+			<%all_gardens = loggedin_user.gardens
+  				if all_gardens.empty?
+  					logged_in_user.add_garden
+  				end
+  			current_garden=all_gardens.first%>							
+		<div class="minigarden">
+			<%current_garden.size_y.times do |y|%>
+					<%current_garden.size_x.times do |x|%>
+							<%ground = current_garden.grounds.find_by_x_and_y(x,y)%>
+							<%if ground != nil%>
+								<%ground.plants.each do |plant|%>
+									<%if plant.plant_template.image_path != nil%>
+										<%= link_to image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name), :action => :remove_plant, :plant_id => plant.id %>
+									<%else%>
+										<%= link_to image_tag("plants/Drought_Leaf_48x48.png",:title => plant.name), :action => :remove_plant, :plant_id => plant.id %>
+									<%end%>								
+								<%end%>
+							<%end%>
+					<%end%>
+			<%end%>
+		</div>
+		
+		<%=link_to "Full garden view", :controller => :garden, :action=>:view%> | <%=link_to "Buy new plants!", :controller => :store, :action=>:view%><br/>
+	<% end %>
+
 	<a href="/">About us</a>
+
 </div>

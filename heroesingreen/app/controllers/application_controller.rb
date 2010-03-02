@@ -44,5 +44,27 @@ class ApplicationController < ActionController::Base
         session[:user_id] = nil
       	redirect_to :controller=>'account', :action=>'login'      
     end
-	end
+  end
+  
+  def available_missions
+  	logged_in_user = get_user
+  	available_missions = Mission.all
+  	if(logged_in_user) 		
+  		done_missionStatuses = logged_in_user.missionStatuses
+  		done_missionStatuses.each{
+  			|missionStatus| 
+  			available_missions.delete_if{
+  				|mission|
+  				(mission==missionStatus.mission) && missionStatus.mission.oneshot? && !missionStatus.deactivated?
+  				}
+  			}
+   	end
+   	if available_missions.empty?
+   		flash[:notice] = "Sorry, there are no more missions for now!"
+   		redirect_to(:controller=>:account, :action=>:home)
+    	return
+    end
+   	return available_missions
+  end
+	
 end

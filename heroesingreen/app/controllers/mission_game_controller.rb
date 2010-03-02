@@ -6,26 +6,12 @@ class MissionGameController < ApplicationController
     @force_refresh_on_login = true
   end
   
+  def mission_central
+    @missions = available_missions
+  end
+  
   def start
-  	logged_in_user = get_user
-  	all_missions = Mission.all
-  	done_missions = nil
-  	if(logged_in_user) 		
-  		done_missionStatuses = logged_in_user.missionStatuses
-  		done_missionStatuses.each{
-  			|missionStatus| 
-  			all_missions.delete_if{
-  				|mission|
-  				(mission==missionStatus.mission) && missionStatus.mission.oneshot? && !missionStatus.deactivated?
-  				}
-  			}
-   	end
-   	if all_missions.empty?
-   		flash[:notice] = "Sorry, there are no more missions for now!"
-   		redirect_to(:controller=>:account, :action=>:home)
-    	return
-    end
-    @mission = all_missions[rand(all_missions.length)] #Pick a random mission
+    @mission = available_missions[rand(available_missions.length)] #Pick a random mission
   end
   
   #Mission status is always created when you accept a mission
@@ -40,6 +26,7 @@ class MissionGameController < ApplicationController
    	end
   end
  
+   
   def complete
     unless(params[:id]!=nil)
     	#mission id not found
@@ -76,6 +63,14 @@ class MissionGameController < ApplicationController
    		@not_logged_in = false
    		redirect_to(:controller=>:account, :action=>:home)
    	end
+  end
+
+  def search
+  	puts "Available missions: #{available_missions.inspect}"
+    	@selected_missions = available_missions.select{ |mission|
+    	mission.repeatable == params[:repeatable].to_i
+	}
+	puts "Selected missions: #{@selected_missions.inspect}"
   end
    	
 end

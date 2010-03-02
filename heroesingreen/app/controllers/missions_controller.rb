@@ -76,6 +76,7 @@ class MissionsController < ApplicationController
     end
   end
 
+
   # DELETE /missions/1
   # DELETE /missions/1.xml
   def destroy
