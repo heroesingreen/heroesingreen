@@ -1,0 +1,12 @@
+Last update: <%= @garden.updated_at %><br>
+Current time: <%= Time.now %><br>
+Seconds since last update: <%= (Time.now - @garden.updated_at).to_i %><br>
+Seconds per tick: <%= Garden::TIME_PER_TICK%><br>
+Estimated number of ticks: <%= (Time.now - @garden.updated_at).to_i/Garden::TIME_PER_TICK %><br>
+
+<% form_tag :controller=>:garden, :action=>:tick, :id=>@garden do %>
+  <p> How many ticks to do?
+    <%= text_field_tag :repeat, nil, :size=>5 %>
+    <%= submit_tag 'Tick!' %>
+  </p>
+<% end %>

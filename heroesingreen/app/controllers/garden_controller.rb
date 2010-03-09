@@ -1,13 +1,17 @@
 class GardenController < ApplicationController
   before_filter :ensure_user
   
-	layout "mission_game"
+	layout "account"
 	
 	def index
 		redirect_to(:action=>:view)
 	end
 	
 	def view
+	  if(params[:admin_ticks])
+      @render_admin = true
+    end
+	  
 	  @garden = get_current_garden
 	  @garden.garden_tick
 	end

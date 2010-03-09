@@ -4,6 +4,8 @@ class Garden < ActiveRecord::Base
   
   validates_presence_of :user_id
   
+  TIME_PER_TICK = 1.day
+  
   def set_defaults
   	self.default_wetness = 10
   	self.default_nutrients = 7
@@ -42,28 +44,19 @@ class Garden < ActiveRecord::Base
   def garden_grow(points)
   end
 
-  def garden_tick
+  def garden_tick    
   	since_last_update = Time.now - self.updated_at
-  	ticks_since_last = since_last_update/time_per_tick
-  	ticks_since_last = ticks_since_last.to_i
+  	ticks_since_last = (since_last_update/TIME_PER_TICK).to_i
   	tick(ticks_since_last)
   end
 
-  def tick(repeat)
-  	if repeat > 0
-  		repeat.times{
-    		self.grounds.each{ |ground|
- 			ground.tick }
-	  	}
-	  	self.updated_at=Time.now
-	  	self.save
+  def tick(times)
+  	if times > 0
+    	self.grounds.each{ |ground|
+ 			  ground.tick(times)
+ 			}
   	end
-  		
+		self.updated_at=Time.now #TODO - use something other than updated_at
+  	self.save
   end
-  
-  def time_per_tick
-  	time_per_tck = 24*60*60  #1 day
-  	return time_per_tck
-  end
-  
 end

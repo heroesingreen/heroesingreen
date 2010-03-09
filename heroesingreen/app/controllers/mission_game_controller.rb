@@ -1,4 +1,6 @@
 class MissionGameController < ApplicationController
+  layout :choose_layout
+  
   def index
     if(get_user)
       redirect_to(:controller=>:account,:action=>:home)
@@ -73,4 +75,16 @@ class MissionGameController < ApplicationController
 	puts "Selected missions: #{@selected_missions.inspect}"
   end
    	
+  private
+  
+  def choose_layout 
+    case(action_name)
+    when 'mission_central'
+      return 'account'
+    when 'search'
+      return 'account'
+    else
+		  return 'mission_game'
+	  end
+  end 	
 end

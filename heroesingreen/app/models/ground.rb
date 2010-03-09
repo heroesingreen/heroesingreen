@@ -4,25 +4,32 @@ class Ground < ActiveRecord::Base
 
 validates_presence_of :wetness, :nutrients
  
-  def tick
+  def tick(times)
     self.plants.each{ |plant|
-      plant.tick
-      	if !plant.alive?
-      		self.plants.delete(plant)
-  		end
+      plant.tick(times)
     }
-    self.replenish
     self.save
   end
   
-  def replenish
+  def replenish(times)
   	## This function should vary by the type of ecosystem, but for now it's constant. (add a ground template? or a garden property?)
   	## 
-  	if self.wetness < 2*self.garden.default_wetness
-  		self.wetness += self.garden.wetness_replenish
+  	max_wetness = 2*self.garden.default_wetness
+  	
+  	if self.wetness < max_wetness
+  	  self.wetness += self.garden.wetness_replenish * times
+  	  if(self.wetness > max_wetness)
+  	    self.wetness = max_wetness
+  		end
   	end
-  	if self.nutrients < 2*self.garden.default_nutrients
-  		self.nutrients += self.garden.nutrients_replenish
+  	
+  	max_nutrients = 2*self.garden.default_nutrients
+  	
+  	if self.nutrients < max_nutrients
+  		self.nutrients += self.garden.nutrients_replenish * times
+  		if(self.nutrients > max_nutrients)
+  	    self.nutrients = max_nutrients
+  		end
   	end
   end
   
