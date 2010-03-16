@@ -1,0 +1,20 @@
+<!--<div class="heroesBanner"><%=image_tag 'heroes_header.gif'%></div> TODO:agrandhi suppressing for now-->
+<div class="header">
+		<div id="header-left">
+			<div id="siteName">HEROES in GREEN</div>			
+			<div class="headerLinks" id="headerLink"><%= link_to "My Missions", :controller=>:mission_game, :action=>:start%></div>
+			<div class="headerLinks" id="headerLink"><%=link_to "My Garden", :controller => :garden, :action=>:view%></div>
+			<div class="headerLinks" id="headerLink"><%=link_to "Garden Goodies", :controller => :store, :action=>:view%></div>
+		</div>
+		<div id="headerLinkCenter">
+			<div id="header-avatar"><img src="http://planetgreen.discovery.com/images/propaganda/right-rail/pg_joinconv_300x100c.gif" height="80px" width="300px"/></div>
+			<a href="http://www.doppelme.com/create/">Pimp Yo Avatar</a>
+		</div>
+		<div id="header-right">
+			<div id="userMod">Blah blah blah blah</div>
+			<div class="headerLinks" id="headerLink"><%=link_to "My Profile", :controller => :account, :action=>:home%></div>
+			<div class="headerLinks" id="headerLink"><%=link_to "My Accomplishments", :controller => :account, :action=>:home%></div>
+			<div class="headerLinks" id="headerLink"><a href="#">Team Homepage</a></div>
+		</div>
+	</div>
+</div>
