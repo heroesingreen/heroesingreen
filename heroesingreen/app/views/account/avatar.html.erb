@@ -1,0 +1,13 @@
+How do you wanna represent yourself? Pick an avatar that you like the most.
+
+<br><br>
+
+<%Dir.foreach("public/images/avatars/thumbs") do |f|%>
+	<%if f == "." or f == ".."%>
+	<%else%>
+		<span id="selectAvatar">
+			<%=link_to image_tag("avatars/thumbs/#{f}",:border=>0), :controller=>:account, :action=>:setAvatar, :img=>f %>
+		</span>
+	<%end%>
+<%end%>
+

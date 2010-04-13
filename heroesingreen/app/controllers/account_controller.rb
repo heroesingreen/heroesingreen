@@ -95,9 +95,18 @@ class AccountController < ApplicationController
     if request.post?
       if @user.update_attributes(params[:user])
         flash[:notice] = 'Successfully updated password!'
-        redirect_to (:action => "home")
+        redirect_to(:action => "home")
       end
     end
+  end
+
+  def setAvatar
+    @user = get_user
+    @img = params[:img]
+    if(@user and @img)
+      @user.saveAvatar(@img)
+    end
+    redirect_to(:action => "home")
   end
   
   private

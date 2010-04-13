@@ -80,6 +80,15 @@ class User < ActiveRecord::Base
     new_garden.save!
     return new_garden
   end
+  
+  def saveAvatar(img)
+    self.avatarImg = img
+    self.save!
+  end
+  
+  def avatar
+    return self.avatarImg
+  end
         
   def security_role=(new_role)
     self.role = SECURITY_ROLES[new_role]
