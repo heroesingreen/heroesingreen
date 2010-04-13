@@ -4,7 +4,7 @@
 <%- #Tab navigation prep
 	#Tab structure = [name, action_name]
 	tabs = []
-	tabs << ["Find mission", "find_mission"]
+	tabs << ["Find missions", "find_mission"]
 	tabs << ["Current missions", "current_missions"]
 	
 	tab_index = nil
@@ -15,23 +15,22 @@
 <%= render :partial => 'shared/html_head', :locals=>{:body_id => "tab#{tab_index}"}%>
 <%= render :partial => 'shared/header'%>
 <div class="mainContent">
-	<div class="content">
-		<%unless flash[:notice]==nil%>
-			<div class="errorContent"><%= flash[:notice] %></div>
-		<%end%>
-		<div>
-			<div class="mission_tabs">
-				<ul id = "tabnav">
-					<%tabs.each_index do |index|%>
-						<%tab = tabs[index]%>
-						<li class="tab<%=index%>"><%=link_to tab[0],tab[1]%></li>
-					<%end%>
-				</ul>
-			</div>
+	<%unless flash[:notice]==nil%>
+		<div class="errorContent"><%= flash[:notice] %></div>
+	<%end%>
+	<div class="mission_container">
+		<div class="mission_tabs">
+			<ul id = "tabnav">
+				<%tabs.each_index do |index|%>
+					<%tab = tabs[index]%>
+					<li class="tab<%=index%>"><%=link_to tab[0],tab[1]%></li>
+				<%end%>
+			</ul>
+		</div>
+		<div class="mission_content">
 			<%= yield :layout%>
 		</div>
 	</div>
-	<div class="clear"></div>
 </div>
 <%= render :partial => 'shared/footer'%>
 <%= render :partial => 'shared/html_tail'%>

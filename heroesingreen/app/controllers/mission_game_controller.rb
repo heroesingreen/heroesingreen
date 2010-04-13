@@ -1,4 +1,5 @@
 class MissionGameController < ApplicationController
+  before_filter :ensure_user, :only => [:find_mission, :current_missions]
   layout :choose_layout
   
   def index
@@ -13,6 +14,8 @@ class MissionGameController < ApplicationController
   end
   
   def current_missions
+    @upcoming_quests = get_user.missionStatuses.find(:all)
+    @upcoming_quests = @upcoming_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
   end
   
   def start

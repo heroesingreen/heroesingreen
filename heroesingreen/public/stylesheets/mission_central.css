@@ -1,10 +1,25 @@
+.mainContent {
+	width: 1190px;
+}
 
+.mission_container {
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+.mission_content {
+	background-color: #fff;
+	border-left: 1px solid #6c6;
+	border-right: 1px solid #6c6;
+	border-bottom: 1px solid #6c6;
+	padding: 5px 10px 5px 10px;
+}
 
 /* begin css tabs */
 
 ul#tabnav { /* general settings */
 text-align: left; /* set to left, right or center */
-margin: 1em 0 1em 0; /* set margins as desired */
+margin: 1em 0 0 0; /* set margins as desired */
 font: bold 11px verdana, arial, sans-serif; /* set font as desired */
 border-bottom: 1px solid #6c6; /* set border COLOR as desired */
 list-style-type: none;

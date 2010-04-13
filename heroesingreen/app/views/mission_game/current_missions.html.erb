@@ -1,0 +1,15 @@
+<h1>Placeholder!</h1>
+<table border=1>
+	<tr>
+		<td>Mission Title</td>
+		<td>Points awarded</td>
+		<td>Mission status</td>
+	</tr>
+<% @upcoming_quests.each do |missionStatus| %>
+	<tr>
+		<td><%=missionStatus.mission.title%></td>	
+		<td><%=missionStatus.mission_points%></td>
+		<td><%=missionStatus.status_string%></td>
+	</tr>
+<%end%>
+</table>
