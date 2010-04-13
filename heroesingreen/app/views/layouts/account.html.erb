@@ -1,37 +1,29 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>Heroes in Green</title>
-		<%= stylesheet_link_tag 'heroesInGreen' %>
-		<%= stylesheet_link_tag 'mission' %>
-		<%= stylesheet_link_tag 'account' %>
-		<%=javascript_include_tag 'prototype'%>
-	</head>
-	<body>
-		<%= render :partial => 'shared/header'%>
-		<div class="mainContent">
-			<div class="navigation">
-				<div class="navigation_box">				
-					<%= link_to "Home", :controller=>:account, :action=>:home%><br/>
-					<%= link_to "Do Missions", :controller=>:mission_game, :action=>:mission_central%><br/>
-					<%= link_to "Quest Log", :controller=>:account, :action=>:quest_log %><br/>
-					<%= link_to "View Accomplishments", :controller=>:account, :action=>:accomplishments %><br/>
-					<%= link_to "View Garden", :controller=>:garden, :action=>:view %><br/>
-					<%= link_to "Change Password", :controller=>:account, :action=>:password %><br/>
-					<%= link_to "Logout", :controller=>:account, :action=>:logout %><br/>
-				</div>
-			</div>
-			<div class="content">
-				<%unless flash[:notice]==nil%>
-					<div class="errorContent"><%= flash[:notice] %></div>
-				<%end%>
-				<div>
-					<%= yield :layout%>
-				</div>
-			</div>
-			<div class="clear"></div>
+<%-content_for :head_content do %>
+	<%= stylesheet_link_tag 'account' %>
+<% end-%>
+<%= render :partial => 'shared/html_head'%>
+<%= render :partial => 'shared/header'%>
+<div class="mainContent">
+	<div class="navigation">
+		<div class="navigation_box">				
+			<%= link_to "Home", :controller=>:account, :action=>:home%><br/>
+			<%= link_to "Do Missions", :controller=>:mission_game, :action=>:find_mission%><br/>
+			<%= link_to "Quest Log", :controller=>:account, :action=>:quest_log %><br/>
+			<%= link_to "View Accomplishments", :controller=>:account, :action=>:accomplishments %><br/>
+			<%= link_to "View Garden", :controller=>:garden, :action=>:view %><br/>
+			<%= link_to "Change Password", :controller=>:account, :action=>:password %><br/>
+			<%= link_to "Logout", :controller=>:account, :action=>:logout %><br/>
 		</div>
-		<%= render :partial => 'shared/footer'%>
-	</body>
-</html>
+	</div>
+	<div class="content">
+		<%unless flash[:notice]==nil%>
+			<div class="errorContent"><%= flash[:notice] %></div>
+		<%end%>
+		<div>
+			<%= yield :layout%>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<%= render :partial => 'shared/footer'%>
+<%= render :partial => 'shared/html_tail'%>

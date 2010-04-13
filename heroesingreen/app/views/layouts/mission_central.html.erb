@@ -1,0 +1,15 @@
+<%= render :partial => 'shared/html_head', :locals=>{:body_id => "#{controller_name}_#{action_name}"}%>
+<%= render :partial => 'shared/header'%>
+<div class="mainContent">
+	<div class="content">
+		<%unless flash[:notice]==nil%>
+			<div class="errorContent"><%= flash[:notice] %></div>
+		<%end%>
+		<div>
+			<%= yield :layout%>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<%= render :partial => 'shared/footer'%>
+<%= render :partial => 'shared/html_tail'%>

@@ -8,8 +8,11 @@ class MissionGameController < ApplicationController
     @force_refresh_on_login = true
   end
   
-  def mission_central
+  def find_mission
     @missions = available_missions
+  end
+  
+  def current_missions
   end
   
   def start
@@ -79,10 +82,12 @@ class MissionGameController < ApplicationController
   
   def choose_layout 
     case(action_name)
-    when 'mission_central'
-      return 'account'
+    when 'find_mission'
+      return 'mission_central'
+    when 'current_missions'
+      return 'mission_central'
     when 'search'
-      return 'account'
+      return 'mission_central'
     else
 		  return 'mission_game'
 	  end
