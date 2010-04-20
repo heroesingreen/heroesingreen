@@ -1,0 +1,31 @@
+.left_box{
+	float: left;
+	margin-top: 20px;
+	border: 1px solid;
+	width: 250px;
+	height: 200px;
+	text-align: center;
+}
+
+.center_box{
+	float: left;
+	padding-left: 20px;	
+}
+
+.right_box{
+	float: right;
+	margin-top: 20px;
+	border: 1px solid;
+	width: 250px;
+	height: 200px;
+	text-align: center;
+}
+
+.advisor_box{
+	text-align: center;
+	width: 400px;
+	height: 200px;
+	border: 1px solid;
+	margin-top: 20px;
+	margin-left: 25px;
+}

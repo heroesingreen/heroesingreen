@@ -5,6 +5,12 @@
 .mission_container {
 	padding-left: 100px;
 	padding-right: 100px;
+	text-align: center;
+}
+
+.mission_container h1{
+	font-size: 1.5em;
+	font-weight: bold;
 }
 
 .mission_content {

@@ -1,11 +1,51 @@
-Selected missions:
-<table>
+<%-content_for :head_content do %>
+	<%= stylesheet_link_tag 'mission_results' %>
+<% end-%>
+<%=render :partial=>'mission_search_box'%>
+<div class="search_results">
+	<div class="title_row border"><h3>Available Missions</h3></div>
+
+		<%if @results && @results.size > 0%>
+			<%index = 0%>
+			<%show_border = "border"%>
+			<%@results.each do |mission|%>
+				<%index += 1%>
+				<%show_border = "" if index == @results.size%>
+				<div class="result_row <%=show_border%>">
+					<a href="javascript:switchOpenDiv(<%=index%>);">
+						<div class="icons_box">
+							Icons
+						</div>
+						<div class="points_box">
+							<%=mission.points%> points
+						</div>
+						<div>
+							<%=truncate("<b>#{mission.title}</b> - #{mission.description}",110, "...")%>
+						</div>	
+						<div id="results_<%=index%>" style="<%if index > 1%>display:none;<%end%>">
+							<p>
+								<%=truncate(mission.intro,150, "...")%>
+							</p>
+							<p>
+								Savings: $150/year
+							</p>
+						</div>
+					</a>
+				</div>
+			<%end%>
+		<%else%>
+			<div class="result_row">No matches found. Try a different search term.</div>
+		<%end%>
+	</table>
+</div>
+
+<script type="text/javascript">
+	var cur_selected = 1;
 	
-<% @selected_missions.each do |mission| %>
-	<tr>	
-		<td>
-			<%=mission.title%>
-		</td>
-	</tr>
-<%end%>
-</table>
+	function switchOpenDiv(new_index)
+	{
+		Effect.BlindDown('results_' + new_index);
+		Effect.BlindUp('results_'+ cur_selected);
+		cur_selected = new_index;
+	}
+</script>

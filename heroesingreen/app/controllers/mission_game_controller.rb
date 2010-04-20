@@ -75,10 +75,12 @@ class MissionGameController < ApplicationController
   def search
     search_text = params[:search_text]
     
-    unless search_text
-      flash[:error] = "Please enter a search term"
+    if !search_text || search_text.strip.blank?
+      flash[:error] = "Please enter a search term!"
       redirect_to(:action=>"find_mission")
     end
+  
+    @results = Mission.all
   
     @body_action_id = "find_mission"
   end

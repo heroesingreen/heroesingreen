@@ -1,0 +1,10 @@
+.search_box{
+	text-align: center;
+	border: 1px solid;
+	width: 450px;
+	padding-bottom: 10px;
+}
+
+.search_box h2{
+	font-size: 1em;
+}

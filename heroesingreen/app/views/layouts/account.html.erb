@@ -16,9 +16,7 @@
 		</div>
 	</div>
 	<div class="content">
-		<%unless flash[:notice]==nil%>
-			<div class="errorContent"><%= flash[:notice] %></div>
-		<%end%>
+		<%= render :partial=>'shared/display_flashes'%>
 		<div>
 			<%= yield :layout%>
 		</div>

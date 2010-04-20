@@ -1,0 +1,7 @@
+<%if flash.length > 0%>
+	<%flash.each do |key, msg|%>
+		<div class="errorContent">
+			<%= msg %>
+		</div>
+	<%end%>
+<%end%>
