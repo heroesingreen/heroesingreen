@@ -78,7 +78,7 @@ class MissionGameController < ApplicationController
     	@selected_missions = available_missions.select{ |mission|
     	mission.repeatable == params[:repeatable].to_i
 	}
-	puts "Selected missions: #{@selected_missions.inspect}"
+  @body_action_id = "find_mission"
   end
    	
   private
