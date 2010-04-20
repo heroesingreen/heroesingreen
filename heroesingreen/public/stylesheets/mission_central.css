@@ -12,7 +12,9 @@
 	border-left: 1px solid #6c6;
 	border-right: 1px solid #6c6;
 	border-bottom: 1px solid #6c6;
-	padding: 5px 10px 5px 10px;
+	padding: 20px 10px 20px 10px;
+	overflow: auto;
+	width: 100%;
 }
 
 /* begin css tabs */

@@ -1,22 +1,13 @@
-<div class="MissionList">
-	<div>Available missions:</div>
-
-	  <%= @missions.size %>		
-		<% @missions.each do |mission| %>
-			<%= mission.title %> Points: <%= mission.points %><br/>
-
-<% @quest=@missions.first%>
-		<%end%>
-<% form_tag(:controller => "mission_game", :action=>"search") do %>
-	<%= select_tag("repeatable", options_for_select(Mission::MISSION_TYPE_NAMES.to_a.collect{ |value, name| [name, value] })) %>
-	<%= submit_tag("Search")%>
-<%end%>
-	 	
-
-	<p>
+<%-content_for :head_content do %>
+	<%= stylesheet_link_tag 'mission_search' %>
+<% end-%>
+<div class="left_box">Helping at home</div>
+<div class="center_box">
+	<%=render :partial=>'mission_search_box'%>
+	<div class="advisor_box">
+		Ask advisors
+	</div>
+</div>
+<div class="right_box">Explore your world</div>
 
 	
-	<%= button_to "Give me a random mission", :action=>:start%>
-
-	</p>
-</div>

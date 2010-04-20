@@ -139,7 +139,7 @@ div.errorContent {
 div.mainContent {
 	width: 1190px;
 	background-color: #F2F2F2;
-	min-height: 600px;
+	min-height: 400px;
 	margin: auto;
 	padding: 5px;
 	clear: both;

@@ -10,7 +10,6 @@ class MissionGameController < ApplicationController
   end
   
   def find_mission
-    @missions = available_missions
   end
   
   def current_missions
@@ -74,11 +73,14 @@ class MissionGameController < ApplicationController
   end
 
   def search
-  	puts "Available missions: #{available_missions.inspect}"
-    	@selected_missions = available_missions.select{ |mission|
-    	mission.repeatable == params[:repeatable].to_i
-	}
-  @body_action_id = "find_mission"
+    search_text = params[:search_text]
+    
+    unless search_text
+      flash[:error] = "Please enter a search term"
+      redirect_to(:action=>"find_mission")
+    end
+  
+    @body_action_id = "find_mission"
   end
    	
   private
