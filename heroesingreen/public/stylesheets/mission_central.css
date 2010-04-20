@@ -66,3 +66,71 @@ background: #fff; /* set desired hover color */
 }
 
 /* end css tabs */
+
+/* begin current missions styles*/
+
+.mission {
+	width: 98%; 
+	margin: 0 1% 0 1%; 
+	padding: 2px; 
+	height: 20px; 
+	border-bottom: 1px solid black;
+	overflow: hidden;
+}
+
+.mission_text {
+	float: left;
+	padding: 0 0 3px 3px;
+	width: 95%;
+}
+
+.more {
+	width: 2%;
+	height: 100%;
+	vertical-align: center;
+	float: right;
+	padding-right: 5px;
+}
+
+.mission:hover {
+	background-color: #eee;
+	cursor: pointer;
+}
+
+.needHelp {
+	float: left;
+	margin-right: 10px;
+}
+
+.selectMission {
+	float: right;
+}
+
+#current_missions {
+	float:left; 
+	width: 49.5%; 
+	height: 400px; 
+	margin-right: 0.5%; 
+}
+
+#teamObjsAndMyAccomplishments {
+	float:right; 
+	width: 49.5%; 
+	margin-left: 0.5%;	
+}
+
+#team_objs {
+	height: 200px; 
+	border: 1px solid black; 
+	text-align: left; 
+	padding: 3px;
+}
+
+#accomplishments {
+	margin-top: 10px; 
+	height: 200px;
+	padding: 3px; 
+	text-align: left;
+	border: 1px solid black;
+}
+/* end current missions styles*/

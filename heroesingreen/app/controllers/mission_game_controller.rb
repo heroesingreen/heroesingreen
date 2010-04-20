@@ -13,8 +13,9 @@ class MissionGameController < ApplicationController
   end
   
   def current_missions
-    @upcoming_quests = get_user.missionStatuses.find(:all)
-    @upcoming_quests = @upcoming_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
+    @all_quests = get_user.missionStatuses.find(:all)
+    @completed_quests = @all_quests.select{|quest| (quest.completed?)}
+    @upcoming_quests = @all_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
   end
   
   def start

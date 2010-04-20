@@ -1,15 +1,49 @@
-<h1>Placeholder!</h1>
-<table border=1>
-	<tr>
-		<td>Mission Title</td>
-		<td>Points awarded</td>
-		<td>Mission status</td>
-	</tr>
-<% @upcoming_quests.each do |missionStatus| %>
-	<tr>
-		<td><%=missionStatus.mission.title%></td>	
-		<td><%=missionStatus.mission_points%></td>
-		<td><%=missionStatus.status_string%></td>
-	</tr>
-<%end%>
-</table>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$(".mission:odd").css("background-color", "#fff");
+		$(".mission:even").css("background-color", "#eeeddd");
+		
+				
+		$(".mission").click(function() {
+			if($(this).height() == 20)
+			{ 
+				$(this).height("auto");
+				var h = $(this).height();
+				$(this).height(20);
+				$(this).animate({height: h}, 700);
+			}
+			else 
+				$(this).animate({height: 20}, 500); 
+		});
+	
+ });
+
+</script>
+
+<div id="current_missions">
+	<span style="font-size: 20px; margin: 4px; float: left;">Current Mission Objectives</span>
+	<% @upcoming_quests.each do |missionStatus| %>
+	<div class="mission">
+		<div class="mission_text">
+			<%=missionStatus.mission.title%><br>
+			<%=missionStatus.mission.points%> points<br><br>
+			<%=missionStatus.mission.task%><br><br>
+			<div class="needHelp">I need help with this</div>
+			<div class="selectMission"><%= link_to "Complete", :controller => :mission_game, :action => :start, :id => missionStatus.mission.id%></div>
+		</div>
+		<div class="more">></div>
+	</div>
+	<%end%>	
+</div>
+<div id="teamObjsAndMyAccomplishments">
+	<div id="team_objs">Team Objectives Placeholder</div>
+	<div id="accomplishments">
+		<span style="font-size:16px;">Recent Amazing Accomplishments (<%= link_to "Go to my accomplishments", :controller => :account, :action => :accomplishments%>):</span>
+		<ul>
+			<% @completed_quests.each do |missionStatus| %>
+				<li><%= missionStatus.mission.reward%></li>
+			<% end %>		
+		</ul>
+	</div>
+</div>
