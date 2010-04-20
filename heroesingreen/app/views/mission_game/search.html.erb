@@ -12,7 +12,7 @@
 				<%index += 1%>
 				<%show_border = "" if index == @results.size%>
 				<div class="result_row <%=show_border%>">
-					<a href="javascript:switchOpenDiv(<%=index%>);">
+					<a href="javascript:switchOpenDiv(<%=index%>, '<%=url_for(:action=>'start', :id=>mission.id)%>');">
 						<div class="icons_box">
 							Icons
 						</div>
@@ -42,10 +42,17 @@
 <script type="text/javascript">
 	var cur_selected = 1;
 	
-	function switchOpenDiv(new_index)
+	function switchOpenDiv(new_index, redirect_url)
 	{
-		Effect.BlindDown('results_' + new_index);
-		Effect.BlindUp('results_'+ cur_selected);
-		cur_selected = new_index;
+		if(new_index != cur_selected)
+		{
+			Effect.BlindDown('results_' + new_index);
+			Effect.BlindUp('results_'+ cur_selected);
+			cur_selected = new_index;
+		}
+		else
+		{
+			location.href = redirect_url;
+		}
 	}
 </script>

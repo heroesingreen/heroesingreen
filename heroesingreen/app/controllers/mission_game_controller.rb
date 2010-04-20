@@ -18,7 +18,13 @@ class MissionGameController < ApplicationController
   end
   
   def start
-    @mission = available_missions[rand(available_missions.length)] #Pick a random mission
+    if(params[:id])
+      @mission = Mission.find(params[:id])
+    end
+    
+    unless(@mission)
+      @mission = available_missions[rand(available_missions.length)] #Pick a random mission
+    end
   end
   
   #Mission status is always created when you accept a mission
