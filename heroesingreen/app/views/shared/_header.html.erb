@@ -6,9 +6,9 @@
 			</div>
 			<div id="header-center">
 				<%if session[:user_id] && User.find(session[:user_id]) && User.find(session[:user_id]).avatar%>
-					<%= image_tag("avatars/thumbs/#{User.find(session[:user_id]).avatar}")%>
+					<%= image_tag("Avatars/thumbs/#{User.find(session[:user_id]).avatar}")%>
 				<%else%>
-					<%= image_tag("avatars/thumbs/111.png")%>
+					<%= image_tag("Avatars/thumbs/111.png")%>
 				<%end%>
 			</div>
 			<div id="header-right">
