@@ -8,7 +8,7 @@
 				<%if session[:user_id] && User.find(session[:user_id]) && User.find(session[:user_id]).avatar%>
 					<%= image_tag("avatars/thumbs/#{User.find(session[:user_id]).avatar}")%>
 				<%else%>
-					<img src="/images/avatars/thumbs/111.png" />
+					<%= image_tag("avatars/thumbs/111.png")%>
 				<%end%>
 			</div>
 			<div id="header-right">
@@ -37,7 +37,7 @@
 			<div id="headerLink"><%=link_to "My Garden", :controller=>:garden, :action=>:view%></div>
 			<div id="headerLink"><%=link_to "Garden Goodies", :controller=>:store, :action=>:view%></div>
 			<div id="headerLink"><%=link_to "Pimp Yo Avatar", :controller=>:account, :action=>:avatar%></div>
-			<div id="headerLink"><%=link_to "My Profile", :controller=>:account, :action=>:home%></div>
+			<div id="headerLink"><%=link_to "My Home", :controller=>:account, :action=>:home%></div>
 			<div id="headerLink"><%=link_to "My Accomplishments", :controller => :account, :action=>:accomplishments%></div>
 			<div id="headerLink"><a href="#">Team Homepage</a></div>
 	</div>

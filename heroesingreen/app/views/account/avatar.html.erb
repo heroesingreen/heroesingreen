@@ -2,7 +2,7 @@ How do you wanna represent yourself? Pick an avatar that you like the most.
 
 <br><br>
 
-<%Dir.foreach("public/images/avatars/thumbs") do |f|%>
+<%Dir.foreach(RAILS_ROOT + "/public/images/avatars/thumbs") do |f|%>
 	<%if f == "." or f == ".."%>
 	<%else%>
 		<span id="selectAvatar">
