@@ -30,6 +30,10 @@
 	overflow: auto;
 }
 
+.search_results .result_row:hover{
+	background-color: #cfc;
+}
+
 .search_results .result_row a{
 	text-decoration: none;
 	width: 100%;
@@ -46,4 +50,9 @@
 	float: right;
 	text-align: center;
 	width: 75px;
+}
+
+.search_results .result_row .mission_text_box .results_watermark{
+	float: right;
+	color: #999;
 }

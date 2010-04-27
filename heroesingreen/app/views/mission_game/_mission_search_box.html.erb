@@ -3,8 +3,9 @@
 <% end-%>
 <div class="search_box">
 	<h2>Mission Search</h2>
+	<%search_term ||= ''%>
 	<%form_tag :action=>'search' do%>
-		<%=text_field_tag 'search_text', '', :size=>50%><br/>
+		<%=text_field_tag 'search_text', search_term, :size=>50%><br/>
 		<%=submit_tag "What missions await?"%>
 	<%end%>	
 </div>

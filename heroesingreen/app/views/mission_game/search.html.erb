@@ -1,7 +1,7 @@
 <%-content_for :head_content do %>
 	<%= stylesheet_link_tag 'mission_results' %>
 <% end-%>
-<%=render :partial=>'mission_search_box'%>
+<%=render :partial=>'mission_search_box', :locals=>{:search_term => @search_text}%>
 <div class="search_results">
 	<div class="title_row border"><h3>Available Missions</h3></div>
 
@@ -22,13 +22,14 @@
 						<div>
 							<%=truncate("<b>#{mission.title}</b> - #{mission.description}",110, "...")%>
 						</div>	
-						<div id="results_<%=index%>" style="<%if index > 1%>display:none;<%end%>">
+						<div id="results_<%=index%>" class="mission_text_box" style="<%if index > 1%>display:none;<%end%>">
 							<p>
 								<%=truncate(mission.intro,150, "...")%>
 							</p>
 							<p>
 								Savings: $150/year
 							</p>
+							<span class="results_watermark">Click to see more</span>
 						</div>
 					</a>
 				</div>

@@ -80,14 +80,22 @@ class MissionGameController < ApplicationController
   end
 
   def search
-    search_text = params[:search_text]
+    @search_text = params[:search_text]
     
-    if !search_text || search_text.strip.blank?
+    if !@search_text || @search_text.strip.blank?
       flash[:error] = "Please enter a search term!"
       redirect_to(:action=>"find_mission")
     end
   
-    @results = Mission.all
+    @search_text = @search_text.downcase
+  
+    @results = Mission.find(:all, :conditions=>["tags like ?","%#{@search_text}%"])
+    
+    unless(@result && @result.length > 0)
+      @results = Mission.find(:all, :conditions=>["description like ? or title like ?",
+                                                    "%#{@search_text}%",
+                                                    "%#{@search_text}%"])
+    end
   
     @body_action_id = "find_mission"
   end
