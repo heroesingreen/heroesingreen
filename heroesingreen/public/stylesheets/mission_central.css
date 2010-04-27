@@ -72,13 +72,13 @@ background: #fff; /* set desired hover color */
 .mission {
 	width: 98%; 
 	margin: 0 1% 0 1%; 
-	padding: 2px; 
-	height: 20px; 
+	padding: 2px;  
 	border-bottom: 1px solid black;
 	overflow: hidden;
 }
 
-.mission_text {
+.mission_body
+{
 	float: left;
 	padding: 0 0 3px 3px;
 	width: 95%;

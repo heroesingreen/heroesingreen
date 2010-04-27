@@ -1,36 +1,17 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-		
-		$(".mission:odd").css("background-color", "#fff");
-		$(".mission:even").css("background-color", "#eeeddd");
-		
-				
-		$(".mission").click(function() {
-			if($(this).height() == 20)
-			{ 
-				$(this).height("auto");
-				var h = $(this).height();
-				$(this).height(20);
-				$(this).animate({height: h}, 700);
-			}
-			else 
-				$(this).animate({height: 20}, 500); 
-		});
-	
- });
-
-</script>
-
 <div id="current_missions">
-	<span style="font-size: 20px; margin: 4px; float: left;">Current Mission Objectives</span>
+	<div style="font-size: 20px; margin: 4px; float: left;">Current Mission Objectives</div>
 	<% @upcoming_quests.each do |missionStatus| %>
-	<div class="mission">
-		<div class="mission_text">
-			<%=missionStatus.mission.title%><br>
-			<%=missionStatus.mission.points%> points<br><br>
-			<%=missionStatus.mission.task%><br><br>
-			<div class="needHelp">I need help with this</div>
-			<div class="selectMission"><%= link_to "Complete", :controller => :mission_game, :action => :start, :id => missionStatus.mission.id%></div>
+	<div class="mission" onclick="javascript:Effect.toggle($(this).down('.mission_text'), 'Slide');">
+		<div class="mission_body">
+			<div class="mission_title">
+				<%=missionStatus.mission.title%>
+			</div>
+			<div class="mission_text" style="display:none;">
+				<%=missionStatus.mission.points%> points<br><br>
+				<%=missionStatus.mission.task%><br><br>
+				<div class="needHelp">I need help with this</div>
+				<div class="selectMission"><%= link_to "Complete", :controller => :mission_game, :action => :start, :id => missionStatus.mission.id%></div>
+			</div>
 		</div>
 		<div class="more">></div>
 	</div>
@@ -39,7 +20,7 @@
 <div id="teamObjsAndMyAccomplishments">
 	<div id="team_objs">Team Objectives Placeholder</div>
 	<div id="accomplishments">
-		<span style="font-size:16px;">Recent Amazing Accomplishments (<%= link_to "Go to my accomplishments", :controller => :account, :action => :accomplishments%>):</span>
+		<div style="font-size:16px;">Recent Amazing Accomplishments (<%= link_to "Go to my accomplishments", :controller => :account, :action => :accomplishments%>):</div>
 		<ul>
 			<% @completed_quests.each do |missionStatus| %>
 				<li><%= missionStatus.mission.reward%></li>
