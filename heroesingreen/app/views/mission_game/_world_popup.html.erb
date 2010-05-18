@@ -1,0 +1,31 @@
+<%
+	case world
+		when :meadow :
+			world_title = "Meadow world"
+			world_description = "Welcome to Heroes in Green! <p> Meadow world is a place of simple beauty and tranquility. Here we will take baby steps to start our heroic journey to a greener Earth. Along the way, we have many enjoyable treats and surprises for you! Watch as your efforts get turned back into carbon, which we can use to grow your very own garden! </p> <p><b>Unlocks:</b> Dandelions, Lavendars, Sunflowers and many more!</p>"
+		when :home :
+			world_title = "Home world"
+			world_description = "<p>Wondering how you could save the environment at home? Well you are in the right place! In fact, conserving the environment starts right in your living room!</p><p><b>Unlocks:</b> Vines, garden chairs, lawn mower and many more!</p>"
+		when :light :
+			world_title = "Light world"
+			world_description = "<p>Saving the environment is fun isn't it? Looking for more of a challenge? Well look no further! Light world contains many more hours of lighting funs! Spend hours in the dark! Light a camp fire! Do your part to save the world!*</p><p>* &lt;Insert company name&gt;,Inc is not liable for any bodily harm that may result from the given missions. Please use your own discretion and caution when attempting foolish or dangerous endeavors. However, note that with great risk, comes great rewards :)</p><p><b>Unlocks:</b> Solar panels, lamp posts, venus fly-traps, moths, and many more!</p>"
+		when :carbon :
+			world_title = "Carbon world"
+			world_description = "<p>As Al Gore pointed out, we will soon run out of charting space if we keep plotting our carbon emissions at the current rate. It's time someone ought to do something about this. Yea, I am talking about you! Look, these missions aren't terribly hard, and you will get some pretty neat rewards too. It's worth it... trust me ;)</p><p><b>Unlocks:</b> Hydraulic powered crane, trees(!), monarch butterflies, birds nest fern and many more!</p>"
+		when :party :
+			world_title = "Party world"
+			world_description = "<p>Even when you are having fun, we want you to think about the environment. Yep... all those paper plates you are handing out could buy you a really spiffy plant for your garden *wink* wink*. Tell you what, have a look at these missions, and I am sure you will find something you like!</p><p><b>Unlocks:</b>Party balloons(!), lawn chairs, pool, hummingbirds and many more!</p>"
+		when :water :
+			world_title = "Water world"
+			world_description = "<p>Could you go a day without drinking water? Heh, I figured as much... Well, unfortunately, sooner or later, we are going to run out of water for everyone. So either we do something to conserve this precious resource or we better learn to drink less water quick!</p><p><b>Unlocks:</b> Ponds, water lilies, cat tails, guppies, dragon flies and much more!</p>"	
+		when :techno :
+			world_title = "Technocity world"
+			world_description = "<p>Imagine the perfect eco-friendly utopia! Man and nature living in perfect harmony! Yep, and it all starts with you... today... like, right now. What are you looking at? Get up now and start laying me some compostable bricks! Double time!</p><p><b>Unlocks:</b> Green skyscraper (really!), personal spaceship (carbon-neutral), pet monkey and many more!</p>"
+	end
+%>
+<div style="padding: 5px;">
+	<b><%=world_title%></b>
+</div>
+<div style="padding: 10px;background-color: #AADDAA;color:black;">
+	<%=world_description%>
+</div>

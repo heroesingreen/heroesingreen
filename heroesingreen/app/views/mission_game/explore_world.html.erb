@@ -1,1 +1,90 @@
-<%=image_tag('world/world_demo.gif')%>
+<style type="text/css">
+	a.world_link{
+		display:block;
+		background-color:#222;
+		position:absolute;	
+		
+		/* for IE */
+	  	filter:alpha(opacity=60);
+	  	/* CSS3 standard */
+	  	opacity:0.6;
+	}
+	
+	a.active_world {
+		background:transparent;
+		
+		/* for IE */
+	  	filter:alpha(opacity=100);
+	  	/* CSS3 standard */
+	  	opacity:1.0;
+	}
+
+	a.world_link:hover  {
+		background:transparent;
+		border:1px dashed white;
+		text-decoration: none;
+		
+		/* for IE */
+	  	filter:alpha(opacity=100);
+	  	/* CSS3 standard */
+	  	opacity:1.0;
+	}
+	
+	a.world_link div.css_popup{
+		display: none;
+		background-color: #337733;
+		
+		z-index: 100;
+	}
+	
+	a.world_link:hover div.css_popup{
+		display: block;
+		color: white;
+		
+	}
+	
+
+	a.world_link div.popup_right{
+		position:absolute;
+		left:200px; top:-40px;
+		width: 300px;
+	}
+	
+	a.world_link div.popup_left{
+		position:absolute;
+		right:250px; top:-40px;
+		width: 300px;
+	}
+	
+	a.world_link div.popup_bottom{
+		position:absolute;
+		left:-40px; top:220px;
+		width: 300px;
+	}
+
+	dl.image_map {display:block; width:939px; height:764px; background:url(/images/world/world_demo.gif); position:relative; margin:2px auto 2px auto;}
+	a.LINK0 {left:44px; top:269px; }
+	a.LINK0 { width:163px; height:0; padding-top:248px; }
+	a.LINK1 {left:359px; top:383px;}
+	a.LINK1 {width:208px; height:0; padding-top:134px;}
+	a.LINK2 {left:315px; top:89px;}
+	a.LINK2 {width:173px; height:0; padding-top:195px;}
+	a.LINK3 {left:713px; top:259px;}
+	a.LINK3 {width:223px; height:0; padding-top:222px;}
+	a.LINK4 {left:222px; top:539px;}
+	a.LINK4 {width:145px; height:0; padding-top:147px;}
+	a.LINK5 {left:515px; top:27px;}
+	a.LINK5 {width:300px; height:0; padding-top:289px;}
+	a.LINK6 {left:559px; top:521px;}
+	a.LINK6 {width:204px; height:0; padding-top:227px;}
+</style>
+
+<dl class="image_map">
+	<dd><a class="world_link active_world LINK0" title="Meadow World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:meadow}%></div></a></dd>
+	<dd><a class="world_link LINK1" title="Home World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:home}%></div></a></dd>
+	<dd><a class="world_link LINK2" title="Light World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_bottom"><%=render :partial=>'world_popup', :locals=>{:world=>:light}%></div></a></dd>
+	<dd><a class="world_link LINK3" title="Carbon World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:carbon}%></div></a></dd>
+	<dd><a class="world_link LINK4" title="Party World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:party}%></div></a></dd>
+	<dd><a class="world_link LINK5" title="Water World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_bottom"><%=render :partial=>'world_popup', :locals=>{:world=>:water}%></div></a></dd>
+	<dd><a class="world_link LINK6" title="Technopolis" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:techno}%></div></a></dd>
+</dl>
