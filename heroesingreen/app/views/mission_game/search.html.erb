@@ -3,7 +3,7 @@
 <% end-%>
 <%=render :partial=>'mission_search_box', :locals=>{:search_term => @search_text}%>
 <div class="search_results">
-	<div class="title_row border"><h3>Available Missions</h3></div>
+	<div class="title_row border"><h3>Missions Found</h3></div>
 
 		<%if @results && @results.size > 0%>
 			<%index = 0%>
@@ -22,6 +22,16 @@
 						<div>
 							<%=truncate("<b>#{mission.title}</b> - #{mission.description}",110, "...")%>
 						</div>	
+						<%if @user%>
+							<%status = @user.get_status(mission)%>
+							<%if status%>
+								<div>
+									<p>
+										<b>Current status:</b> <%=status.status_string%>
+									</p>
+								</div>
+							<%end%>
+						<%end%>
 						<div id="results_<%=index%>" class="mission_text_box" style="<%if index > 1%>display:none;<%end%>">
 							<p>
 								<%=truncate(mission.intro,150, "...")%>

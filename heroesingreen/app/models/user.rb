@@ -109,4 +109,8 @@ class User < ActiveRecord::Base
   def get_level
     Level.find(:first, :conditions=>["points_required <= ?",self.total_points], :order=>"points_required desc")
   end
+  
+  def get_status(mission)
+    MissionStatus.find(:first, :conditions=>{:user_id=>self.id, :mission_id=>mission.id})
+  end
 end

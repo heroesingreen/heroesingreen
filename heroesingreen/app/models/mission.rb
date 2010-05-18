@@ -22,5 +22,4 @@ class Mission < ActiveRecord::Base
 	def epic?
 		self.repeatable == EPIC_TYPE
 	end
-	
 end

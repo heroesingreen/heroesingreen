@@ -1,5 +1,5 @@
 class MissionGameController < ApplicationController
-  before_filter :ensure_user, :only => [:find_mission, :current_missions]
+  before_filter :ensure_user, :only => [:explore_world, :find_mission, :search, :current_missions]
   layout :choose_layout
   
   def index
@@ -7,6 +7,9 @@ class MissionGameController < ApplicationController
       redirect_to(:controller=>:account,:action=>:home)
     end
     @force_refresh_on_login = true
+  end
+  
+  def explore_world
   end
   
   def find_mission
@@ -96,6 +99,8 @@ class MissionGameController < ApplicationController
                                                     "%#{@search_text}%",
                                                     "%#{@search_text}%"])
     end
+    
+    @user = get_user
   
     @body_action_id = "find_mission"
   end
@@ -110,6 +115,8 @@ class MissionGameController < ApplicationController
       return 'mission_central'
     when 'search'
       return 'mission_central'
+    when 'explore_world'
+      return 'mission_central'  
     else
 		  return 'mission_game'
 	  end

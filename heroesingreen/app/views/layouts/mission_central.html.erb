@@ -4,8 +4,9 @@
 <%- #Tab navigation prep
 	#Tab structure = [name, action_name]
 	tabs = []
-	tabs << ["Find missions", "find_mission"]
-	tabs << ["Current missions", "current_missions"]
+	tabs << ["Explore", "explore_world"]
+	tabs << ["Search", "find_mission"]
+	tabs << ["Current", "current_missions"]
 	
 	tab_index = nil
 	@body_action_id ||= action_name
