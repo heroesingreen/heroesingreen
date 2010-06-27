@@ -1,5 +1,5 @@
 class MissionGameController < ApplicationController
-  before_filter :ensure_user, :only => [:explore_world, :find_mission, :search, :current_missions]
+  before_filter :ensure_user, :only => [:explore_world, :world, :find_mission, :search, :current_missions]
   layout :choose_layout
   
   def index
@@ -10,6 +10,19 @@ class MissionGameController < ApplicationController
   end
   
   def explore_world
+    @worlds = World.all
+  end
+  
+  def world    
+    @body_action_id = "explore_world"
+    
+    @world = nil
+    @world = World.find(:first, :conditions=>{:id=>params[:id]}) if params[:id]
+    unless(@world)
+      redirect_to :action=>:explore_world
+    end
+    
+    
   end
   
   def find_mission
@@ -116,6 +129,8 @@ class MissionGameController < ApplicationController
     when 'search'
       return 'mission_central'
     when 'explore_world'
+      return 'mission_central'  
+    when 'world'
       return 'mission_central'  
     else
 		  return 'mission_game'

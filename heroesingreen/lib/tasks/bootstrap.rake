@@ -1,6 +1,26 @@
 namespace :bootstrap_dev do
   desc "Generate all sample data"
-  task :all => [:default_accounts, :default_missions, :default_plants]
+  task :all => [:default_accounts, :default_missions, :default_plants, :default_worlds]
+
+	desc "Generate default worlds"
+	task :default_worlds => :environment do
+	  temp_world = World.create(:name=>'Meadow World',:map_image=>'meadow_demo.gif', :description=>'Welcome to Heroes in Green! <p> Meadow world is a place of simple beauty and tranquility. Here we will take baby steps to start our heroic journey to a greener Earth. Along the way, we have many enjoyable treats and surprises for you! Watch as your efforts get turned back into carbon, which we can use to grow your very own garden! </p>')
+
+    temp_mission = WorldMission.create(:world=>temp_world, :tag=>'light', :name=> 'Lavender Patch', :description=>'<p>Your journey begins here...</p>', :required=>true)
+    
+	  temp_plant = UnlockablePlant.new
+	  temp_plant.plant_template = PlantTemplate.find(:first, :conditions=>{:name=>'Blackberry'})
+	  temp_plant.world_mission = temp_mission
+	  temp_plant.save!
+    
+    temp_mission = WorldMission.create(:world=>temp_world, :mission=>Mission.find(:first, :conditions=>{:title=>'Silent Menace'}), 
+                                        :name=> 'Cobblestone Path', :description=>'<p>The path to a greener planet continues...</p>', :required=>true)
+	  
+	  temp_plant = UnlockablePlant.new
+	  temp_plant.plant_template = PlantTemplate.find(:first, :conditions=>{:name=>'Fern'})
+	  temp_plant.world_mission = temp_mission
+	  temp_plant.save!
+  end
 
 	desc "Generate default accounts"
 	task :default_accounts => :environment do

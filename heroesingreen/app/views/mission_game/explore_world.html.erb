@@ -79,7 +79,7 @@
 </style>
 
 <dl class="image_map">
-	<dd><a class="world_link active_world LINK0" title="Meadow World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:meadow}%></div></a></dd>
+	<dd><a class="world_link active_world LINK0" title="Meadow World" href="<%=url_for :action=>:world, :id=>@worlds[0].id%>"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world_title=>@worlds[0].name, :world_description=>@worlds[0].description, :unlock_text=>@worlds[0].unlockable_text}%></div></a></dd>
 	<dd><a class="world_link LINK1" title="Home World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:home}%></div></a></dd>
 	<dd><a class="world_link LINK2" title="Light World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_bottom"><%=render :partial=>'world_popup', :locals=>{:world=>:light}%></div></a></dd>
 	<dd><a class="world_link LINK3" title="Carbon World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:carbon}%></div></a></dd>
