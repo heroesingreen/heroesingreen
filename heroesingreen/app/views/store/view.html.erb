@@ -30,7 +30,7 @@
 <div id="plant_list">
 <% @plant_templates.each do |plant_template| %>
   <div id="plant" onmouseover=showText('&lt;b&gt;Plant&nbsp;Details&lt;/b&gt;&lt;br&gt;&lt;br&gt;Name:&nbsp;<%=h plant_template.name%>&lt;br&gt;Cost:&nbsp;<%=h plant_template.cost%>&lt;br&gt;Virility:&nbsp;<%=h plant_template.virility%>&lt;br&gt;Layer&nbsp;Max:&nbsp;<%=h plant_template.layer_max%>&lt;br&gt;Health&nbsp;Max:&nbsp;<%=h plant_template.health_max%>&lt;br&gt;Water&nbsp;Consumption:&nbsp;<%=h plant_template.water_consumption%>&lt;br&gt;Nutrients&nbsp;Consumption:&nbsp;<%=h plant_template.nutrients_consumption%>&lt;br&gt;Light&nbsp;Min:&nbsp;<%=h plant_template.light_min%>&lt;br&gt;Light&nbsp;Max:&nbsp;<%=h plant_template.light_max%>&lt;br&gt;Vertical&nbsp;Rate:&nbsp;<%=h plant_template.vertical_rate%>&lt;br&gt;Radial&nbsp;Rate:&nbsp;<%=h plant_template.radial_rate%>&lt;br&gt;Density&nbsp;Rate:&nbsp;<%=h plant_template.density_rate%>'); onmouseout=hideText();>
-  	<div id="plant_image"><%= image_tag("plants/#{plant_template.image_path}",:title => plant_template.name)%></div>
+  	<div id="plant_image"><%= image_tag("plants/#{plant_template.thumbnail}",:title => plant_template.name)%></div>
     <div id="plant_info"><%=h plant_template.name %> - <%=h plant_template.description %></div>
     <div id="plant_cost">Cost:<%=h plant_template.cost %></div>
     <div id="plant_buy"><%= button_to "Buy", :action=>:buy, :id=>plant_template.id %></div>

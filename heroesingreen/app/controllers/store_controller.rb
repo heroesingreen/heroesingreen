@@ -27,10 +27,14 @@ class StoreController < ApplicationController
         @user_can_buy = @logged_in_user.avail_points >= @plant_template.cost
             
         if @user_can_buy
-          get_current_garden.add_plant(@plant_template)
-          @logged_in_user.pay(@plant_template.cost)
-          flash[:notice] = @plant_template.name + " has successfully been purchased!"
-          redirect_to(:controller=>:garden, :action=>:view)  
+          if(get_current_garden.add_plant(@plant_template))
+            @logged_in_user.pay(@plant_template.cost)
+            flash[:notice] = @plant_template.name + " has successfully been purchased!"
+            redirect_to(:controller=>:garden, :action=>:view)  
+          else
+            flash[:notice] = "No room for plant " + @plant_template.name + " in your garden"
+            redirect_to(:controller=>:store, :action=>:view)
+          end
         else
           flash[:notice] = "Not enough points to purchase " + @plant_template.name
           redirect_to(:controller=>:store, :action=>:view)

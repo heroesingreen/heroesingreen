@@ -1,49 +1,55 @@
+<style>
+	.garden {
+		background-image:url('../images/Backgrounds/GardenBackgroundSmall.png');
+		width: 918px; 
+		height: 714px;
+	}	
+	.ground {
+		width: 100px;
+		height: 100px;
+		border: 1px black hidden; 
+		float: left;
+		position: relative;
+	}
+	.plant_in_garden {
+		position: absolute;
+		bottom: 0;
+	}
+	.plant_in_garden img {
+		opacity: 0.9;
+	}
+	.plant_in_garden img:hover {
+		opacity:1;
+	}
+	.clear {clear:both;}
+</style>
+
 <h1>Your garden!</h1>
 Your garden measures your progress.
-	<div>
-	<table cellpadding="0" cellspacing="0" style="background:#563215;">
+	
+<div class="garden">
 	<%@garden.size_y.times do |y|%>
-		<tr>
-			<%@garden.size_x.times do |x|%>
-				<td>
-					<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
-					<%if ground != nil%>
-						<%if get_user.email.match(/cooley/)%>
-							<p>Wetness:<%=h ground.wetness %></p>
-							<p>Wetness replenishing:<%=h ground.garden.wetness_replenish %></p>
-							<p>Nutrients:<%=h ground.nutrients %></p>
-							<p>Nutrient replenishing:<%=h ground.garden.nutrients_replenish %></p>
-						<%end%>
-						<%ground.plants.each do |plant|%>
-							<%if get_user.email.match(/cooley/)%>
-								<p>Health:<%=h plant.health %></p>
-								<p>Height:<%=h plant.height %></p>
-								<p>Radius:<%=h plant.radius %></p>
-								<p>Optimum wetness:<%=h plant.plant_template.wetness_optimum%></p>
-								<p>Wetness tolerance:<%=h plant.plant_template.wetness_tolerance%></p>
-								<p>Water needed:<%=h plant.plant_template.water_consumption %></p>
-								<p>Optimum nutrients:<%=h plant.plant_template.nutrients_optimum%></p>
-								<p>Nutrients tolerance:<%=h plant.plant_template.nutrients_tolerance%></p>
-								<p>Nutrients needed:<%=h plant.plant_template.nutrients_consumption %></p>
-								
+		<%@garden.size_x.times do |x|%>
+			<div class="ground">
+				<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
+				<%if ground != nil%>
+					<%ground.plants.each do |plant|%>
+						<%if plant.plant_template.image_path != nil%>
+							<%img_url = "plants/#{plant.plant_template.image_path}"%>
+							<%if @garden.size_y - y == 1%>
+								<%img_url = img_url + "a.png"%>
+							<%elsif @garden.size_y - y == 2%>
+								<%img_url = img_url + "b.png"%>
+							<%elsif @garden.size_y - y == 3%>
+								<%img_url = img_url + "c.png"%>
 							<%end%>
-							<%if plant.plant_template.image_path != nil%>
-								<%= link_to image_tag("plants/#{plant.plant_template.image_path}",:title => plant.name), :action => :remove_plant, :plant_id => plant.id %><br>
-							<%else%>
-								<%= link_to image_tag("plants/Drought_Leaf_48x48.png",:title => plant.name), :action => :remove_plant, :plant_id => plant.id %>
-							<%end%>								
+							<div class="plant_in_garden"><%=image_tag(img_url,:title => plant.name)%><br></div>
 						<%end%>
-					<%else%>
-						<%=image_tag("plants/Dirt_48x48.png")%>
 					<%end%>
-				</td>
-			<%end%>
-		</tr>
+				<%end%>
+			</div>
+		<%end%>
+		<div class="clear"></div>
 	<%end%>
-	</table>
-	</div>
-<%if @render_admin%>
-	<%= render :partial=>'admin_ticks'%>
-<%else%>
-	<%= link_to "Admin", :overwrite_params => {:admin_ticks=>1}%>
-<%end%>
+</div>
+

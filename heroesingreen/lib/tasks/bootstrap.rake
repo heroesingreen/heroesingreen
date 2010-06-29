@@ -85,7 +85,7 @@ namespace :bootstrap_dev do
       :health_max => 100,
       :virility => 50,
       :layer_max => 2,
-      :image_path => 'Tree_48x48.png',
+      :image_path => 'scaled-Tree1',
       :water_consumption => 20,
       :wetness_tolerance => 20,
       :wetness_optimum => 30,
@@ -96,7 +96,9 @@ namespace :bootstrap_dev do
       :nutrients_consumption => 8,
       :vertical_rate => 8.0,
       :radial_rate => 5.0,
-      :density_rate => 5.0)
+      :density_rate => 5.0,
+	  :thumbnail => 'scaled-Tree1-thumb.png',
+	  :shadow_block => 1)
   
     PlantTemplate.create(
       :name => 'Blackberry',
@@ -115,15 +117,17 @@ namespace :bootstrap_dev do
       :nutrients_consumption => 3,
       :vertical_rate => 5.0,
       :radial_rate => 5.0,
-      :density_rate => 5.0)
+      :density_rate => 5.0,
+	  :thumbnail => 'Tree_48x48.png',
+	  :shadow_block => 0)
       
     PlantTemplate.create(
       :name => 'Fern',
       :cost => 10,
       :health_max => 10,
       :virility => 10,
-      :layer_max => 0,
-      :image_path => 'White_Flower_48x48.png',
+      :layer_max => 1,
+      :image_path => 'scaled-Fern',
       :water_consumption => 2,
       :wetness_tolerance => 3,
       :wetness_optimum => 8,
@@ -134,6 +138,8 @@ namespace :bootstrap_dev do
       :nutrients_consumption => 1,
       :vertical_rate => 2.0,
       :radial_rate => 2.0,
-      :density_rate => 3.0)
+      :density_rate => 3.0,
+	  :thumbnail => 'scaled-Fern-thumb.png',
+	  :shadow_block => 0)
   end
 end

@@ -57,7 +57,9 @@ class Plant < ActiveRecord::Base
     #Now calculate dying turns
     wither_turns = turns - growth_turns
     
-    grow(growth_turns)
+    if(growth_turns != 0) 
+      grow(growth_turns) 
+    end
     wither(wither_turns)
     
     if(!self.alive?)
