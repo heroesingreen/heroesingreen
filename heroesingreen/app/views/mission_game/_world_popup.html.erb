@@ -13,6 +13,10 @@
 			world_title = "Carbon world"
 			world_description = "As Al Gore pointed out, we will soon run out of charting space if we keep plotting our carbon emissions at the current rate. It's time someone ought to do something about this. Yea, I am talking about you! Look, these missions aren't terribly hard, and you will get some pretty neat rewards too. It's worth it... trust me ;)"
 			unlock_text = "Hydraulic powered crane, trees(!), monarch butterflies, birds nest fern and many more!"
+		when :garden :
+			world_title = "Garden world"
+			world_description = "Placeholder text"
+			unlock_text = "Garden gnomes"
 		when :party :
 			world_title = "Party world"
 			world_description = "Even when you are having fun, we want you to think about the environment. Yep... all those paper plates you are handing out could buy you a really spiffy plant for your garden *wink* wink*. Tell you what, have a look at these missions, and I am sure you will find something you like!"
@@ -21,6 +25,26 @@
 			world_title = "Water world"
 			world_description = "Could you go a day without drinking water? Heh, I figured as much... Well, unfortunately, sooner or later, we are going to run out of water for everyone. So either we do something to conserve this precious resource or we better learn to drink less water quick!"	
 			unlock_text = "Ponds, water lilies, cat tails, guppies, dragon flies and much more!"
+		when :savana :
+			world_title = "Savana"
+			world_description = "Placeholder text"
+			unlock_text = "Elephants"	
+		when :farm :
+			world_title = "EcoFarm"
+			world_description = "Placeholder text"
+			unlock_text = "Corn"
+		when :coast :
+			world_title = "The Coast"
+			world_description = "Placeholder text"
+			unlock_text = "Mold"
+		when :jungle :
+			world_title = "The Jungle"
+			world_description = "Placeholder text"
+			unlock_text = "Chimpanzees"
+		when :paradise :
+			world_title = "Paradise"
+			world_description = "Placeholder text"
+			unlock_text = "Treant"
 		when :techno :
 			world_title = "Technocity world"
 			world_description = "Imagine the perfect eco-friendly utopia! Man and nature living in perfect harmony! Yep, and it all starts with you... today... like, right now. What are you looking at? Get up now and start laying me some compostable bricks! Double time!"
@@ -31,7 +55,7 @@
 	<b><%=world_title%></b>
 </div>
 <div style="padding: 10px;background-color: #AADDAA;color:black;">
-	<%if world != :meadow%>
+	<%if !world.nil?%>
 		<span style="color:gray;">Not Available</span>
 	<%end%>
 	<p>
