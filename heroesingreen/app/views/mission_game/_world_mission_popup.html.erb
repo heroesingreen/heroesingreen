@@ -1,0 +1,14 @@
+<div class="css_popup <%if world_mission.link_css_left > 500%>popup_left<%else%>popup_right<%end%>">
+	<div style="padding: 5px;">
+		<b><%=world_mission.name%></b>
+	</div>
+	<div style="padding: 10px;background-color: #AADDAA;color:black;">
+		<p>
+			<%=world_mission.description%>
+		</p>
+		<p>
+			<b>Unlocks:</b>
+			<%=world_mission.unlockable_text%>
+		</p>
+	</div>
+</div>

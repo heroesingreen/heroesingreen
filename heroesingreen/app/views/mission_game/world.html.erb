@@ -1,1 +1,18 @@
-<%=image_tag "world/#{@world.map_image}"%>
+<%-content_for :head_content do %>
+	<%= stylesheet_link_tag 'css_popup' %>
+<% end-%>
+
+<%foo = "/images/world/#{@world.map_image}"%>
+
+<style type="text/css">
+	dl.image_map {display:block; width:900px; height:675px; background:url(<%=foo%>); position:relative; margin:2px auto 2px auto;}
+	<%@world.world_missions.each do |mission|%>
+		<%=generate_image_map_link_css(mission)%>
+	<%end%>
+</style>
+<h2><%=@world.name%></h2>
+<dl class="image_map">
+	<%@world.world_missions.each do |mission|%>
+		<%=generate_image_map_link(mission)%>
+	<%end%>
+</dl>

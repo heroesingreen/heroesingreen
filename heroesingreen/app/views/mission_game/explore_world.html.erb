@@ -1,14 +1,7 @@
+<%-content_for :head_content do %>
+	<%= stylesheet_link_tag 'css_popup' %>
+<% end-%>
 <style type="text/css">
-	a.world_link{
-		display:block;
-		position:absolute;	
-		
-		/* for IE */
-	  	filter:alpha(opacity=60);
-	  	/* CSS3 standard */
-	  	opacity:0.6;
-	}
-	
 	a.active_world {
 		background:transparent;
 		
@@ -16,60 +9,6 @@
 	  	filter:alpha(opacity=100);
 	  	/* CSS3 standard */
 	  	opacity:1.0;
-	}
-
-	a.world_link:hover  {
-		background:transparent;
-		text-decoration: none;
-		
-		/* for IE */
-	  	filter:alpha(opacity=100);
-	  	/* CSS3 standard */
-	  	opacity:1.0;
-	}
-	
-	a.world_link div.css_popup{
-		display: none;
-		background-color: #337733;
-		
-		z-index: 100;
-	}
-	
-	a.world_link:hover div.css_popup{
-		display: block;
-		color: white;
-		
-	}
-	
-
-	a.world_link div.popup_right{
-		position:absolute;
-		left:200px; top:-40px;
-		width: 300px;
-	}
-	
-	a.world_link div.popup_far_right{
-		position:absolute;
-		left:230px; top:-40px;
-		width: 300px;
-	}
-	
-	a.world_link div.popup_left{
-		position:absolute;
-		right:250px; top:-40px;
-		width: 300px;
-	}
-	
-	a.world_link div.popup_left_up{
-		position:absolute;
-		right:250px; top:-270px;
-		width: 300px;
-	}
-	
-	a.world_link div.popup_left_bottom{
-		position:absolute;
-		right:200px; top:10px;
-		width: 300px;
 	}
 
 	dl.image_map {display:block; width:900px; height:517px; background:url(/images/world/world_map.gif); position:relative; margin:2px auto 2px auto;padding-bottom:60px;background-repeat:no-repeat;}
@@ -102,17 +41,17 @@
 </style>
 
 <dl class="image_map">
-	<dd><a class="world_link active_world LINK0" title="Meadow World" href="<%=url_for :action=>:world, :id=>@worlds[0].id%>"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world_title=>@worlds[0].name, :world_description=>@worlds[0].description, :unlock_text=>@worlds[0].unlockable_text}%></div></a></dd>
-	<dd><a class="world_link LINK1" title="Home World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:home}%></div></a></dd>
-	<dd><a class="world_link LINK2" title="Carbon World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:carbon}%></div></a></dd>
-	<dd><a class="world_link LINK3" title="Garden World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:garden}%></div></a></dd>
-	<dd><a class="world_link LINK4" title="Water World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_far_right"><%=render :partial=>'world_popup', :locals=>{:world=>:water}%></div></a></dd>
-	<dd><a class="world_link LINK5" title="Savana" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:savana}%></div></a></dd>
-	<dd><a class="world_link LINK6" title="Party World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left_bottom"><%=render :partial=>'world_popup', :locals=>{:world=>:party}%></div></a></dd>
-	<dd><a class="world_link LINK7" title="EcoFarm" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:farm}%></div></a></dd>
-	<dd><a class="world_link LINK8" title="The Coast" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:coast}%></div></a></dd>
-	<dd><a class="world_link LINK9" title="Light World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left_up"><%=render :partial=>'world_popup', :locals=>{:world=>:light}%></div></a></dd>
-	<dd><a class="world_link LINK10" title="Jungle" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:jungle}%></div></a></dd>
-	<dd><a class="world_link LINK11" title="Paradise" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:paradise}%></div></a></dd>
-	<dd><a class="world_link LINK12" title="Technopolis" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left_bottom"><%=render :partial=>'world_popup', :locals=>{:world=>:techno}%></div></a></dd>						
+	<dd><a class="popup_link active_world LINK0" title="Meadow World" href="<%=url_for :action=>:world, :id=>@worlds[0].id%>"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world_title=>@worlds[0].name, :world_description=>@worlds[0].description, :unlock_text=>@worlds[0].unlockable_text}%></div></a></dd>
+	<dd><a class="popup_link LINK1" title="Home World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:home}%></div></a></dd>
+	<dd><a class="popup_link LINK2" title="Carbon World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:carbon}%></div></a></dd>
+	<dd><a class="popup_link LINK3" title="Garden World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:garden}%></div></a></dd>
+	<dd><a class="popup_link LINK4" title="Water World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_far_right"><%=render :partial=>'world_popup', :locals=>{:world=>:water}%></div></a></dd>
+	<dd><a class="popup_link LINK5" title="Savana" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_right"><%=render :partial=>'world_popup', :locals=>{:world=>:savana}%></div></a></dd>
+	<dd><a class="popup_link LINK6" title="Party World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left_bottom"><%=render :partial=>'world_popup', :locals=>{:world=>:party}%></div></a></dd>
+	<dd><a class="popup_link LINK7" title="EcoFarm" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:farm}%></div></a></dd>
+	<dd><a class="popup_link LINK8" title="The Coast" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:coast}%></div></a></dd>
+	<dd><a class="popup_link LINK9" title="Light World" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left_up"><%=render :partial=>'world_popup', :locals=>{:world=>:light}%></div></a></dd>
+	<dd><a class="popup_link LINK10" title="Jungle" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:jungle}%></div></a></dd>
+	<dd><a class="popup_link LINK11" title="Paradise" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left"><%=render :partial=>'world_popup', :locals=>{:world=>:paradise}%></div></a></dd>
+	<dd><a class="popup_link LINK12" title="Technopolis" href="javascript:alert('Coming soon!');return false;"><div class="css_popup popup_left_bottom"><%=render :partial=>'world_popup', :locals=>{:world=>:techno}%></div></a></dd>						
 </dl>

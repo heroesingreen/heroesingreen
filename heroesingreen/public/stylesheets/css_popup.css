@@ -1,0 +1,63 @@
+a.popup_link{
+	display:block;
+	position:absolute;	
+	
+	/* for IE */
+  	filter:alpha(opacity=60);
+  	/* CSS3 standard */
+  	opacity:0.6;
+}
+
+a.popup_link:hover  {
+	background:transparent;
+	text-decoration: none;
+	
+	/* for IE */
+  	filter:alpha(opacity=100);
+  	/* CSS3 standard */
+  	opacity:1.0;
+}
+
+a.popup_link div.css_popup{
+	display: none;
+	background-color: #337733;
+	
+	z-index: 100;
+}
+
+a.popup_link:hover div.css_popup{
+	display: block;
+	color: white;
+	
+}
+
+
+a.popup_link div.popup_right{
+	position:absolute;
+	left:200px; top:-40px;
+	width: 300px;
+}
+
+a.popup_link div.popup_far_right{
+	position:absolute;
+	left:230px; top:-40px;
+	width: 300px;
+}
+
+a.popup_link div.popup_left{
+	position:absolute;
+	right:250px; top:-40px;
+	width: 300px;
+}
+
+a.popup_link div.popup_left_up{
+	position:absolute;
+	right:250px; top:-270px;
+	width: 300px;
+}
+
+a.popup_link div.popup_left_bottom{
+	position:absolute;
+	right:200px; top:10px;
+	width: 300px;
+}

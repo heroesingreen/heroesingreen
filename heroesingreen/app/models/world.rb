@@ -7,6 +7,6 @@ class World < ActiveRecord::Base
   end
   
   def unlockable_text
-    self.unlockable_plants.collect{|plant| plant.name}.join(",")
+    self.unlockable_plants.collect{|plant| plant.name}.join(", ")
   end
 end

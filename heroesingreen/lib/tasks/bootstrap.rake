@@ -2,22 +2,106 @@ namespace :bootstrap_dev do
   desc "Generate all sample data"
   task :all => [:default_accounts, :default_missions, :default_plants, :default_worlds]
 
+  desc "Reset world data"
+  task :reset_worlds => [:delete_worlds, :default_worlds]
+
+	desc "Generate default worlds"
+	task :delete_worlds => :environment do
+	  UnlockablePlant.destroy_all
+	  WorldMission.destroy_all
+	  World.destroy_all
+  end
+
 	desc "Generate default worlds"
 	task :default_worlds => :environment do
 	  temp_world = World.create(:name=>'Meadow World',:map_image=>'meadow_demo.gif', :description=>'Welcome to Heroes in Green! <p> Meadow world is a place of simple beauty and tranquility. Here we will take baby steps to start our heroic journey to a greener Earth. Along the way, we have many enjoyable treats and surprises for you! Watch as your efforts get turned back into carbon, which we can use to grow your very own garden! </p>')
 
-    temp_mission = WorldMission.create(:world=>temp_world, :tag=>'light', :name=> 'Lavender Patch', :description=>'<p>Your journey begins here...</p>', :required=>true)
+    temp_mission = WorldMission.create(:world=>temp_world, 
+                                        :name=> 'Lavender Patch', 
+                                        :mission=>Mission.find(:first, :conditions=>{:title=>'Mailbox liberation'}), 
+                                        :description=>'<p>Your epic journey begins here...</p>', 
+                                        :required=>true,
+                                        :link_css_top=>338,
+                                        :link_css_left=>63,
+                                        :link_css_width=>206,
+                                        :link_css_padding=>191,
+                                        :link_css_zindex=>51)
     
 	  temp_plant = UnlockablePlant.new
 	  temp_plant.plant_template = PlantTemplate.find(:first, :conditions=>{:name=>'Blackberry'})
 	  temp_plant.world_mission = temp_mission
 	  temp_plant.save!
-    
-    temp_mission = WorldMission.create(:world=>temp_world, :mission=>Mission.find(:first, :conditions=>{:title=>'Silent Menace'}), 
-                                        :name=> 'Cobblestone Path', :description=>'<p>The path to a greener planet continues...</p>', :required=>true)
+	  
+    temp_mission = WorldMission.create(:world=>temp_world,
+                                        :name=> 'Cobblestone Path',
+                                        :tag=>'home', 
+                                        :description=>'<p>Take a stroll through the garden.</p>',
+                                        :required=>true,
+                                        :link_css_top=>467,
+                                        :link_css_left=>195,
+                                        :link_css_width=>232,
+                                        :link_css_padding=>205,
+                                        :link_css_zindex=>50)
 	  
 	  temp_plant = UnlockablePlant.new
 	  temp_plant.plant_template = PlantTemplate.find(:first, :conditions=>{:name=>'Fern'})
+	  temp_plant.world_mission = temp_mission
+	  temp_plant.save!
+	  
+	  temp_mission = WorldMission.create(:world=>temp_world, 
+                                        :name=> 'Lake Reflection', 
+                                        :tag=>'water', 
+                                        :description=>'<p>Let\'s stop for a bit of meditation and reflection.</p>', 
+                                        :required=>true,
+                                        :link_css_top=>307,
+                                        :link_css_left=>299,
+                                        :link_css_width=>280,
+                                        :link_css_padding=>132)
+    
+	  temp_plant = UnlockablePlant.new
+	  temp_plant.plant_template = PlantTemplate.find(:first, :conditions=>{:name=>'Cedar'})
+	  temp_plant.world_mission = temp_mission
+	  temp_plant.save!
+	  
+	  temp_mission = WorldMission.create(:world=>temp_world,
+	                                    :name=> 'Puffy Clouds',
+                                        :tag=>'CO2', 
+                                        :description=>'<p>Saving the world is not a pie in the sky.</p>',
+                                        :link_css_top=>17,
+                                        :link_css_left=>206,
+                                        :link_css_width=>292,
+                                        :link_css_padding=>131)
+	  
+	  temp_plant = UnlockablePlant.new
+	  temp_plant.plant_template = PlantTemplate.find(:first, :conditions=>{:name=>'Cedar'})
+	  temp_plant.world_mission = temp_mission
+	  temp_plant.save!
+	  
+	  temp_mission = WorldMission.create(:world=>temp_world,
+	                                      :name=> 'Picnic',
+                                        :tag=>'corn', 
+                                        :description=>'<p>How about a cold refreshing drink and tasty snack?</p>',
+                                        :link_css_top=>459,
+                                        :link_css_left=>536,
+                                        :link_css_width=>274,
+                                        :link_css_padding=>149)
+	  
+	  temp_plant = UnlockablePlant.new
+	  temp_plant.plant_template = PlantTemplate.find(:first, :conditions=>{:name=>'Cedar'})
+	  temp_plant.world_mission = temp_mission
+	  temp_plant.save!
+	  
+	  temp_mission = WorldMission.create(:world=>temp_world,
+	                                      :name=> 'Sunshine',
+                                        :tag=>'electricity', 
+                                        :description=>'<p>Enjoy the sun while it lasts!</p>',
+                                        :link_css_top=>22,
+                                        :link_css_left=>708,
+                                        :link_css_width=>163,
+                                        :link_css_padding=>156)
+	  
+	  temp_plant = UnlockablePlant.new
+	  temp_plant.plant_template = PlantTemplate.find(:first, :conditions=>{:name=>'Cedar'})
 	  temp_plant.world_mission = temp_mission
 	  temp_plant.save!
   end
