@@ -11,6 +11,16 @@
 		float: left;
 		position: relative;
 	}
+	.highlighted {
+		border-style: dotted !important;
+		opacity: 0.5;
+		background: #CEF;
+	}
+	.highlighted:hover {
+		background: #CFE;
+		cursor: hand; 
+		cursor: pointer;
+	}
 	.plant_in_garden {
 		position: absolute;
 		bottom: 0;
@@ -26,11 +36,15 @@
 
 <h1>Your garden!</h1>
 Your garden measures your progress.
-	
+
+<%@plantId = params[:pl]%>
+
 <div class="garden">
 	<%@garden.size_y.times do |y|%>
 		<%@garden.size_x.times do |x|%>
-			<div class="ground">
+			<div class="ground 
+			<%if (y > 3) and @plantId and @garden.is_compatible(@plantId,x,y)%> highlighted" onclick="buy(<%=@plantId%>,<%=x%>,<%=y%>)<%end%>
+			">
 				<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
 				<%if ground != nil%>
 					<%ground.plants.each do |plant|%>
@@ -53,3 +67,13 @@ Your garden measures your progress.
 	<%end%>
 </div>
 
+<script>
+	//Try to buy this plant, for planting at position x,y in the garden
+	function buy(plantId, x, y)
+	{
+		if(plantId > 0 && x > 0 && y > 3 && x < 9 && y < 7)
+			window.location.replace('/store/buyAndSave/' + plantId + '?x=' + x + '&y=' + y);
+		else
+			alert("We have a suspicion you're not green enough. Sorry, no plants for you.");	//TODO: agrandhi
+	}
+</script>

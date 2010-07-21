@@ -27,14 +27,18 @@ class StoreController < ApplicationController
         @user_can_buy = @logged_in_user.avail_points >= @plant_template.cost
             
         if @user_can_buy
-          if(get_current_garden.add_plant(@plant_template))
-            @logged_in_user.pay(@plant_template.cost)
-            flash[:notice] = @plant_template.name + " has successfully been purchased!"
-            redirect_to(:controller=>:garden, :action=>:view)  
-          else
-            flash[:notice] = "No room for plant " + @plant_template.name + " in your garden"
-            redirect_to(:controller=>:store, :action=>:view)
-          end
+#          if(get_current_garden.add_plant(@plant_template))
+#            @logged_in_user.pay(@plant_template.cost)
+#            flash[:notice] = @plant_template.name + " has successfully been purchased!"
+#            redirect_to(:controller=>:garden, :action=>:view)  
+
+           if(get_current_garden.is_there_a_good_ground(@plant_template))
+               flash[:notice] = "Click on a highlighted garden area to place the " + @plant_template.name + " there"
+               redirect_to(:controller=>:garden, :action=>:view, :pl=>@plant_template.id)
+           else
+              flash[:notice] = "No room for plant " + @plant_template.name + " in your garden"
+              redirect_to(:controller=>:store, :action=>:view)
+           end
         else
           flash[:notice] = "Not enough points to purchase " + @plant_template.name
           redirect_to(:controller=>:store, :action=>:view)
@@ -48,5 +52,37 @@ class StoreController < ApplicationController
       redirect_to(:controller=>:store, :action=>:view)    
     end
   end    
+  
+  def buyAndSave
+      @plantId = params[:id]
+      @x = params[:x]
+      @y = params[:y]
+      @plant_template = PlantTemplate.find(@plantId)
+   
+      @logged_in_user = get_user
+      if(!@logged_in_user)
+          flash[:notice] = "Please log in to purchase plants!"
+          redirect_to(:controller=>:store, :action=>:view)
+      end
+       
+      if(@plant_template != nil and @x != nil and @y != nil )
+          if(@logged_in_user.avail_points >= @plant_template.cost)
+              if(get_current_garden.add_plant(@plantId, @x, @y))
+                  @logged_in_user.pay(@plant_template.cost)
+                  flash[:notice] = @plant_template.name + " has successfully been purchased!"
+                  redirect_to(:controller=>:garden, :action=>:view)
+              else
+                  flash[:notice] = @plant_template.name + " cannot be planted in this ground."
+                  redirect_to(:controller=>:garden, :action=>:view)
+              end
+          else
+              flash[:notice] = "Not enough points to purchase " + @plant_template.name
+              redirect_to(:controller=>:store, :action=>:view)
+          end
+      else
+          flash[:notice] = "You're trying to buy an invalid plant."
+          redirect_to(:controller=>:store, :action=>:view)
+      end
+  end
   
 end

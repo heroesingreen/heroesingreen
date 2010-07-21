@@ -15,9 +15,24 @@ class Garden < ActiveRecord::Base
     self.size_y = 5 
   end
   
-  def add_plant(plant_type)
+  def add_plant(plant_id, x, y)
+    if(is_compatible(plant_id, x, y))
+      found_ground = createGround(x, y)
+      
+      #need to check if there's a plant like this already here? TODO:agrandhi
+      new_plant = PlantTemplate.find(plant_id).createPlant(found_ground)
+      new_plant.save!
+      return true
+    else
+      return false
+    end
+  end
+ 
+  def is_there_a_good_ground(plant_type) 
     #which x and y
     plantableGrounds = [[0,4],[0,5],[0,6],[1,4],[1,5],[1,6],[2,4],[2,5],[2,6],[3,4],[3,5],[3,6],[4,4],[4,5],[4,6],[5,4],[5,5],[5,6],[6,4],[6,5],[6,6],[7,4],[7,5],[7,6]]
+    
+    #find vacant grounds
     vacantGrounds = []
     plantableGrounds.each do |tempG|
       if(self.grounds.find_by_x_and_y(tempG[0],tempG[1]) == nil and tempG[1] >= (6 - plant_type.layer_max))
@@ -25,8 +40,8 @@ class Garden < ActiveRecord::Base
       end
     end
     
+    #find grounds where this plant won't be blocked by other plants and won't block other plants
     nonblockingGrounds = []
-    
     vacantGrounds.each do |tempG|
       nothingInFront = true 
       nothingBehind = true
@@ -60,24 +75,57 @@ class Garden < ActiveRecord::Base
       end
       
       if(nothingInFront and nothingBehind) 
-        nonblockingGrounds.push(tempG)
+#        nonblockingGrounds.push(tempG)
+         return true
       end
     end
-  
-    numGoodGrounds = nonblockingGrounds.length
-    if(numGoodGrounds > 0)
-      chosenGround = nonblockingGrounds[rand(numGoodGrounds)]
-      found_ground = createGround(chosenGround[0], chosenGround[1])
-      
-      #need to check if there's a plant like this already here?
-      new_plant = plant_type.createPlant(found_ground)
-      new_plant.save!
-      return true
-    else
-      return false
-    end
+    return false
   end
  
+  def is_compatible(plant_template_id, x, y)  #can this plant go into this x and y
+    x = x.to_i
+    y = y.to_i
+    @plantTemplate = PlantTemplate.find(plant_template_id)
+    if @plantTemplate == nil
+      return false
+    end
+    
+    if(self.grounds.find_by_x_and_y(x,y) != nil)
+        return false
+    end
+    
+    if(y < (6 - @plantTemplate.layer_max))
+        return false
+    end
+
+    inFrontOfY = y + 1
+    while(inFrontOfY < self.size_y)  # check that there are no blocking plants in front of this x,y
+    tempGround = self.grounds.find_by_x_and_y(x, inFrontOfY)
+    if(tempGround != nil)
+      tempGround.plants.each do |p|
+      if p.plant_template.shadow_block
+        return false
+      end
+      end
+    end
+    inFrontOfY = inFrontOfY + 1
+    end
+  
+    if(@plantTemplate.shadow_block) # check that this is not blocking any plants behind this ground
+    behindY = y - 1  
+    while(behindY > 3)       # TODO:agrandhi calculate this no. based on plant-able layers and size_y
+      tempGround = self.grounds.find_by_x_and_y(x, behindY)
+      if(tempGround != nil)
+      return false
+      end
+      behindY = behindY - 1
+    end
+    end
+
+    return true
+  end
+
+  
   def remove_plant(plant)
     plant.destroy  #TODO Should we call plant.die here? Anything else to be done or just a destroy?
   end
