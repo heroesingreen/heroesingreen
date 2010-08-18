@@ -1,6 +1,6 @@
 <%if flash.length > 0%>
 	<%flash.each do |key, msg|%>
-		<div class="errorContent">
+		<div class="<%="flash_#{key}"%>">
 			<%= msg %>
 		</div>
 	<%end%>
