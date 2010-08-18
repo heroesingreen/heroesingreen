@@ -1,18 +1,21 @@
 <%-content_for :head_content do %>
+	<%=javascript_include_tag 'window/window.js'%>
 	<%= stylesheet_link_tag 'css_popup' %>
+	<%= stylesheet_link_tag 'window_themes/default.css' %>
+	<%= stylesheet_link_tag 'window_themes/alphacube.css' %>
 <% end-%>
 
 <%foo = "/images/world/#{@world.map_image}"%>
 
 <style type="text/css">
-	dl.image_map {display:block; width:900px; height:675px; background:url(<%=foo%>); position:relative; margin:2px auto 2px auto;}
+	dl.image_world_map {display:block; width:900px; height:687px; background:url(<%=foo%>); position:relative; margin:2px auto 2px auto;}
 	<%@world.world_missions.each do |mission|%>
 		<%=generate_image_map_link_css(mission)%>
 	<%end%>
 </style>
 <h2><%=@world.name%></h2>
-<dl class="image_map">
-	<%@world.world_missions.each do |mission|%>
-		<%=generate_image_map_link(mission)%>
+<dl class="image_world_map">
+	<%@world.world_missions.each do |region|%>
+		<%=generate_image_map_link(region)%>
 	<%end%>
 </dl>

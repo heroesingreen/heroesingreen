@@ -22,4 +22,8 @@ class Mission < ActiveRecord::Base
 	def epic?
 		self.repeatable == EPIC_TYPE
 	end
+	
+	def self.find_all_with_tag(tag)
+	  return Mission.find(:all, :conditions=>["tags like '%%#{tag}%%'"])
+  end
 end

@@ -25,6 +25,15 @@ class MissionGameController < ApplicationController
     
   end
   
+  def world_missions
+    unless params[:id]
+      render :text=>"Unknown region"
+      return
+    end
+    
+    @region = WorldMission.find(params[:id])
+  end
+  
   def find_mission
   end
   
@@ -132,6 +141,8 @@ class MissionGameController < ApplicationController
       return 'mission_central'  
     when 'world'
       return 'mission_central'  
+    when 'world_missions'
+      return nil
     else
 		  return 'mission_game'
 	  end

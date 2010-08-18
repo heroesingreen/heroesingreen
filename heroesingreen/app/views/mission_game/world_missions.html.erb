@@ -1,0 +1,11 @@
+<h1><%=@region.name%></h1>
+<p style="font-weight:bold;">Please choose one of the following missions:</p>
+<hr/>
+<%@region.get_unlock_missions.each do |mission|%>
+	<div>
+		<h4><%=mission.title%></h4>
+		<%=mission.intro%>
+		<%=button_to "Start", :action=>:start, :id=>mission.id%>
+	</div>
+<%end%>
+

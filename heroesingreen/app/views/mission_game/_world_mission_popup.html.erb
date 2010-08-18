@@ -4,7 +4,18 @@
 	</div>
 	<div style="padding: 10px;background-color: #AADDAA;color:black;">
 		<p>
+			<span style="color:gray;">Click to begin</span>
+		</p>
+		<p>
 			<%=world_mission.description%>
+		</p>
+		<p>
+			<b>To unlock:</b>
+			<ul>
+				<%world_mission.get_unlock_missions.each do |mission|%>
+					<li><%=mission.title%></li>
+				<%end%>
+			</ul>
 		</p>
 		<p>
 			<b>Unlocks:</b>
