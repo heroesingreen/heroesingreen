@@ -62,7 +62,6 @@ class AccountController < ApplicationController
       user = User.authenticate(params[:email], params[:password])
       if user #login success
         session[:user_id] = user.id
-        flash[:notice] = nil        
         if(request.xhr?) #AJAX?
         	if(params[:refresh]) #Some pages need the whole page to be refreshed
         		@force_refresh = true
