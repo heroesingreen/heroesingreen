@@ -1,12 +1,43 @@
 <style>
+	.submenu {
+		background-color: #749355;
+		min-height: 30px;
+		line-height: 30px;
+		width: 355px;
+		margin: -5px 10px 5px 0;
+		float: right;
+	}
 	.garden {
-		background-image:url('../images/Backgrounds/GardenBackgroundSmall.gif');
-		width: 918px; 
-		height: 714px;
+		background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
+		width: 718px; 
+		height: 544px;
+		clear: both;
 	}	
+	#myGarden {
+		background-color: #AA9355;
+	}
+	#myGarden a {
+		color: #FFF;
+	}
+	.submenu_item {
+		min-width: 75px;
+		color: #000;
+		float: left;
+		text-align: center;
+	}
+	.submenu_item a {
+		text-decoration: none;
+		color: #000;
+	}
+	.submenu_item a:hover {
+		color: #FFF;
+	}
+	#submenu_garden {
+		color: #FFF;
+	}
 	.ground {
-		width: 100px;
-		height: 100px;
+		width: 77px;
+		height: 75px;
 		border: 1px black hidden; 
 		float: left;
 		position: relative;
@@ -34,7 +65,11 @@
 	.clear {clear:both;}
 </style>
 
-<h1>Your garden!</h1>
+<div class="submenu">
+	<div id="submenu_garden" class="submenu_item">Garden</div>
+	<div class="submenu_item"><%=link_to "Store", :controller=>:store, :action=>:view%></div>
+</div>
+
 Your garden measures your progress.
 
 <%@plantId = params[:pl]%>

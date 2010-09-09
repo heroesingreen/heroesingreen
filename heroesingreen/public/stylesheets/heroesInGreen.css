@@ -1,87 +1,43 @@
 html, body {
 	margin:0;
 	padding:0;
-}
-
-body {
-	background-color: #EEE;
-}
-
-#uberHeader {
-	width: 100%;
-	//background-color: #1F1A16;
-	background-image: url('../images/brownTobrownGradient.png');
+	background:url('../images/Backgrounds/GreenBackground3.jpg') no-repeat;
+	width: 1024px;
+	min-height: 720px;
 	margin: auto;
-	margin-top: 20px;
 }
 
 div.header {
-	width: 1190px;
-	text-align: center;
-	height: 100px;
-	margin: 0px auto 0px auto;
-	//background-image: url('../images/awesome_header2.png');
+	width: 1024px;
+	margin: auto;
+	overflow: hidden;
 }
 
-#header-left {
-	width: 40%;
-	float: left;	
-	height: 100%;
-}
-
-#header-center {
-	-moz-border-radius: 20px;
-	width: 20%;
-	height: 130px;
-	margin-top: -30px;
+#spacer {
+	min-width: 15px;
 	float: left;
-	text-align: center;
-	display: block;
-	overflow: visible;
 }
 
-
-#header-right {
-	width: 40%;
-	float: right;
-	height: 100%;
+#logo {
+	min-width: 290px;
+	min-height: 55px;
+	margin: 10px 0 0 25px;
+	overflow: hidden;
+	float: left;
 }
 
-#siteName {
-	//font-family: Tahoma, Geneva, Arial, 'Arial Narrow', Verdana, sans-serif;
-	font-family: Times;
-	font-style: italic;
-	font-variant: normal;
-	font-weight: bolder;
-	font-size: 40px;
-	color: #A27E66;
-	word-spacing: 0.5ex;
-	letter-spacing: 0.07ex;
-	text-decoration: none;
-	text-transform: capitalize;
-	text-align: center;
-	width: 80%;
-	text-align: center;
-	line-height: 4;	
-	margin: -25px auto 0 auto;
-}
-
-#userMod {
-	width: 80%;
-	margin: 35px auto 0 auto;
-	text-align: left;
-	color: #A1917B;
+.clear {
+	clear: both;
 }
 
 #register {
 	float: left;
-	position: relative;
-	padding: 3px 0 0 0;
-	color: #635644;
+	padding: 6px 10px 0 0;
+	color: #FFF;
 }
 
 #register a, a:visited {
-	color: #635644;
+	color: #FFF;
 }
 
 #register a:hover {
@@ -90,40 +46,36 @@ div.header {
 
 #signin {
 	float: right;
-	position: relative;
-	padding: 1px 57px 0 0;
-}
-
-#uberHeaderLinks {
-	width: 100%;
-	//background-color: #2D241D;
-	background-image: url('../images/brownTobrownGradient2.png');
-	margin: auto;
+	padding: 5px 3px 0 0;
 }
 
 .headerLinks {
-	width: 1190px;
-	height: 60px;
-	background-image: url('../images/brownTobrownGradient2.png');
+	width: 450px;
+	height: 65px;
 	text-align: center;
 	margin: auto;
+	float: right;
+	padding-right: 20px;
 }
 
 .headerLinks a, .headerLinks a:visited {
-	font-size: medium;
+	font-size: large;
+	font: Lucida Sans Unicode;
 	text-decoration: none;
-	color: #A1917B;
+	color: #000;
 }
 
 .headerLinks a:hover {
 	color: #ffffff;
 }
 
-#headerLink {
-	width: 170px;
-	height: 25px;
+.headerLink {
+	min-width: 100px;
+	min-height: 40px;
+	line-height: 25px;
 	float: left;
-	padding-top: 30px;
+	padding-top: 5px;
+	margin-top: 25px;
 	text-align: center;
 }
 
@@ -132,19 +84,17 @@ div.header {
 }
 
 div.mainContent {
-	width: 1190px;
-	background-color: #F2F2F2;
-	min-height: 400px;
+	width: 990px;
+	min-height: 600px;
 	margin: auto;
-	padding: 5px;
+	padding: 5px 5px 5px 25px;
 	clear: both;
 }
 
 div.footer {
 	width: 100%;
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	text-align: left;
+	padding-left: 50px;
 }
 
 div.loginModule {

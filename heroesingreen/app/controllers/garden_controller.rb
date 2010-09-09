@@ -1,7 +1,7 @@
 class GardenController < ApplicationController
   before_filter :ensure_user
   
-	layout "account"
+	layout "garden"
 	
 	def index
 		redirect_to(:action=>:view)

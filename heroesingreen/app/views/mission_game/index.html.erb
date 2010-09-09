@@ -1,7 +1,37 @@
-<div class="IntroChallenge">
-	<div class="MissionTitle">Can a group of internet users be heroes?</div>
-	<div class="MissionText">Can we work together to reduce our total carbon emissions by 10,000 tons?<br/>
-	(that would be like tearing down 10 coal plants! Or like planting 10,000 fir trees that grows for 10 years!)<br/>
-	Help us answer this question, starting right now.</div>
-	<%= button_to "Your first mission", :action=>:start%>
-</div>
+<style>
+	body {
+		background:url('../images/Backgrounds/SplashMockup.jpg') no-repeat;
+		overflow: hidden;
+	}
+	.header {
+		display: none;
+	}
+	#splash_login {
+		position: relative;
+		left: 37%;
+		padding-top: 4px;
+		height: 120px;
+		width: 280px;
+		color: #FFF;
+	}
+	#splash_login_txt {
+		font-weight: bold;
+	}
+	#splash_login #email, #splash_login #password {
+		padding: 4px 0 4px 0;
+		margin: 7px 0 3px 0;
+	}
+	
+</style>
+<br><br><br><br><br>
+<% form_tag :controller => "account", :action => "login" do%>
+	<div id="splash_login">
+		<div id="splash_login_txt">LOGIN: </div>
+		Username :&nbsp;&nbsp; <%= text_field_tag :email, params[:email] %>
+		Password :&nbsp;&nbsp; <%= password_field_tag :password, params[:password] %>
+		<div class="clear"></div>
+		<div id="signin"><%= submit_tag "Sign In" %></div>
+		<div id="register">Not a hero yet?  <a href="/account/register/">Register</a>!</div>
+	</div>
+<% end %>
+
