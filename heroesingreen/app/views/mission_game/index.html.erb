@@ -27,7 +27,7 @@
 <% form_tag :controller => "account", :action => "login" do%>
 	<div id="splash_login">
 		<div id="splash_login_txt">LOGIN: </div>
-		Username :&nbsp;&nbsp; <%= text_field_tag :email, params[:email] %>
+		Username :&nbsp;&nbsp; <%= text_field_tag :email, params[:email] %><br/>
 		Password :&nbsp;&nbsp; <%= password_field_tag :password, params[:password] %>
 		<div class="clear"></div>
 		<div id="signin"><%= submit_tag "Sign In" %></div>
