@@ -17,6 +17,11 @@ class User < ActiveRecord::Base
   SECURITY_ROLES_INVERT = SECURITY_ROLES.invert
     
   def validate
+    unless email.blank?
+      unless email =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/
+          errors.add_to_base("Your email address does not appear to be valid")
+      end
+    end
     errors.add_to_base("Password is missing") if hashed_password.blank?
     if(@password_changed)
       errors.add_to_base("Password must be at least #{MIN_PASSWORD_LENGTH} characters") if (!@password || @password.length < MIN_PASSWORD_LENGTH)

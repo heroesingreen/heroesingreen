@@ -3,9 +3,6 @@
 		background:url('../images/Backgrounds/SplashMockup.jpg') no-repeat;
 		overflow: hidden;
 	}
-	.headerLinks {
-		display: none;
-	}
 	#splash_login {
 		position: relative;
 		left: 37%;
@@ -21,15 +18,29 @@
 		padding: 4px 0 4px 0;
 		margin: 7px 0 3px 0;
 	}
-	
+	.flash_notice {
+		border: none !important;
+		float: right;
+		margin: 0 !important;
+		font: 13px normal;
+		color: red;
+	}
+	#signup {
+		float: left;
+	}
+		
 </style>
 <br><br>
 <% form_tag :controller => "account", :action => "login" do%>
 	<div id="splash_login">
-		<div id="splash_login_txt">LOGIN: </div>
+		<div id="splash_login_txt">
+			LOGIN: 
+			<%= render :partial=>'shared/display_flashes'%>
+		</div>
 		Username :&nbsp;&nbsp; <%= text_field_tag :email, params[:email] %><br/>
 		Password :&nbsp;&nbsp; <%= password_field_tag :password, params[:password] %>
 		<div class="clear"></div>
+		<div id="signup"><a href="/signup">Sign up for updates</a></div>
 		<div id="signin"><%= submit_tag "Sign In" %></div>
 	</div>
 <% end %>

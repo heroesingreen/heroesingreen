@@ -69,9 +69,10 @@ class AccountController < ApplicationController
         	render :partial => 'shared/login_module'
         else
         	redirect_to(:action => "home")
-    	end
+    	  end
       else
         flash[:notice] = "Invalid user/password combination"
+        redirect_to(:controller =>"mission_game", :action => "index")
       end
     else #Not POST - display login module
       @suppress_ajax_login = true #Suppress the login ajax widget in the layout

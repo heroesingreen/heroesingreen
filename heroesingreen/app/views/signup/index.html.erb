@@ -1,0 +1,48 @@
+<style>
+	body {
+		background:url('../images/Backgrounds/signupBG.jpg') no-repeat;
+		overflow: hidden;
+	}
+	#signupHomeLogo {
+		width: 300px;
+		height: 110px;
+	}	
+	#info_sign_up {
+		width: 200px;
+		color: green;
+		position: relative;
+		left: 45%;
+	}
+	#error_messages {
+		height: 52px;
+		max-height: 70px;
+	}
+	#signupEmail_submit {
+		position: relative;
+		float: right;
+		margin-top: 5px;
+	}
+	#signupEmail_email {
+		width: 175px;
+		margin-left: 22px;
+		border: 1px red solid;
+	}
+	.flash_notice {
+		border: none !important;
+		margin: 15px 0 0 5px !important;
+	}
+	#errorExplanation h2, #errorExplanation p, .flash_error {
+		display: none;
+	}
+</style>
+
+<div id="info_sign_up">
+	<%form_for :signupEmail, @signupEmail do |f|%>
+		<div id="error_messages">
+			<%= render :partial=>'shared/display_flashes'%>
+			<%= f.error_messages %>
+		</div>
+		<%= f.text_field :email %>
+		<%= f.submit 'Sign Up' %>
+	<%end%>
+</div>

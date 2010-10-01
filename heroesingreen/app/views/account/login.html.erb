@@ -2,8 +2,9 @@
 	<%=render :partial => 'shared/login_module'%>
 <%else%>
 	<div class="user-login">
-		<fieldset>
+		<fieldset style="margin-top: 10px; width: 400px;">
 			<legend>Please log in</legend>
+			<%= render :partial=>'shared/display_flashes'%>
 			<% form_tag do %>
 			<p>
 				<label for="email">Email:</label>
