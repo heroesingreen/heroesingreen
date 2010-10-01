@@ -3,10 +3,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title><%=@title ||= "Heroes in Green"%></title>
-		<%= stylesheet_link_tag 'heroesInGreen' %>
-		<%=javascript_include_tag :defaults%>
+		<%#= stylesheet_link_tag 'heroesInGreen' %>
+		<%#=javascript_include_tag :defaults%>
+		<%=javascript_include_tag "prototype.js"%>
 		<%= yield :head_content %>
 	</head>
 	<%body_id ||= nil%>
 	<body <%if body_id%>id = "<%=body_id%>"<%end%>>
+
 
