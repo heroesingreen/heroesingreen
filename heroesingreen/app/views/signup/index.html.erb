@@ -46,3 +46,10 @@
 		<%= f.submit 'Sign Up' %>
 	<%end%>
 </div>
+
+<script>
+	Event.observe('signupEmail_email', 'focus', function(event) {
+   		$('signupEmail_email').value = '';
+		Event.stopObserving('signupEmail_email', 'focus');
+	});
+</script>
