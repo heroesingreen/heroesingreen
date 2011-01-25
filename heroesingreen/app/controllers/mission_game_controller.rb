@@ -35,6 +35,7 @@ class MissionGameController < ApplicationController
   end
   
   def find_mission
+    @mission_tags = MissionTag.all
   end
   
   def current_missions
@@ -104,7 +105,7 @@ class MissionGameController < ApplicationController
    	end
   end
 
-  def search
+  def search_backup #TODO agrandhi (this should be called search)
     @search_text = params[:search_text]
     
     if !@search_text || @search_text.strip.blank?
@@ -126,6 +127,18 @@ class MissionGameController < ApplicationController
   
     @body_action_id = "find_mission"
   end
+  
+  def search
+    @search_tag_id = params[:search_tag_id] #make this input an array
+    @id = params[:id]
+    @mission_ids = MissionTagMapping.find(:all, :conditions=>{:mission_tag_id => (@id)}, :select=>"DISTINCT mission_id").collect {|x| x.mission_id}
+    if @mission_ids.length > 0
+      @results = Mission.find(:all, :conditions=> {:id=>(@mission_ids)})
+    else
+      @results = nil
+    end
+    @user = get_user
+  end
    	
   private
   
@@ -136,6 +149,8 @@ class MissionGameController < ApplicationController
     when 'current_missions'
       return 'mission_central'
     when 'search'
+      return 'mission_central'
+    when 'search_by_tag'
       return 'mission_central'
     when 'explore_world'
       return 'mission_central'  

@@ -1,5 +1,6 @@
 class Mission < ActiveRecord::Base
 	has_many :mission_statuses
+  has_many :mission_tag_mappings
 	
 # => Type information
 	ONESHOT_TYPE = 0

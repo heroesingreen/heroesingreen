@@ -9,3 +9,11 @@
 		<%=submit_tag "What missions await?"%>
 	<%end%>	
 </div>
+<div id="search_by_tags">
+	<h2>Search by tags</h2>
+	<%if @mission_tags && @mission_tags.size > 0%>
+		<% @mission_tags.each do |mt| %>
+	    	<a href="/mission_game/search/<%=h mt.id%>"><%=h mt.mission_tag %></a><br/>
+		<% end %>
+	<% end %>
+</div>
