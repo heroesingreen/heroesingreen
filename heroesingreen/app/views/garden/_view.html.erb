@@ -1,0 +1,107 @@
+<style>
+	.submenu {
+		background-color: #749355;
+		min-height: 30px;
+		line-height: 30px;
+		width: 355px;
+		margin: -5px 10px 5px 0;
+		float: right;
+	}
+	.garden {
+		background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
+		width: 718px; 
+		height: 544px;
+		clear: both;
+		cursor: pointer;
+	}
+	.garden_small {
+		background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
+		width: 118px; 
+		height: 144px;
+		clear: both;
+	}		
+	#myGarden {
+		background-color: #AA9355;
+	}
+	#myGarden a {
+		color: #FFF;
+	}
+	.submenu_item {
+		min-width: 75px;
+		color: #000;
+		float: left;
+		text-align: center;
+	}
+	.submenu_item a {
+		text-decoration: none;
+		color: #000;
+	}
+	.submenu_item a:hover {
+		color: #FFF;
+	}
+	#submenu_garden {
+		color: #FFF;
+	}
+	.ground {
+		width: 77px;
+		height: 75px;
+		border: 1px black hidden; 
+		float: left;
+		position: relative;
+	}
+	.highlighted {
+		border-style: dotted !important;
+		opacity: 0.5;
+		background: #CEF;
+	}
+	.highlighted:hover {
+		background: #CFE;
+		cursor: hand; 
+		cursor: pointer;
+	}
+	.plant_in_garden {
+		position: absolute;
+		bottom: 0;
+	}
+	.plant_in_garden img {
+		opacity: 0.9;
+	}
+	.plant_in_garden img:hover {
+		opacity:1;
+	}
+	.clear {clear:both;}
+</style>
+
+<%@plantId = params[:pl]%>
+<%if @garden == nil%><%@garden = garden%><%end%>
+
+<%if @displayGardenOnly != nil%><div class="garden_small"><%else%><div class="garden"><%end%>
+<%if @garden%>
+	<%@garden.size_y.times do |y|%>
+		<%@garden.size_x.times do |x|%>
+			<div class="ground 
+			<%if (y > 3) and @plantId and @garden.is_compatible(@plantId,x,y)%> highlighted"<%end%>
+			">
+				<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
+				<%if ground != nil%>
+					<%ground.plants.each do |plant|%>
+						<%if plant.plant_template.image_path != nil%>
+							<%img_url = "plants/#{plant.plant_template.image_path}"%>
+							<%if @garden.size_y - y == 1%>
+								<%img_url = img_url + "a.png"%>
+							<%elsif @garden.size_y - y == 2%>
+								<%img_url = img_url + "b.png"%>
+							<%elsif @garden.size_y - y == 3%>
+								<%img_url = img_url + "c.png"%>
+							<%end%>
+							<div class="plant_in_garden"><%=image_tag(img_url,:title => plant.name)%><br></div>
+						<%end%>
+					<%end%>
+				<%end%>
+			</div>
+		<%end%>
+		<div class="clear"></div>
+	<%end%>
+<%end%>
+<%=link_to "My Garden", :controller=>:garden, :action=>:view%>
+</div>
