@@ -7,6 +7,7 @@
     <th>Description</th>
     <th>Task</th>
     <th>Reward</th>
+	<th>Tag</th>
     <th>Points</th>
     <th>Repeatable</th>
     <th>Unitpoints</th>
@@ -20,6 +21,10 @@
     <td><%=h mission.description %></td>
     <td><%=h mission.task %></td>
     <td><%=h mission.reward %></td>
+	<td><% mission.mission_tags.each do |mission_tag| %>
+		<%=h mission_tag.mission_tag %>
+		<% end %>
+	</td>
     <td><%=h mission.points %></td>
     <td><%=h mission.repeatable %></td>
     <td><%=h mission.unitPoints %></td>
