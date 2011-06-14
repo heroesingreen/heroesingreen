@@ -1,5 +1,5 @@
 class MissionGameController < ApplicationController
-  before_filter :ensure_user, :only => [:explore_world, :world, :find_mission, :search, :current_missions]
+  before_filter :ensure_user, :only => [:explore_world, :world, :find_mission, :search, :current_missions, :missions]
   layout :choose_layout
   
   def index
@@ -12,6 +12,11 @@ class MissionGameController < ApplicationController
   def explore_world
     @worlds = World.all
   end
+  
+  def missions
+    @mission = Mission.all
+  end
+  
   
   def world    
     @body_action_id = "explore_world"
@@ -35,7 +40,8 @@ class MissionGameController < ApplicationController
   end
   
   def find_mission
-    @mission_tags = MissionTag.all
+    @missions = Mission.all
+    @m_count = 1
   end
   
   def current_missions
@@ -139,6 +145,8 @@ class MissionGameController < ApplicationController
     end
     @user = get_user
   end
+  
+
    	
   private
   
