@@ -1,6 +1,8 @@
 class Mission < ActiveRecord::Base
 	has_many :mission_statuses
+	
   has_many :mission_tag_mappings
+  has_many :mission_tags, :through => :mission_tag_mappings 
 	
 # => Type information
 	ONESHOT_TYPE = 0
@@ -27,4 +29,5 @@ class Mission < ActiveRecord::Base
 	def self.find_all_with_tag(tag)
 	  return Mission.find(:all, :conditions=>["tags like '%%#{tag}%%'"])
   end
+  
 end
