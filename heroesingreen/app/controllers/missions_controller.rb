@@ -18,7 +18,7 @@ class MissionsController < ApplicationController
   # GET /missions/1.xml
   def show
     @mission = Mission.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @mission }
@@ -39,6 +39,13 @@ class MissionsController < ApplicationController
   # GET /missions/1/edit
   def edit
     @mission = Mission.find(params[:id])
+    @mission_tags = MissionTag.all
+    
+    # http://paulbarry.com/articles/2007/10/24/has_many-through-checkboxes
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.xml  { render :xml => @mission_tags }
+    end
   end
 
   # POST /missions
@@ -62,7 +69,8 @@ class MissionsController < ApplicationController
   # PUT /missions/1.xml
   def update
     @mission = Mission.find(params[:id])
-
+    params[:mission][:mission_tags] ||= []
+            #debugger
     respond_to do |format|
       if @mission.update_attributes(params[:mission])
         flash[:notice] = params[:mission]["type"]
