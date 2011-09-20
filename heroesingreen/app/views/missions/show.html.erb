@@ -43,6 +43,12 @@
   <%=h @mission.unit %>
 </p>
 
+<p>
+  <b>Tags:</b>
+  <% @mission.mission_tags.each do |mission_tag| %>
+		<%=h mission_tag.mission_tag %>; 
+		<% end %>
+</p>
 
 <%= link_to 'Edit', edit_mission_path(@mission) %> |
 <%= link_to 'Back', missions_path %>
