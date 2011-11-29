@@ -63,14 +63,18 @@ You are totally awesome because you...
 <%displayGardenOnly = 1%>
 
 <%= render :partial=>'garden/view', :locals => { :garden => garden, :displayGardenOnly => 1}%>
-
-<%@lowestPricePlantThatCanBeBought = @plant_templates[0]%>
-<% @plant_templates.each do |plant_template| %>
-   	<%if @user.avail_points > plant_template.cost && @lowestPricePlantThatCanBeBought.cost > plant_template.cost%>
-	   	<%@lowestPricePlantThatCanBeBought = plant_template%>
+	
+<%if @plant_templates %> 
+	<% @lowestPricePlantThatCanBeBought = @plant_templates[0]%>
+	<% @plant_templates.each do |plant_template| %>
+   		<%if @user.avail_points > plant_template.cost && @lowestPricePlantThatCanBeBought.cost > plant_template.cost%>
+			<%@lowestPricePlantThatCanBeBought = plant_template%>
+		<%end%>
 	<%end%>
-<%end%>
-You can buy a <%=@lowestPricePlantThatCanBeBought.name%> with your available points!
+
+
+	You can buy a <%=@lowestPricePlantThatCanBeBought.name%> with your available points!
+<% end %>
 
 <div class="mainContent">
 	<div class="content">
