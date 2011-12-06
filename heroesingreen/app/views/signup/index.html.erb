@@ -1,26 +1,4 @@
 <style>
-	#signupHomeLogo {
-		width: 300px;
-		height: 110px;
-	}
-	#error_messages {
-		height: 40px;
-		margin: 30px 0 0 25px;
-	}
-	#signupEmail_submit {
-		position: relative;
-		float: right;
-		margin-top: 5px;
-	}
-	#signupEmail_email {
-		width: 175px;
-		margin-left: 22px;
-		border: 1px red solid;
-	}
-	.flash_notice {
-		border: none !important;
-		margin: 15px 0 0 0px !important;
-	}
 	#errorExplanation h2, #errorExplanation p, .flash_error {
 		display: none;
 	}
@@ -29,25 +7,44 @@
 		padding-left: 0px !important;
 	}
 	
-	.progress, .challenge, #info_sign_up { margin: 10px; }
+	.progress, .challenge, .accountActions { margin: 10px; }
 	
+	.mainRow {
+		width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
 	
 	.challenge {
 		text-align: center;
 	}
-	.challenge h2 { margin: 0; }
+	.challenge button { 
+		font-size: x-large;
+	}
+	h1, h2, h3, h4 { margin: 0 0 1ex; }
 
+	.accountActions .action.createAccount { margin-bottom: 2em; }
+	.accountActions * { text-align: center; }
+	.accountActions .action h3 {
+		text-align: center;
+	}
+	.accountActions .action p {
+		display: none;
+	}
+	.accountActions form input[type="text"],
+	.accountActions form input[type="password"]	{
+		border: 1px solid black;
+		width: 100%;
+		font-size: large;
+	}
 
-	.progress { 
+	.progress {
 		position: relative;
 		width: 480px;
 		margin-top: 50px;
 		text-align: center;
 	}
-	.progress h3 {
-		font-weight: bold;
-		margin: 0;
-	}
+	.progress h3 { font-weight: bold; }
 	.progress > * {
 		z-index: 2;
 		position: relative;
@@ -69,11 +66,14 @@
 </style>
 
 
-<div class="centered" style="width: 800px;">
-	<div class="half">
+<div class="mainRow line">
+	<div class="unit w3of5">
 		<div class="challenge contentBox">
 			<h2>We can all be heroes.</h2>
-			<p>Together, we can change the world for the better. How much better?</p>
+			<p>
+				Together, we can change the world<br>
+				for the better. How much better?
+			</p>
 			<p>
 				<span style="font-size:xx-large">One million pounds</span><br>
 				<span style="font-size:x-large">of carbon dioxide better.</span>
@@ -83,17 +83,34 @@
 			<button>Join us</button>
 		</div>
 	</div>
-	<div class="half">
-		<div id="info_sign_up" class="contentBox">
-			<p>Heeeeeey hello there, give us your email address because we need to <em>start making money</em>. Notice that we have no privacy policy lol.</p>
-			<%form_for :signupEmail, @signupEmail do |f|%>
-				<div id="error_messages">
-					<%= render :partial=>'shared/display_flashes'%>
-					<%= f.error_messages %>
-				</div>
-				<%= f.text_field :email %>
-				<%= f.submit 'Sign Up' %>
-			<%end%>
+	<div class="unit w2of5 lastUnit">
+		<div class="contentBox accountActions">
+			<div class="createAccount action">
+				<p>Ready to join us?</p>
+				<h3>Create an Account</h3>
+				<%form_for :signupEmail, @signupEmail do |f|%>
+					<div id="error_messages">
+						<%= render :partial=>'shared/display_flashes'%>
+						<%= f.error_messages %>
+					</div>
+					<%= f.text_field :email %>
+					<%= f.submit 'Create Account' %>
+				<%end%>
+			</div>
+			
+			<div class="logIntoAccount action">
+				<p>Already on the team?</p>
+				<h3>Log In</h3>
+				<%form_for :logIn, @logIn do |f|%>
+					<div id="error_messages">
+						<%= render :partial=>'shared/display_flashes'%>
+						<%= f.error_messages %>
+					</div>
+					<%= f.text_field :email %>
+					<%= f.password_field :password %>
+					<%= f.submit 'Log In' %>
+				<%end%>
+			</div>
 		</div>
 	</div>
 	<div class="clear"></div>
