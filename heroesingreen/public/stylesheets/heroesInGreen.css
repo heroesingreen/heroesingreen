@@ -1,20 +1,24 @@
 html, body {
 	margin:0;
 	padding:0;
-	background:url('../images/Backgrounds/GreenBackground3.jpg') no-repeat;
-	width: 1024px;
-	min-height: 720px;
+	/*background:url('../images/Backgrounds/GreenBackground3.jpg') no-repeat;*/
+	background: #b2e67d;
+	min-height: 480px;
 	margin: auto;
 	font-family: "Verdana", "sans-serif";
 }
 
 div.mainContent {
 	width: 940px;
-	min-height: 600px;
-	margin: auto;
+	margin: 0 auto 64px;
 	padding: 25px;
 	clear: both;
 }
+
+a:link,
+a:visited,
+a:hover,
+a:active { color: #0903ff }
 
 /******************************************************************************
 	Header + Footer
@@ -93,9 +97,35 @@ div.header {
 }
 
 div.footer {
+	position: absolute;
+	bottom: 10px;
 	width: 100%;
+	background: white;
 	text-align: left;
-	padding-left: 50px;
+}
+.footer .copyright {
+	float: right !important;
+	padding: 1em;
+	color: #b2e67d
+}
+.footer .links > * {
+	text-align: center;
+	margin: 1em 0;
+	padding: 0 2em;
+	border-left: 1px solid #273;
+}
+.footer .links > *:first-child { border-left: none; }
+.footer .links a:link,
+.footer .links a:visited,
+.footer .links a:hover,
+.footer .links a:active {
+	color: #273;
+	text-transform:uppercase;
+	text-decoration: none;
+}
+.footer .links a:hover,
+.footer .links a:active {
+	text-decoration: underline;
 }
 
 /******************************************************************************
