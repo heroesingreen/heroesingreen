@@ -63,11 +63,18 @@
 		-khtml-border-radius: 10px;
 		border-radius: 10px;
 	}
+	
+	.avatarSpace { position: relative; }
+	.avatarSpace .avatars img { position: absolute; }
+	.avatarSpace .avatars img.tl { top: -20px; left: -40px; }
+	.avatarSpace .avatars img.tr { top: -20px; right: -25px; }
+	.avatarSpace .avatars img.bl { bottom: -20px; left: -30px; }
+	.avatarSpace .avatars img.br { bottom: -20px; right: -25px; }
 </style>
 
 
 <div class="mainRow line">
-	<div class="unit w3of5">
+	<div class="unit w3of5 avatarSpace">
 		<div class="challenge contentBox">
 			<h2>We can all be heroes.</h2>
 			<p>
@@ -81,6 +88,12 @@
 			<p style="p30">Can we do this, working together?</p>
 			
 			<button>Join us</button>
+		</div>
+		<div class="avatars">
+			<img class="tl" src="/images/Avatars/thumbs/222_t.png" width="128" height="160" />
+			<img class="tr" src="/images/Avatars/thumbs/444_t.png" width="108" height="160" />
+			<img class="bl" src="/images/Avatars/thumbs/666_t.png" width="94" height="160" />
+			<img class="br" src="/images/Avatars/thumbs/333_t.png" width="146" height="160" />
 		</div>
 	</div>
 	<div class="unit w2of5 lastUnit">
