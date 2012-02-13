@@ -66,7 +66,7 @@
 	<!-- Include the total savings partial view (app/view/missions/_totalSavings.erb), which has information about the total gains as a results of the completed missions-->
 	<%= render :partial=>'missions/totalSavings', :locals => {:completed_missions => @completed_missions}%>
 	<div>You have <%=@logged_in_user.avail_points%> points (enough for <%= SimulationUtilities.pointsToBiomassInKg(@logged_in_user.avail_points) %> kg more)</div>
-	<div class="BuyMore"><%=link_to "Buy More", :controller=>:store, :action=>:view%></div>
+	<div class="BuyMore"><%= button_to "Buy More", :controller=>:store, :action=>:view%></div>
 </div>
 
 Your garden measures your progress.
