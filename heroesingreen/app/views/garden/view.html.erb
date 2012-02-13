@@ -1,3 +1,8 @@
+<%-content_for :head_content do %>
+  <%= javascript_include_tag "jquery-1.6.2.min", "jquery-ui/jquery-ui-1.8.17.custom.min", "garden", "rails" %>
+  <%= stylesheet_link_tag "jquery-ui/smoothness/jquery-ui-1.8.17.custom" %>
+<% end %>
+
 <style>
 	.gardenStats {
 		background-color: #fff;
@@ -91,7 +96,10 @@ Your garden measures your progress.
 							<%elsif @garden.size_y - y == 3%>
 								<%img_url = img_url + "c.png"%>
 							<%end%>
-							<div class="plant_in_garden"><%=image_tag(img_url,:title => plant.name)%><br></div>
+							<div class="plant_in_garden" data-id="<%= plant.id %>" data-del-path="<%= plant_path(plant.id) %>" >
+                                                          <%=image_tag(img_url,:title => plant.name) %>
+                                                          <br>
+                                                        </div>
 						<%end%>
 					<%end%>
 				<%end%>
@@ -101,6 +109,10 @@ Your garden measures your progress.
 	<%end%>
 </div>
 
+<div id="plant-delete-dialog" class="hidden" title="Delete this plant?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This plant will be permanently deleted and cannot be recovered. Are you sure?</p>
+</div>
+
 <!-- Include the history partial view (app/view/missions/_history.erb), which has the list of completed missions-->
 <%= render :partial=>'missions/history', :locals => {:completed_missions => @completed_missions}%>
 
@@ -108,7 +120,7 @@ Your garden measures your progress.
 	//Try to buy this plant, for planting at position x,y in the garden
 	function buy(plantId, x, y)
 	{
-		if(plantId > 0 && x > 0 && y > 3 && x < 9 && y < 7)
+		if(plantId >= 0 && x >= 0 && y >= 0 && x < 9 && y < 7)
 			window.location.replace('/store/buyAndSave/' + plantId + '?x=' + x + '&y=' + y);
 		else
 			alert("We have a suspicion you're not green enough. Sorry, no plants for you.");	//TODO: agrandhi

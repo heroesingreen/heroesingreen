@@ -1,9 +1,9 @@
 class Ground < ActiveRecord::Base
-	belongs_to :garden
-    has_many :plants
+  belongs_to :garden
+  has_many :plants, :dependent => :destroy
 
-validates_presence_of :wetness, :nutrients
- 
+  validates_presence_of :wetness, :nutrients
+
   def tick(times)
     self.plants.each{ |plant|
       plant.tick(times)

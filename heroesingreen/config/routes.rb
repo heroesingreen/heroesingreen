@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :signup
 
+  map.resources :plants, :only => [:destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
 
