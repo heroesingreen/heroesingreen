@@ -1,29 +1,31 @@
-<div class="header">
-	<a href="/"><div id="logo"></div></a>
-	<%if false%>
-	<div id="header-right">
-		<div id="userMod">
-			<%if session[:user_id] && User.find(session[:user_id])%>
-				Hello <%=h User.find(session[:user_id]).email%>! <%if @level%>You are a <b><%=@level.title%></b>!<%end%><br/>
-				You've conserved over <%=h User.find(session[:user_id]).avail_points%>lbs of CO2!<br/>
-				<%= link_to "Logout", :controller=>:account, :action=>:logout%>
-			<%else%>
-				<% form_tag :controller => "account", :action => "login" do%>
-					<div id="login">
-						<%= text_field_tag :email, params[:email] %>
-						<%= password_field_tag :password, params[:password] %>
-					</div>
-					<div id="register">Not a hero yet?  <a href="/account/register/">Register</a>!</div>
-					<div id="signin"><%= submit_tag "Sign In" %></div>
-				<% end %>
-			<%end%>
+<div class="fullHeightPage">
+	<div class="header">
+		<a href="/"><div id="logo"></div></a>
+		<%if false%>
+		<div id="header-right">
+			<div id="userMod">
+				<%if session[:user_id] && User.find(session[:user_id])%>
+					Hello <%=h User.find(session[:user_id]).email%>! <%if @level%>You are a <b><%=@level.title%></b>!<%end%><br/>
+					You've conserved over <%=h User.find(session[:user_id]).avail_points%>lbs of CO2!<br/>
+					<%= link_to "Logout", :controller=>:account, :action=>:logout%>
+				<%else%>
+					<% form_tag :controller => "account", :action => "login" do%>
+						<div id="login">
+							<%= text_field_tag :email, params[:email] %>
+							<%= password_field_tag :password, params[:password] %>
+						</div>
+						<div id="register">Not a hero yet?  <a href="/account/register/">Register</a>!</div>
+						<div id="signin"><%= submit_tag "Sign In" %></div>
+					<% end %>
+				<%end%>
+			</div>
+		</div>
+		<%end%>
+		<div class="headerLinks">
+			<div id="myMissions" class="headerLink"><%=link_to "My Missions", :controller=>:mission_game, :action=>:current_missions%></div>
+			<div id="myGarden" class="headerLink"><%=link_to "My Garden", :controller=>:garden, :action=>:view%></div>
+			<div class="headerLink"><%=link_to "My Home", :controller=>:account, :action=>:home%></div>
+			<div class="headerLink"><a href="#">Team Homepage</a></div>
 		</div>
 	</div>
-	<%end%>
-	<div class="headerLinks">
-		<div id="myMissions" class="headerLink"><%=link_to "My Missions", :controller=>:mission_game, :action=>:current_missions%></div>
-		<div id="myGarden" class="headerLink"><%=link_to "My Garden", :controller=>:garden, :action=>:view%></div>
-		<div class="headerLink"><%=link_to "My Home", :controller=>:account, :action=>:home%></div>
-		<div class="headerLink"><a href="#">Team Homepage</a></div>
-	</div>
-</div>
+	<!-- _footer will close fullHeightPage -->

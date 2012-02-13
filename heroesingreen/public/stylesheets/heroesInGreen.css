@@ -1,17 +1,24 @@
 html, body {
 	margin:0;
 	padding:0;
-	/*background:url('../images/Backgrounds/GreenBackground3.jpg') no-repeat;*/
+	height: 100%;
 	background: #b2e67d;
-	min-height: 480px;
-	margin: auto;
 	font-family: "Verdana", "sans-serif";
+}
+
+body {
+	position: relative;
+}
+
+body > div.fullHeightPage {
+	position: relative;
+	min-height: 100%;
 }
 
 div.mainContent {
 	width: 940px;
-	margin: 0 auto 64px;
-	padding: 25px;
+	margin: 0 auto;
+	padding: 25px 25px 85px;
 	clear: both;
 }
 
@@ -21,7 +28,7 @@ a:hover,
 a:active { color: #0903ff }
 
 /******************************************************************************
-	Header + Footer
+	Header
 ******************************************************************************/
 
 div.header {
@@ -96,9 +103,13 @@ div.header {
 	height: 80px;
 }
 
-div.footer {
-	position: absolute;
-	bottom: 10px;
+/******************************************************************************
+	Footer
+******************************************************************************/
+
+.footer {
+	position: relative;
+	margin-top: -50px;
 	width: 100%;
 	background: white;
 	text-align: left;
