@@ -1,10 +1,6 @@
 <style>
-	.submenu {
-		background-color: #749355;
-		min-height: 30px;
-		line-height: 30px;
-		width: 355px;
-		margin: -5px 10px 5px 0;
+	.gardenStats {
+		background-color: #fff;
 		float: right;
 	}
 	.garden {
@@ -65,9 +61,10 @@
 	.clear {clear:both;}
 </style>
 
-<div class="submenu">
-	<div id="submenu_garden" class="submenu_item">Garden</div>
-	<div class="submenu_item"><%=link_to "Store", :controller=>:store, :action=>:view%></div>
+<div class="gardenStats">
+	<!-- Include the total savings partial view (app/view/missions/_totalSavings.erb), which has information about the total gains as a results of the completed missions-->
+	<%= render :partial=>'missions/totalSavings', :locals => {:completed_missions => @completed_missions}%>
+	<div class="BuyMore"><%=link_to "Buy More", :controller=>:store, :action=>:view%></div>
 </div>
 
 Your garden measures your progress.
@@ -101,6 +98,9 @@ Your garden measures your progress.
 		<div class="clear"></div>
 	<%end%>
 </div>
+
+<!-- Include the history partial view (app/view/missions/_history.erb), which has the list of completed missions-->
+<%= render :partial=>'missions/history', :locals => {:completed_missions => @completed_missions}%>
 
 <script>
 	//Try to buy this plant, for planting at position x,y in the garden

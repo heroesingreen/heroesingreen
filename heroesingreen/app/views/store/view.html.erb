@@ -1,41 +1,43 @@
 <style = text/css>
 	#plant_list {margin-left:20px; width:50%;}
-	#plant {width:20%; position:relative; float:left; padding: 3px;}
+	#plant {padding: 3px;}
 	#plant:hover {background-color:#DACFB9;}
 	#plant_info {height:50px;}
-	#plant_cost {align:center;}
 	#plant_details {position:absolute; background-color:#DACFB9; left:65%; width:250px; padding: 0px 5px 0px 5px;}
-	#plant_buy {align:center;}
+	#plant_buy {align:center; float:right;}
 	#store_buttons {clear:both; padding-top:50px;}
+	#plant_store {background:#fff; border-radius:16px;}
+	#plant_store > ol {list-style:none;max-height:500px;overflow-y:auto;}
+	#plant_store > ol > li {clear:both; border-bottom: 2px solid #AF7;}
+	#plant_image {width:100px;float:left;}
+	#garden_store {width:100%;}
+	#plant_store_header {text-align:center;}
+	.halfWidth {width:50%; float:left;}
+	.halfWidth > * {margin: 0px 10px;}
 </style>
 
-<script type=text/javascript>
-	function showText(text)
-	{
-		if (!document.getElementById)
-			return;
-		document.getElementById("plant_details").innerHTML = text;
-	}
-	function hidetext(){
-		if (!document.getElementById) 
-			return;
-		document.getElementById("plant_details").style.visibility = 'hidden';
-	}
-</script>
+<div id="garden_store">
 
-<h1 style="padding-top:0px; font-size:x-large;">Welcome to the Store!</h1>
-
-<div id="plant_details"></div>
-
-<div id="plant_list">
-<% @plant_templates.each do |plant_template| %>
-  <div id="plant" onmouseover=showText('&lt;b&gt;Plant&nbsp;Details&lt;/b&gt;&lt;br&gt;&lt;br&gt;Name:&nbsp;<%=h plant_template.name%>&lt;br&gt;Cost:&nbsp;<%=h plant_template.cost%>&lt;br&gt;Virility:&nbsp;<%=h plant_template.virility%>&lt;br&gt;Layer&nbsp;Max:&nbsp;<%=h plant_template.layer_max%>&lt;br&gt;Health&nbsp;Max:&nbsp;<%=h plant_template.health_max%>&lt;br&gt;Water&nbsp;Consumption:&nbsp;<%=h plant_template.water_consumption%>&lt;br&gt;Nutrients&nbsp;Consumption:&nbsp;<%=h plant_template.nutrients_consumption%>&lt;br&gt;Light&nbsp;Min:&nbsp;<%=h plant_template.light_min%>&lt;br&gt;Light&nbsp;Max:&nbsp;<%=h plant_template.light_max%>&lt;br&gt;Vertical&nbsp;Rate:&nbsp;<%=h plant_template.vertical_rate%>&lt;br&gt;Radial&nbsp;Rate:&nbsp;<%=h plant_template.radial_rate%>&lt;br&gt;Density&nbsp;Rate:&nbsp;<%=h plant_template.density_rate%>'); onmouseout=hideText();>
-  	<div id="plant_image"><%= image_tag("plants/#{plant_template.thumbnail}",:title => plant_template.name)%></div>
-    <div id="plant_info"><%=h plant_template.name %> - <%=h plant_template.description %></div>
-    <div id="plant_cost">Cost:<%=h plant_template.cost %></div>
-    <div id="plant_buy"><%= button_to "Buy", :action=>:buy, :id=>plant_template.id %></div>
-  </div>
-<% end %>
+<div class="halfWidth">
+<div id="plant_store">
+<div id="plant_store_header">
+	<h1>Plant Mart</h1>
+	<div id="availableNumPoints">Available: 89 pts</div>
+</div>
+<ol>
+	<% @plant_templates.each do |plant_template| %>
+	<li>
+	  <div id="plant" >
+	  	<div id="plant_image"><%= image_tag("plants/#{plant_template.thumbnail}",:title => plant_template.name)%></div>
+   	    <div id="plant_buy"><%= button_to "Cost:" + plant_template.cost.to_s, :action=>:buy, :id=>plant_template.id %></div>
+		<div id="plant_info"><%=h plant_template.name %></div>
+		<div id="plant_description"><%=h plant_template.description %></div>
+		<div class="clear"></div>
+	  </div>
+	  <div id="divider"></div>
+	</li>
+	<% end %>
+</ol>
 </div>
 
 
@@ -43,3 +45,146 @@
 	<%= button_to "Earn more points", :controller=>:mission_game, :action=>:start%>
 	<%= button_to "View your Garden", :controller=>:garden, :action=>:view %>
 </div>
+
+</div>
+
+<style>
+	.submenu {
+		background-color: #749355;
+		min-height: 30px;
+		line-height: 30px;
+		width: 355px;
+		margin: -5px 10px 5px 0;
+		float: right;
+	}
+
+	#gardenView {
+		background-color: #fff;
+	    border-radius:16px;
+	}
+
+	#gardenViewHeading {
+		text-align: center;
+	}
+
+	#garden-viewport {
+		max-width:90%;
+		overflow: auto;
+		margin:auto;
+	}
+	.garden {
+		background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
+		width: 718px; 
+		height: 544px;
+		clear: both;
+		margin-left: auto;
+		margin-right: auto;
+	}	
+	#myGarden {
+		background-color: #AA9355;
+	}
+	#myGarden a {
+		color: #FFF;
+	}
+	.submenu_item {
+		min-width: 75px;
+		color: #000;
+		float: left;
+		text-align: center;
+	}
+	.submenu_item a {
+		text-decoration: none;
+		color: #000;
+	}
+	.submenu_item a:hover {
+		color: #FFF;
+	}
+	#submenu_garden {
+		color: #FFF;
+	}
+	.ground {
+		width: 77px;
+		height: 75px;
+		border: 1px black hidden; 
+		float: left;
+		position: relative;
+	}
+	.highlighted {
+		border-style: dotted !important;
+		opacity: 0.5;
+		background: #CEF;
+	}
+	.highlighted:hover {
+		background: #CFE;
+		cursor: hand; 
+		cursor: pointer;
+	}
+	.plant_in_garden {
+		position: absolute;
+		bottom: 0;
+	}
+	.plant_in_garden img {
+		opacity: 0.9;
+	}
+	.plant_in_garden img:hover {
+		opacity:1;
+	}
+	.clear {clear:both;}
+</style>
+
+<div class="halfWidth">
+<div id="gardenView">
+
+<div id="gardenViewHeading">
+	<h1>Garden Preview</h1>
+	Click to plant your fireweed
+</div>
+
+<%@plantId = params[:pl]%>
+
+<div id="garden-viewport">
+<div class="garden">
+	<%@garden.size_y.times do |y|%>
+		<%@garden.size_x.times do |x|%>
+			<div class="ground 
+			<%if (y > 3) and @plantId and @garden.is_compatible(@plantId,x,y)%> highlighted" onclick="buy(<%=@plantId%>,<%=x%>,<%=y%>)<%end%>
+			">
+				<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
+				<%if ground != nil%>
+					<%ground.plants.each do |plant|%>
+						<%if plant.plant_template.image_path != nil%>
+							<%img_url = "plants/#{plant.plant_template.image_path}"%>
+							<%if @garden.size_y - y == 1%>
+								<%img_url = img_url + "a.png"%>
+							<%elsif @garden.size_y - y == 2%>
+								<%img_url = img_url + "b.png"%>
+							<%elsif @garden.size_y - y == 3%>
+								<%img_url = img_url + "c.png"%>
+							<%end%>
+							<div class="plant_in_garden"><%=image_tag(img_url,:title => plant.name)%><br></div>
+						<%end%>
+					<%end%>
+				<%end%>
+			</div>
+		<%end%>
+		<div class="clear"></div>
+	<%end%>
+</div>
+</div>
+
+</div>
+
+</div>
+<div class="clear"></div>
+</div> 
+
+<script>
+	//Try to buy this plant, for planting at position x,y in the garden
+	function buy(plantId, x, y)
+	{
+		if(plantId > 0 && x > 0 && y > 3 && x < 9 && y < 7)
+			window.location.replace('/store/buyAndSave/' + plantId + '?x=' + x + '&y=' + y);
+		else
+			alert("We have a suspicion you're not green enough. Sorry, no plants for you.");	//TODO: agrandhi
+	}
+</script>

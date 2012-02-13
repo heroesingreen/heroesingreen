@@ -12,8 +12,10 @@ class GardenController < ApplicationController
       @render_admin = true
     end
 	  
+    @completed_missions = get_user.missionStatuses.find(:all, :conditions=>["status = ?", MissionStatus::COMPLETED_STATUS])
 	  @garden = get_current_garden
 	  @garden.garden_tick
+	  
 	end
 	
 	def tick
@@ -54,5 +56,7 @@ class GardenController < ApplicationController
     end
 
   end
+  
+  
 	
 end

@@ -36,4 +36,20 @@ class SimulationUtilities
     
     return rand_var
   end
+  
+  #Returns the C02 equivalent of the number of points
+  def self.pointsToCo2InKg(points)
+    co2InKg = points * 0.045359237
+    co2InKg = co2InKg.floor
+    return co2InKg;  
+  end
+  
+  #Returns the Biomass equivalent of the number of points
+  def self.pointsToBiomassInKg(points)
+    co2InKg = points * 0.045359237
+    co2InKg = co2InKg.floor
+    bioMass = co2InKg * 0.25
+    bioMass = bioMass.floor
+    return bioMass;  
+  end
 end
