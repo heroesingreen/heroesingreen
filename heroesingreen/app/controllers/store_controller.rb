@@ -15,7 +15,7 @@ class StoreController < ApplicationController
     
     @garden = get_current_garden
     @garden.garden_tick
-    
+    @logged_in_user = get_user
     @plant_templates = PlantTemplate.all
       
       respond_to do |format|

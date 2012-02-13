@@ -22,7 +22,7 @@
 <div id="plant_store">
 <div id="plant_store_header">
 	<h1>Plant Mart</h1>
-	<div id="availableNumPoints">Available: 89 pts</div>
+	<div id="availableNumPoints">Available: <%=@logged_in_user.avail_points%> points</div>
 </div>
 <ol>
 	<% @plant_templates.each do |plant_template| %>
