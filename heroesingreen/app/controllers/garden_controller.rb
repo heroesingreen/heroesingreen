@@ -15,6 +15,7 @@ class GardenController < ApplicationController
     @completed_missions = get_user.missionStatuses.find(:all, :conditions=>["status = ?", MissionStatus::COMPLETED_STATUS])
 	  @garden = get_current_garden
 	  @garden.garden_tick
+	  @logged_in_user = get_user
 	  
 	end
 	
