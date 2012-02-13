@@ -1,7 +1,7 @@
 class AddHashedPasswordToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :hashed_password, :string, :null=>false
-    add_column :users, :salt, :string, :null=>false
+    add_column :users, :hashed_password, :string
+    add_column :users, :salt, :string
     change_column :users, :total_points, :integer, :default=>0
     remove_column :users, :password
   end
