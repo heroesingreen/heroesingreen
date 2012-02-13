@@ -40,12 +40,6 @@
 </ol>
 </div>
 
-
-<div id="store_buttons">
-	<%= button_to "Earn more points", :controller=>:mission_game, :action=>:start%>
-	<%= button_to "View your Garden", :controller=>:garden, :action=>:view %>
-</div>
-
 </div>
 
 <style>
@@ -170,6 +164,7 @@
 		<div class="clear"></div>
 	<%end%>
 </div>
+<%= button_to "View full Garden", :controller=>:garden, :action=>:view %>
 </div>
 
 </div>
