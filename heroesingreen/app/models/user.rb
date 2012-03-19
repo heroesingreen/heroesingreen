@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   validates_confirmation_of :password
 
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
 
   MIN_PASSWORD_LENGTH = 4
     
