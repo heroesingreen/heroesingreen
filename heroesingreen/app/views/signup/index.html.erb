@@ -98,33 +98,36 @@
 	</div>
 	<div class="unit w2of5 lastUnit">
 		<div class="contentBox accountActions">
-			<div class="createAccount action">
-				<p>Ready to join us?</p>
-				<h3>Create an Account</h3>
-				<%form_for :signupEmail, @signupEmail do |f|%>
-					<div id="error_messages">
-						<%= render :partial=>'shared/display_flashes'%>
-						<%= f.error_messages %>
-					</div>
-					<%= f.text_field :email %>
-					<%= f.submit 'Create Account' %>
-				<%end%>
-			</div>
-			
-			<div class="logIntoAccount action">
-				<p>Already on the team?</p>
-				<h3>Log In</h3>
-				<%form_for :logIn, @logIn do |f|%>
-					<div id="error_messages">
-						<%= render :partial=>'shared/display_flashes'%>
-						<%= f.error_messages %>
-					</div>
-					<%= f.text_field :email %>
-					<%= f.password_field :password %>
-					<%= f.submit 'Log In' %>
-				<%end%>
-			</div>
-		</div>
+                  <% if !user_signed_in? %>
+		    <div class="createAccount action">
+                      <p>Ready to join us?</p>
+                      <h3>Create an Account</h3>
+                      <% form_for :user, :url => user_registration_path do |f| %>
+			<div id="error_messages">
+                          <%= render :partial=>'shared/display_flashes' %>
+                        </div>
+                        <%= f.text_field :email %>
+                        <%= f.submit 'Create Account' %>
+                     <%end%>
+                    </div>
+
+                    <div class="logIntoAccount action">
+                      <p>Already on the team?</p>
+                      <h3>Log In</h3>
+                      <%form_for :user, :url => user_session_path do |f| %>
+			<div id="error_messages">
+                          <%= render :partial=>'shared/display_flashes'%>
+                        </div>
+                        <%= f.text_field :email %>
+                        <%= f.password_field :password %>
+                        <%= f.submit 'Log In' %>
+		      <%end%>
+                    </div>
+                  <% else %>
+                    <% @user = current_user %>
+                    <%= render :partial => "account/name_module" %>
+                  <% end %>
+                </div>
 	</div>
 	<div class="clear"></div>
 </div>

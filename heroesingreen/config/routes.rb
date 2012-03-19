@@ -4,12 +4,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :plant_templates
 
   map.resources :gardens
-  
+
   #map.resources :users
   map.devise_for :users
 
+  map.user_root 'account/home', :controller => 'account', :action => 'home'
+
   map.resources :missions
-  
+
   map.resources :signup
 
   map.resources :plants, :only => [:destroy]
@@ -46,7 +48,8 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "account", :action => "home"
+  #map.root :controller => "account", :action => "home"
+  map.root :controller => "signup"
 
   # See how all your routes lay out with "rake routes"
 

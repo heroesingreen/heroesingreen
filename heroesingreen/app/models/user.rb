@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  require 'digest/sha1'
-  
   has_many :missionStatuses
   has_many :gardens
   validates_presence_of :email
