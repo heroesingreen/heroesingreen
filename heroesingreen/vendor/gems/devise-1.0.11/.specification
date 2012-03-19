@@ -1,0 +1,186 @@
+--- !ruby/object:Gem::Specification 
+name: devise
+version: !ruby/object:Gem::Version 
+  prerelease: 
+  version: 1.0.11
+platform: ruby
+authors: 
+- "Jos\xC3\xA9 Valim"
+- "Carlos Ant\xC3\xB4nio"
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2011-03-10 00:00:00 -08:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: warden
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        version: 0.10.3
+  type: :runtime
+  version_requirements: *id001
+description: Flexible authentication solution for Rails with Warden
+email: contact@plataformatec.com.br
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- test/controllers/helpers_test.rb
+- test/controllers/internal_helpers_test.rb
+- test/controllers/url_helpers_test.rb
+- test/devise_test.rb
+- test/encryptors_test.rb
+- test/failure_app_test.rb
+- test/integration/authenticatable_test.rb
+- test/integration/confirmable_test.rb
+- test/integration/http_authenticatable_test.rb
+- test/integration/lockable_test.rb
+- test/integration/rack_middleware_test.rb
+- test/integration/recoverable_test.rb
+- test/integration/registerable_test.rb
+- test/integration/rememberable_test.rb
+- test/integration/timeoutable_test.rb
+- test/integration/token_authenticatable_test.rb
+- test/integration/trackable_test.rb
+- test/mailers/confirmation_instructions_test.rb
+- test/mailers/reset_password_instructions_test.rb
+- test/mailers/unlock_instructions_test.rb
+- test/mapping_test.rb
+- test/models/authenticatable_test.rb
+- test/models/confirmable_test.rb
+- test/models/lockable_test.rb
+- test/models/recoverable_test.rb
+- test/models/rememberable_test.rb
+- test/models/timeoutable_test.rb
+- test/models/token_authenticatable_test.rb
+- test/models/trackable_test.rb
+- test/models/validatable_test.rb
+- test/models_test.rb
+- test/orm/active_record.rb
+- test/orm/mongo_mapper.rb
+- test/rails_app/app/active_record/admin.rb
+- test/rails_app/app/active_record/user.rb
+- test/rails_app/app/controllers/admins_controller.rb
+- test/rails_app/app/controllers/application_controller.rb
+- test/rails_app/app/controllers/home_controller.rb
+- test/rails_app/app/controllers/users_controller.rb
+- test/rails_app/app/helpers/application_helper.rb
+- test/rails_app/app/mongo_mapper/admin.rb
+- test/rails_app/app/mongo_mapper/user.rb
+- test/rails_app/config/boot.rb
+- test/rails_app/config/environment.rb
+- test/rails_app/config/environments/development.rb
+- test/rails_app/config/environments/production.rb
+- test/rails_app/config/environments/test.rb
+- test/rails_app/config/initializers/devise.rb
+- test/rails_app/config/initializers/inflections.rb
+- test/rails_app/config/initializers/new_rails_defaults.rb
+- test/rails_app/config/initializers/session_store.rb
+- test/rails_app/config/routes.rb
+- test/routes_test.rb
+- test/support/assertions_helper.rb
+- test/support/integration_tests_helper.rb
+- test/support/test_silencer.rb
+- test/support/tests_helper.rb
+- test/test_helper.rb
+- test/test_helpers_test.rb
+has_rdoc: true
+homepage: http://github.com/plataformatec/devise
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 846855071737191631
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.6.2
+signing_key: 
+specification_version: 3
+summary: Flexible authentication solution for Rails with Warden
+test_files: 
+- test/controllers/helpers_test.rb
+- test/controllers/internal_helpers_test.rb
+- test/controllers/url_helpers_test.rb
+- test/devise_test.rb
+- test/encryptors_test.rb
+- test/failure_app_test.rb
+- test/integration/authenticatable_test.rb
+- test/integration/confirmable_test.rb
+- test/integration/http_authenticatable_test.rb
+- test/integration/lockable_test.rb
+- test/integration/rack_middleware_test.rb
+- test/integration/recoverable_test.rb
+- test/integration/registerable_test.rb
+- test/integration/rememberable_test.rb
+- test/integration/timeoutable_test.rb
+- test/integration/token_authenticatable_test.rb
+- test/integration/trackable_test.rb
+- test/mailers/confirmation_instructions_test.rb
+- test/mailers/reset_password_instructions_test.rb
+- test/mailers/unlock_instructions_test.rb
+- test/mapping_test.rb
+- test/models/authenticatable_test.rb
+- test/models/confirmable_test.rb
+- test/models/lockable_test.rb
+- test/models/recoverable_test.rb
+- test/models/rememberable_test.rb
+- test/models/timeoutable_test.rb
+- test/models/token_authenticatable_test.rb
+- test/models/trackable_test.rb
+- test/models/validatable_test.rb
+- test/models_test.rb
+- test/orm/active_record.rb
+- test/orm/mongo_mapper.rb
+- test/rails_app/app/active_record/admin.rb
+- test/rails_app/app/active_record/user.rb
+- test/rails_app/app/controllers/admins_controller.rb
+- test/rails_app/app/controllers/application_controller.rb
+- test/rails_app/app/controllers/home_controller.rb
+- test/rails_app/app/controllers/users_controller.rb
+- test/rails_app/app/helpers/application_helper.rb
+- test/rails_app/app/mongo_mapper/admin.rb
+- test/rails_app/app/mongo_mapper/user.rb
+- test/rails_app/config/boot.rb
+- test/rails_app/config/environment.rb
+- test/rails_app/config/environments/development.rb
+- test/rails_app/config/environments/production.rb
+- test/rails_app/config/environments/test.rb
+- test/rails_app/config/initializers/devise.rb
+- test/rails_app/config/initializers/inflections.rb
+- test/rails_app/config/initializers/new_rails_defaults.rb
+- test/rails_app/config/initializers/session_store.rb
+- test/rails_app/config/routes.rb
+- test/routes_test.rb
+- test/support/assertions_helper.rb
+- test/support/integration_tests_helper.rb
+- test/support/test_silencer.rb
+- test/support/tests_helper.rb
+- test/test_helper.rb
+- test/test_helpers_test.rb
