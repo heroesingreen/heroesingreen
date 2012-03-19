@@ -7,33 +7,26 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
-  
+
   def get_current_garden
-  # => figure out what user we have
-  	logged_in_user = User.find(session[:user_id])
   # => get all that users gardens
-  	all_gardens = logged_in_user.gardens
+  	all_gardens = current_user.gardens
   # => If there are not any, create one
   # => if there are one or more, then return the first one
   	if all_gardens.empty?
-  		logged_in_user.add_garden
+  		current_user.add_garden
   	end
   	return all_gardens.first
   end
-  
+
   def get_user
-    if(!session[:user_id])
+    if !user_signed_in?
       return nil
     end
-    
-	  logged_in_user = User.find(session[:user_id])
-	  if logged_in_user == nil #user id is invalid, remove it from session  		   
-	  	session[:user_id] = nil
-	  	redirect_to :controller=>'account', :action=>'login'
-	  end
-	  return logged_in_user
+
+    return current_user
   end
-  
+
   def ensure_user
     begin
       unless(session[:user_id] && User.find(session[:user_id]))

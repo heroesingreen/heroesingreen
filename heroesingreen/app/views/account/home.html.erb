@@ -59,7 +59,7 @@ You are totally awesome because you...
 
 <%end%>
 
-<%garden = User.find(session[:user_id]).gardens.first%>
+<%garden = current_user.gardens.first%>
 <%displayGardenOnly = 1%>
 
 <%= render :partial=>'garden/view', :locals => { :garden => garden, :displayGardenOnly => 1}%>

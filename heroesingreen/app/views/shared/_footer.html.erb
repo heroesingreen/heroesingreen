@@ -28,13 +28,12 @@
 <%if false%>
 <div class="footer">
 
-	<% if session[:user_id] && User.find(session[:user_id])%>
-		<%loggedin_user = User.find(session[:user_id])%>
-		Hello <%=h loggedin_user.email%>! You have <b><%=h loggedin_user.avail_points%></b> points available.<br/>
+	<% if user_signed_in? %>
+		Hello <%=h current_user.email%>! You have <b><%=h current_user.avail_points%></b> points available.<br/>
 
-			<%all_gardens = loggedin_user.gardens
+			<%all_gardens = current_user.gardens
   				if all_gardens.empty?
-  					loggedin_user.add_garden
+  					current_user.add_garden
   				end
   			current_garden=all_gardens.first%>							
 		<div class="minigarden">

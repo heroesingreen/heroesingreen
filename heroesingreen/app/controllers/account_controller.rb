@@ -1,5 +1,6 @@
 class AccountController < ApplicationController
-  before_filter :ensure_user, :only => [:home, :accomplishments, :quest_log, :password]
+  before_filter :authenticate_user!, :only => [:home, :accomplishments, :quest_log, :password]
+  #before_filter :ensure_user, :only => [:home, :accomplishments, :quest_log, :password]
   layout :choose_layout
 
   # Show the registration page
@@ -28,6 +29,7 @@ class AccountController < ApplicationController
 
   # Show user home page
   def home
+    logger.info "Got in action home in account controller"
     @force_refresh_on_login = true
   	@user = get_user
     @level = @user.get_level

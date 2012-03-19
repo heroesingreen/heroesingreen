@@ -26,3 +26,6 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+# action_mailer default_url_options for devise
+config.action_mailer.default_url_options = { :host => 'test.heroesingreen.org' }

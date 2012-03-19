@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :password_confirmation
   validates_confirmation_of :password
-  
+
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+
   MIN_PASSWORD_LENGTH = 4
     
   SECURITY_ROLES = {:user => 0,
@@ -28,30 +30,30 @@ class User < ActiveRecord::Base
     end
   end
   
-  def self.authenticate(email, password)
-    user = self.find_by_email(email)
-    if user && user.encrypted_password(password) == user.hashed_password
-      return user
-    end
-    nil
-  end
+  # def self.authenticate(email, password)
+  #   user = self.find_by_email(email)
+  #   if user && user.encrypted_password(password) == user.hashed_password
+  #     return user
+  #   end
+  #   nil
+  # end
   
-  def password
-    @password
-  end
+  # def password
+  #   @password
+  # end
   
-  def password=(new_password)
-    @password_changed = true
-    @password = new_password
-    #Generate salt
-    self.salt = self.object_id.to_s + rand.to_s
-    self.hashed_password = encrypted_password(new_password)
-    self.save
-  end
+  # def password=(new_password)
+  #   @password_changed = true
+  #   @password = new_password
+  #   #Generate salt
+  #   self.salt = self.object_id.to_s + rand.to_s
+  #   self.hashed_password = encrypted_password(new_password)
+  #   self.save
+  # end
   
-  def encrypted_password(password)
-    Digest::SHA1.hexdigest("#{password}1337#{self.salt}")
-  end 
+  # def encrypted_password(password)
+  #   Digest::SHA1.hexdigest("#{password}1337#{self.salt}")
+  # end 
 
   def avail_points  	
     return self.available_points

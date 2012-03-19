@@ -1,5 +1,6 @@
 class MissionsController < ApplicationController
-  before_filter :ensure_user
+  before_filter :authenticate_user!
+  #before_filter :ensure_user
   
   layout nil
   

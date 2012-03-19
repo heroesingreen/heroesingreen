@@ -12,7 +12,7 @@
 			<%= link_to "View Accomplishments", :controller=>:account, :action=>:accomplishments %><br/>
 			<%= link_to "View Garden", :controller=>:garden, :action=>:view %><br/>
 			<%= link_to "Change Password", :controller=>:account, :action=>:password %><br/>
-			<%= link_to "Logout", :controller=>:account, :action=>:logout %><br/>
+			<%= link_to "Logout", destroy_user_session_path %><br/>
 		</div>
 	</div>
 	<div class="content">

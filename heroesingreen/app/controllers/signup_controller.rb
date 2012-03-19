@@ -1,6 +1,7 @@
 class SignupController < ApplicationController
-  before_filter :ensure_user, :only => [:list]
-  
+  before_filter :authenticate_user!, :only => [:list]
+  #before_filter :ensure_user, :only => [:list]
+
   #Newsletter signup
   def index
     @signupEmail = SignupEmail.new

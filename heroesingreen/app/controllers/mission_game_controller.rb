@@ -1,5 +1,6 @@
 class MissionGameController < ApplicationController
-  before_filter :ensure_user, :only => [:explore_world, :world, :find_mission, :search, :current_missions, :missions]
+  before_filter :authenticate_user!, :only => [:explore_world, :world, :find_mission, :search, :current_missions, :missions]
+  #before_filter :ensure_user, :only => [:explore_world, :world, :find_mission, :search, :current_missions, :missions]
   layout :choose_layout
   
   def index

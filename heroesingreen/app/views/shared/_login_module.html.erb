@@ -4,11 +4,10 @@
 	<%end%>
 
 	<div class="login_content">
-		<% if session[:user_id] && User.find(session[:user_id])%>
-			<%loggedin_user = User.find(session[:user_id])%>
-			Welcome back <%=h loggedin_user.email%>!<br/>
-			Gosh! You are such a hero! You have saved <b><%=h loggedin_user.totl_points%></b> trees!<br/>
-			You have <b><%=h loggedin_user.avail_points%></b> points available.<br/>
+		<% if user_signed_in? && current_user %>
+			Welcome back <%=h current_user.email%>!<br/>
+			Gosh! You are such a hero! You have saved <b><%=h current_user.totl_points%></b> trees!<br/>
+			You have <b><%=h current_user.avail_points%></b> points available.<br/>
 			<%=link_to "Show accomplished missions", :controller => :account, :action=>:home%><br/>
 			<%url = {:controller => "account", :action=>:logout}%>
 			<%if @force_refresh_on_login%><%url[:refresh] = 1%><%end%>

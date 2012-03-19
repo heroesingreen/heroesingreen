@@ -4,10 +4,10 @@
 		<%if false%>
 		<div id="header-right">
 			<div id="userMod">
-				<%if session[:user_id] && User.find(session[:user_id])%>
-					Hello <%=h User.find(session[:user_id]).email%>! <%if @level%>You are a <b><%=@level.title%></b>!<%end%><br/>
-					You've conserved over <%=h User.find(session[:user_id]).avail_points%>lbs of CO2!<br/>
-					<%= link_to "Logout", :controller=>:account, :action=>:logout%>
+				<%if user_signed_in? %>
+					Hello <%=h current_user.email%>! <%if @level%>You are a <b><%=@level.title%></b>!<%end%><br/>
+					You've conserved over <%=h current_user.avail_points%>lbs of CO2!<br/>
+					<%= link_to "Logout", destroy_user_session_path %>
 				<%else%>
 					<% form_tag :controller => "account", :action => "login" do%>
 						<div id="login">

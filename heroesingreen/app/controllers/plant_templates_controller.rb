@@ -1,6 +1,7 @@
 class PlantTemplatesController < ApplicationController
-  before_filter :ensure_user
-  
+  before_filter :authenticate_user!
+#  before_filter :ensure_user
+
   # GET /plant_templates
   # GET /plant_templates.xml
   def index
