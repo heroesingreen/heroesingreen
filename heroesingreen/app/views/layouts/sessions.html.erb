@@ -1,10 +1,9 @@
 <%= render :partial => 'shared/html_head'%>
-<%= render :partial => 'shared/header'%>
-
 <div class="mainContent">
-  <%= render :partial=>'shared/display_flashes'%>
-  <%= yield :layout%>
+	<%= render :partial => 'shared/header'%>
+	<%= render :partial=>'shared/display_flashes'%>
+	<%= yield :layout%>
+	<div class="clear footerHeight"></div>
 </div>
-
 <%= render :partial => 'shared/footer'%>
 <%= render :partial => 'shared/html_tail'%>

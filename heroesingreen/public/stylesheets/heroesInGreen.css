@@ -17,9 +17,8 @@ body > div.fullHeightPage {
 
 div.mainContent {
 	width: 940px;
-	margin: 0 auto;
-	padding: 25px 25px 85px;
-	clear: both;
+	min-height: 100%;
+	padding: 0 25px;
 }
 
 a:link,
@@ -107,12 +106,15 @@ div.header {
 	Footer
 ******************************************************************************/
 
+.footerHeight { height: 70px; }
 .footer {
 	position: relative;
-	margin-top: -50px;
 	width: 100%;
+	margin-top: -50px;
+	height: 50px;
 	background: white;
 	text-align: left;
+	overflow: none;
 }
 .footer .copyright {
 	float: right !important;
@@ -162,6 +164,14 @@ div.header {
 	-khtml-border-radius: 10px;
 	border-radius: 10px;
 	padding: 15px;
+	margin-bottom:15px;
+}
+.contentBox.bgNone {
+	background: none;
+	border: none;
+}
+.contentBox.bgGray, .contentBox.bgGrey {
+	background: #ddd;
 }
 
 div.loginModule {
@@ -222,6 +232,10 @@ h1, h2, h3 { margin-top: 0 }
 /******************************************************************************
 	Easy-peasy proportional inline boxes
 ******************************************************************************/
+
+.halfWidth { float:left; width:50%; }
+.halfWidth.left > * { margin-right: 10px; }
+.halfWidth.right > * { margin-left: 10px; }
 
 .line .unit { float: left; }
 .line .half, .line .w1of2 { width: 50%; }

@@ -17,8 +17,8 @@
 	}
 -%>
 <%= render :partial => 'shared/html_head', :locals=>{:body_id => "tab#{tab_index}"}%>
-<%= render :partial => 'shared/header'%>
 <div class="mainContent">
+	<%= render :partial => 'shared/header'%>
 	<div class="mission_container">
 		<h1>Mission Central</h1>
 		<div class="mission_tabs">
@@ -34,6 +34,7 @@
 			<%= yield :layout%>
 		</div>
 	</div>
+	<div class="clear footerHeight"></div>
 </div>
 <%= render :partial => 'shared/footer'%>
 <%= render :partial => 'shared/html_tail'%>

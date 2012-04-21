@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :missions
 
+  map.connect 'signup/v2', :controller => 'signup', :action => 'v2'
   map.resources :signup
 
   map.resources :plants, :only => [:destroy]

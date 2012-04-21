@@ -1,7 +1,8 @@
 <%= render :partial => 'shared/html_head'%>
-<%= render :partial => 'shared/header'%>
-
-<div class="mainContent"><%= yield :layout%></div>
-
+<div class="mainContent centered">
+	<div style="height: 25px;"></div>
+	<%= yield :layout%>
+	<div class="clear footerHeight"></div>
+</div>
 <%= render :partial => 'shared/footer'%>
 <%= render :partial => 'shared/html_tail'%>

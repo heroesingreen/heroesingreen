@@ -1,10 +1,13 @@
 <%-content_for :head_content do %>
 	<%= stylesheet_link_tag 'mission' %>
 <% end-%>
-<%= render :partial => 'shared/html_head'%>
-<%= render :partial => 'shared/basic_header'%>
 
-<div class="mainContent"><%= yield :layout%></div>
+<%= render :partial => 'shared/html_head'%>
+<div class="mainContent">
+	<%= render :partial => 'shared/header'%>
+	<%= yield :layout%>
+	<div class="clear footerHeight"></div>
+</div>
 <!--<%unless @suppress_ajax_login%>
 	<div class="loginModule"><%= render :partial => 'shared/login_module' %></div>
 <%end%> TODO:agrandhi Suppressing for now -->

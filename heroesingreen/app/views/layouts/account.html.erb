@@ -2,8 +2,8 @@
 	<%= stylesheet_link_tag 'account' %>
 <% end-%>
 <%= render :partial => 'shared/html_head'%>
-<%= render :partial => 'shared/header'%>
 <div class="mainContent">
+	<%= render :partial => 'shared/header'%>
 	<div class="navigation">
 		<div class="navigation_box">				
 			<%= link_to "Home", :controller=>:account, :action=>:home%><br/>
@@ -21,7 +21,7 @@
 			<%= yield :layout%>
 		</div>
 	</div>
-	<div class="clear"></div>
+	<div class="clear footerHeight"></div>
 </div>
 <%= render :partial => 'shared/footer'%>
 <%= render :partial => 'shared/html_tail'%>

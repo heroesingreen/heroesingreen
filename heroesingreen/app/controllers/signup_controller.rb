@@ -10,6 +10,14 @@ class SignupController < ApplicationController
         format.html #signup.html.erb
     end
   end
+
+  def v2
+    @signupEmail = SignupEmail.new
+    @signupEmail.email = 'Email Address'
+    respond_to do |format|
+        format.html { render "indexV2" } #signup.html.erb
+    end
+  end
   
   def create
     @signupEmail = SignupEmail.new(params[:signupEmail])
