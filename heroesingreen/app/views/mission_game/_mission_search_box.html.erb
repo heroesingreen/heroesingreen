@@ -41,49 +41,7 @@
 </div>
 
 <div id="search_mission_list">
-    
-<table>
-  <tr>
-    <th>Mission ID</th>
-    <th>Title</th>
-    <!--<th>Intro</th>
-    <th>Description</th>
-    <th>Task</th>-->
-    <th>Reward</th>
-    <th>Points</th>
-    <th>Repeatable</th>
-    <th>Unitpoints</th>
-    <th>Unit</th>
-    <th>More info</th>
-	<th>Tags</th>
-  </tr>
 
-<% @missions.each do |mission| %>
-  <tr>
-    <td><%=h @m_count %></td>
-    <td><%=h mission.title %></td>
-    <!--<td><%=h mission.intro %></td>
-    <td><%=h mission.description %></td>
-    <td><%=h mission.task %></td>-->
-    <td><%=h mission.reward %></td>
-    <td><%=h mission.points %></td>
-    <td><%=h mission.repeatable %></td>
-    <td><%=h mission.unitPoints %></td>
-    <td><%=h mission.unit %></td>
-	<td><% mission.mission_tags.each do |mission_tag| %>
-		<%=h mission_tag.mission_tag %>
-		<% end %>
-	</td>
-    <td><a rel="mission_text" href="#inline<%= @m_count %>" title="<%=h mission.title %>">popup</a></td>
-  </tr>
-  
-  <div style="display: none;">
-    <div id="inline<%= @m_count %>" style="width:400px;height:100px;overflow:auto;">
-      <%=h mission.reward %>
-    </div>
-  </div>
-  <% @m_count = @m_count+1%>
-<% end %>
+<%= render "missions/mission_list" %>
 
-</table>
 </div>

@@ -27,6 +27,9 @@ Rails::Initializer.run do |config|
 
   config.gem "devise", :version => "1.0.11"
 
+  # HAML markup language support for templates instead of ERB
+  config.gem "haml"
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
