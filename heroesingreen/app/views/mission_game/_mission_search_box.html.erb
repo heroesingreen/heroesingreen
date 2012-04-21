@@ -42,6 +42,6 @@
 
 <div id="search_mission_list">
 
-<%= render "missions/mission_list" %>
+<%= render :partial => "missions/mission_list", :locals => { :missions => @missions } %>
 
 </div>

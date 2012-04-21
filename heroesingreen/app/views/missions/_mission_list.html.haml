@@ -1,3 +1,6 @@
+-# You can include this mission list partial in any other view or page.
+-# You will need to pass in a list of missions as locals, like so:
+-# <%= render :partial => "missions/mission_list", :locals => {:missions => @missions } %>
 = stylesheet_link_tag "datatables/demo_page", "datatables/demo_table"
 = javascript_include_tag "jquery.dataTables.min"
 
@@ -17,7 +20,8 @@
         %th Points
 
     %tbody
-      - @missions.each do |mission|
+      - m_count = 1
+      - missions.each do |mission|
         %tr
           %td
             %span.mission_title= h mission.title
@@ -37,6 +41,6 @@
             =link_to "popup", "#inline#{@m_count}", :rel => "mission_text", :title => "#{mission.title}"
 
         %div{:style => "display: none;"}
-          %div{:id => "inline#{@m_count}", :style => "width:400px;height:100px;overflow:auto;"}
+          %div{:id => "inline#{m_count}", :style => "width:400px;height:100px;overflow:auto;"}
             = h mission.reward
-        - @m_count = @m_count + 1
+        - m_count = m_count + 1
