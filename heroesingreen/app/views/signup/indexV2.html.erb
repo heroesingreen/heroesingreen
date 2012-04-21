@@ -1,63 +1,61 @@
-<div class="centered" style="max-width: 700px;">
-	<div class="halfWidth left">
-		<div class="contentBox bgNone" id="landingCopy">
-			<h1 style="text-align:center; margin-bottom: 6px">I'm a Hero</h1>
-			<img id="handsOnHips" width="162" height="200" src="http://stockfresh.com/files/e/eyeidea/m/56/422819_stock-photo-mannequin-standing-hands-on-hips.jpg" />
-			Lorem ipsum dolor sit amet capuncini arigato roboto. Lorem ipsum dolor sit amet capuncini arigato roboto. Lorem ipsum dolor sit amet capuncini arigato roboto. Lorem ipsum dolor sit amet capuncini arigato roboto. Lorem ipsum dolor sit amet capuncini arigato roboto.
-			<div class="clear"></div>
-		</div>
-
-		<div class="contentBox accountActions">
-			<% if !user_signed_in? %>
-				<div class="createAccount action">
-					<p>Ready to join us?</p>
-					<h3>Create an Account</h3>
-					<% form_for :user, :url => user_registration_path do |f| %>
-						<div id="error_messages">
-							<%= render :partial=>'shared/display_flashes' %>
-						</div>
-						<%= f.text_field :email %>
-						<%= f.submit 'Create Account' %>
-					 <%end%>
-				</div>
-
-				<div class="logIntoAccount action">
-					<p>Already on the team?</p>
-					<h3>Log In</h3>
-					<%form_for :user, :url => user_session_path do |f| %>
-						<div id="error_messages">
-							<%= render :partial=>'shared/display_flashes'%>
-						</div>
-						<%= f.text_field :email %>
-						<%= f.password_field :password %>
-						<%= f.submit 'Log In' %>
-					<%end%>
-				</div>
-			<% else %>
-				<% @user = current_user %>
-				<%= render :partial => "account/name_module" %>
-			<% end %>
-			
-			<script>
-				Event.observe('signupEmail_email', 'focus', function(event) {
-					$('signupEmail_email').value = '';
-					Event.stopObserving('signupEmail_email', 'focus');
-				});
-			</script>
-		</div>
+<div class="halfWidth left">
+	<div class="contentBox bgNone" id="landingCopy">
+		<h1 style="text-align:center; margin-bottom: 6px">I'm a Hero</h1>
+		<img id="handsOnHips" width="162" height="200" src="http://stockfresh.com/files/e/eyeidea/m/56/422819_stock-photo-mannequin-standing-hands-on-hips.jpg" />
+		Lorem ipsum dolor sit amet capuncini arigato roboto. Lorem ipsum dolor sit amet capuncini arigato roboto. Lorem ipsum dolor sit amet capuncini arigato roboto. Lorem ipsum dolor sit amet capuncini arigato roboto. Lorem ipsum dolor sit amet capuncini arigato roboto.
+		<div class="clear"></div>
 	</div>
 
-	<div class="halfWidth right">
-		<div class="contentBox">
-			<h1 style="text-align:center; margin-bottom: 6px">Get Started</h1>
-			<div style="height: 200px; width: 100%; background: #ccf; margin-bottom: 15px;"></div>
-			<div style="height: 200px; width: 100%; background: #ccf; margin-bottom: 15px;"></div>
-			<div style="height: 200px; width: 100%; background: #ccf; margin-bottom: 15px;"></div>
-		</div>
-	</div>
+	<div class="contentBox accountActions">
+		<% if !user_signed_in? %>
+			<div class="createAccount action">
+				<p>Ready to join us?</p>
+				<h3>Create an Account</h3>
+				<% form_for :user, :url => user_registration_path do |f| %>
+					<div id="error_messages">
+						<%= render :partial=>'shared/display_flashes' %>
+					</div>
+					<%= f.text_field :email %>
+					<%= f.submit 'Create Account' %>
+				 <%end%>
+			</div>
 
-	<div class="clear"></div>
+			<div class="logIntoAccount action">
+				<p>Already on the team?</p>
+				<h3>Log In</h3>
+				<%form_for :user, :url => user_session_path do |f| %>
+					<div id="error_messages">
+						<%= render :partial=>'shared/display_flashes'%>
+					</div>
+					<%= f.text_field :email %>
+					<%= f.password_field :password %>
+					<%= f.submit 'Log In' %>
+				<%end%>
+			</div>
+		<% else %>
+			<% @user = current_user %>
+			<%= render :partial => "account/name_module" %>
+		<% end %>
+		
+		<script>
+			Event.observe('signupEmail_email', 'focus', function(event) {
+				$('signupEmail_email').value = '';
+				Event.stopObserving('signupEmail_email', 'focus');
+			});
+		</script>
+	</div>
 </div>
+
+<div class="halfWidth right">
+	<div class="contentBox">
+		<h1 style="text-align:center; margin-bottom: 6px">Get Started</h1>
+		<div style="height: 200px; width: 100%; background: #ccf; margin-bottom: 15px;"></div>
+		<div style="height: 200px; width: 100%; background: #ccf; margin-bottom: 15px;"></div>
+		<div style="height: 200px; width: 100%; background: #ccf; margin-bottom: 15px;"></div>
+	</div>
+</div>
+
+<div class="clear"></div>
 
 <style>
 	h1 { font-size: x-large; }
@@ -135,77 +133,3 @@
 	.avatarSpace .avatars img.bl { bottom: -20px; left: -30px; }
 	.avatarSpace .avatars img.br { bottom: -20px; right: -25px; }
 </style>
-
-
-<!--div class="mainRow line">
-	<div class="unit w3of5 avatarSpace">
-		<div class="challenge contentBox">
-			<h2>We can all be heroes.</h2>
-			<p>
-				Together, we can change the world<br>
-				for the better. How much better?
-			</p>
-			<p>
-				<span style="font-size:xx-large">One million pounds</span><br>
-				<span style="font-size:x-large">of carbon dioxide better.</span>
-			</p>
-			<p style="p30">Can we do this, working together?</p>
-			
-			<button>Join us</button>
-		</div>
-		<div class="avatars">
-			<img class="tl" src="/images/Avatars/thumbs/222_t.png" width="128" height="160" />
-			<img class="tr" src="/images/Avatars/thumbs/444_t.png" width="108" height="160" />
-			<img class="bl" src="/images/Avatars/thumbs/666_t.png" width="94" height="160" />
-			<img class="br" src="/images/Avatars/thumbs/333_t.png" width="146" height="160" />
-		</div>
-	</div>
-	<div class="unit w2of5 lastUnit">
-		<div class="contentBox accountActions">
-			<% if !user_signed_in? %>
-				<div class="createAccount action">
-					<p>Ready to join us?</p>
-					<h3>Create an Account</h3>
-					<% form_for :user, :url => user_registration_path do |f| %>
-						<div id="error_messages">
-							<%= render :partial=>'shared/display_flashes' %>
-						</div>
-						<%= f.text_field :email %>
-						<%= f.submit 'Create Account' %>
-					 <%end%>
-				</div>
-
-				<div class="logIntoAccount action">
-					<p>Already on the team?</p>
-					<h3>Log In</h3>
-						<%form_for :user, :url => user_session_path do |f| %>
-							<div id="error_messages">
-								<%= render :partial=>'shared/display_flashes'%>
-							</div>
-							<%= f.text_field :email %>
-							<%= f.password_field :password %>
-							<%= f.submit 'Log In' %>
-						<%end%>
-				</div>
-			<% else %>
-				<% @user = current_user %>
-				<%= render :partial => "account/name_module" %>
-			<% end %>
-		</div>
-	</div>
-	<div class="clear"></div>
-</div>
-
-<div class="progress centered contentBox clear">
-	<h3>Our collective progress:</h3>
-	<p>642,156 pounds (out of 1,000,000 pounds)</p>
-	<span class="progressBar" style="width: 64%">&nbsp;</span>
-</div>
-
-<script>
-	Event.observe('signupEmail_email', 'focus', function(event) {
-   		$('signupEmail_email').value = '';
-		Event.stopObserving('signupEmail_email', 'focus');
-	});
-</script>
--->
