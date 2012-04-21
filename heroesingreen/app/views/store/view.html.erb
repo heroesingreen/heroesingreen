@@ -1,48 +1,12 @@
 <style = text/css>
-	#plant_list {margin-left:20px; width:50%;}
-	#plant {padding: 3px;}
-	#plant:hover {background-color:#DACFB9;}
-	#plant_info {height:50px;}
-	#plant_details {position:absolute; background-color:#DACFB9; left:65%; width:250px; padding: 0px 5px 0px 5px;}
-	#plant_buy {align:center; float:right;}
-	#store_buttons {clear:both; padding-top:50px;}
-	#plant_store {background:#fff; border-radius:16px;}
-	#plant_store > ol {list-style:none;max-height:500px;overflow-y:auto;}
-	#plant_store > ol > li {clear:both; border-bottom: 2px solid #AF7;}
-	#plant_image {width:100px;float:left;}
-	#garden_store {width:100%;}
-	#plant_store_header {text-align:center;}
-	.halfWidth {width:50%; float:left;}
-	.halfWidth > * {margin: 0px 10px;}
-</style>
+	.halfWidth {
+		float:left;
+		width:50%;
+	}
+	.halfWidth.left > * { margin-right: 10px; }
+	.halfWidth.right > * { margin-left: 10px; }
 
-<div id="garden_store">
 
-<div class="halfWidth">
-<div id="plant_store">
-<div id="plant_store_header">
-	<h1>Plant Mart</h1>
-	<div id="availableNumPoints">Available: <%=@logged_in_user.avail_points%> points</div>
-</div>
-<ol>
-	<% @plant_templates.each do |plant_template| %>
-	<li>
-	  <div id="plant" >
-	  	<div id="plant_image"><%= image_tag("plants/#{plant_template.thumbnail}",:title => plant_template.name)%></div>
-   	    <div id="plant_buy"><%= button_to "Cost:" + plant_template.cost.to_s, :action=>:buy, :id=>plant_template.id %></div>
-		<div id="plant_info"><%=h plant_template.name %></div>
-		<div id="plant_description"><%=h plant_template.description %></div>
-		<div class="clear"></div>
-	  </div>
-	  <div id="divider"></div>
-	</li>
-	<% end %>
-</ol>
-</div>
-
-</div>
-
-<style>
 	.submenu {
 		background-color: #749355;
 		min-height: 30px;
@@ -52,19 +16,15 @@
 		float: right;
 	}
 
-	#gardenView {
-		background-color: #fff;
-	    border-radius:16px;
-	}
-
-	#gardenViewHeading {
+	#gardenView > * {
 		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	#garden-viewport {
-		max-width:90%;
+		max-width: 100%;
 		overflow: auto;
-		margin:auto;
 	}
 	.garden {
 		background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
@@ -73,7 +33,7 @@
 		clear: both;
 		margin-left: auto;
 		margin-right: auto;
-	}	
+	}
 	#myGarden {
 		background-color: #AA9355;
 	}
@@ -124,53 +84,103 @@
 		opacity:1;
 	}
 	.clear {clear:both;}
+
+	#plant_store > ol {
+		overflow-y: auto;
+		height: 595px;
+		padding: 0;
+		list-style: none;
+	}
+
+	#plant_store > ol > li {
+		clear:both;
+		border-top: 2px solid #AF7;
+	}
+	#plant_store > ol > li:first-child { border-top: 0; }
+	#plant_list {margin-left:20px; width:50%;}
+	#plant {padding: 3px;}
+	#plant:hover {background-color:#ffd;}
+	#plant_info {height:50px;}
+	#plant_details {position:absolute; background-color:#DACFB9; left:65%; width:250px; padding: 0px 5px 0px 5px;}
+	#plant_buy {
+		float:right;
+		margin-top: 4px;
+	}
+	#plant_buy * { margin-top: 0; }
+	#store_buttons {clear:both; padding-top:50px;}
+	#plant_image {width:100px;float:left;}
+	#garden_store {width:100%;}
+	#plant_store_header {text-align:center;}
 </style>
 
-<div class="halfWidth">
-<div id="gardenView">
+<div id="garden_store">
 
-<div id="gardenViewHeading">
-	<h1>Garden Preview</h1>
-	Click to plant your fireweed
-</div>
-
-<%@plantId = params[:pl]%>
-
-<div id="garden-viewport">
-<div class="garden">
-	<%@garden.size_y.times do |y|%>
-		<%@garden.size_x.times do |x|%>
-			<div class="ground 
-			<%if (y > 3) and @plantId and @garden.is_compatible(@plantId,x,y)%> highlighted" onclick="buy(<%=@plantId%>,<%=x%>,<%=y%>)<%end%>
-			">
-				<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
-				<%if ground != nil%>
-					<%ground.plants.each do |plant|%>
-						<%if plant.plant_template.image_path != nil%>
-							<%img_url = "plants/#{plant.plant_template.image_path}"%>
-							<%if @garden.size_y - y == 1%>
-								<%img_url = img_url + "a.png"%>
-							<%elsif @garden.size_y - y == 2%>
-								<%img_url = img_url + "b.png"%>
-							<%elsif @garden.size_y - y == 3%>
-								<%img_url = img_url + "c.png"%>
-							<%end%>
-							<div class="plant_in_garden"><%=image_tag(img_url,:title => plant.name)%><br></div>
-						<%end%>
-					<%end%>
-				<%end%>
+	<div class="halfWidth left">
+		<div id="plant_store" class="contentBox">
+			<div id="plant_store_header">
+				<h1>Plant Mart</h1>
+				<div id="availableNumPoints">Available: <%=@logged_in_user.avail_points%> points</div>
 			</div>
-		<%end%>
-		<div class="clear"></div>
-	<%end%>
-</div>
-<%= button_to "View full Garden", :controller=>:garden, :action=>:view %>
-</div>
+			<ol>
+				<% @plant_templates.each do |plant_template| %>
+				<li>
+				  <div id="plant" >
+					<div id="plant_image"><%= image_tag("plants/#{plant_template.thumbnail}",:title => plant_template.name)%></div>
+					<div id="plant_buy"><%= button_to plant_template.cost.to_s + " pts", :action=>:buy, :id=>plant_template.id %></div>
+					<div id="plant_info"><%=h plant_template.name %></div>
+					<div id="plant_description"><%=h plant_template.description %></div>
+					<div class="clear"></div>
+				  </div>
+				  <div id="divider"></div>
+				</li>
+				<% end %>
+			</ol>
+		</div>
+	</div>
 
-</div>
+	<div class="halfWidth right">
+		<div id="gardenView" class="contentBox">
 
-</div>
-<div class="clear"></div>
+			<div id="gardenViewHeading">
+				<h1>Garden Preview</h1>
+				Click to plant your fireweed
+			</div>
+
+			<%@plantId = params[:pl]%>
+
+			<div id="garden-viewport">
+				<div class="garden">
+					<%@garden.size_y.times do |y|%>
+						<%@garden.size_x.times do |x|%>
+							<div class="ground 
+							<%if (y > 3) and @plantId and @garden.is_compatible(@plantId,x,y)%> highlighted" onclick="buy(<%=@plantId%>,<%=x%>,<%=y%>)<%end%>
+							">
+								<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
+								<%if ground != nil%>
+									<%ground.plants.each do |plant|%>
+										<%if plant.plant_template.image_path != nil%>
+											<%img_url = "plants/#{plant.plant_template.image_path}"%>
+											<%if @garden.size_y - y == 1%>
+												<%img_url = img_url + "a.png"%>
+											<%elsif @garden.size_y - y == 2%>
+												<%img_url = img_url + "b.png"%>
+											<%elsif @garden.size_y - y == 3%>
+												<%img_url = img_url + "c.png"%>
+											<%end%>
+											<div class="plant_in_garden"><%=image_tag(img_url,:title => plant.name)%><br></div>
+										<%end%>
+									<%end%>
+								<%end%>
+							</div>
+						<%end%>
+						<div class="clear"></div>
+					<%end%>
+				</div>
+			</div>
+			<%= button_to "View your full garden", :controller=>:garden, :action=>:view %>
+		</div>
+	</div>
+	<div class="clear"></div>
 </div> 
 
 <script>
