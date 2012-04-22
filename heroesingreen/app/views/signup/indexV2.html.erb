@@ -47,17 +47,11 @@
 </div>
 
 <div class="halfWidth right">
-	<div class="contentBox">
-		<h1 style="text-align:center; margin-bottom: 6px">Get Started</h1>
-		<div style="margin-bottom: 25px;">
-			<%= render :partial => "missions/missionInABox" %>
-		</div>
-		<div style="margin-bottom: 25px;">
-			<%= render :partial => "missions/missionInABox" %>
-		</div>
-		<div style="margin-bottom: 25px;">
-			<%= render :partial => "missions/missionInABox" %>
-		</div>
+	<div class="contentBox missionList">
+		<h1 style="text-align:center">Get Started</h1>
+		<%= render :partial => "missions/missionInABox" %>
+		<%= render :partial => "missions/missionInABox" %>
+		<%= render :partial => "missions/missionInABox" %>
 	</div>
 </div>
 
@@ -106,36 +100,5 @@
 		font-size: large;
 	}
 
-	.progress {
-		position: relative;
-		width: 480px;
-		margin-top: 50px;
-		text-align: center;
-	}
-	.progress h3 { font-weight: bold; }
-	.progress > * {
-		z-index: 2;
-		position: relative;
-	}
-	.progress p { margin-bottom: 0; }
-	.progress > .progressBar {
-		display: block;
-		position: absolute;
-		z-index: 1;
-		top: 5px;
-		left: 5px;
-		height: 77px;
-		background: #ee7;
-		-moz-border-radius: 10px;
-		-webkit-border-radius: 10px;
-		-khtml-border-radius: 10px;
-		border-radius: 10px;
-	}
-	
-	.avatarSpace { position: relative; }
-	.avatarSpace .avatars img { position: absolute; }
-	.avatarSpace .avatars img.tl { top: -20px; left: -40px; }
-	.avatarSpace .avatars img.tr { top: -20px; right: -25px; }
-	.avatarSpace .avatars img.bl { bottom: -20px; left: -30px; }
-	.avatarSpace .avatars img.br { bottom: -20px; right: -25px; }
+	.missionList .missionInABox { margin-bottom: 2em; }
 </style>
