@@ -41,7 +41,6 @@ class MissionsController < ApplicationController
   def edit
     @mission = Mission.find(params[:id])
     @mission_tags = MissionTag.all
-    
     # http://paulbarry.com/articles/2007/10/24/has_many-through-checkboxes
     respond_to do |format|
       format.html # edit.html.erb
@@ -79,6 +78,7 @@ class MissionsController < ApplicationController
         format.html { redirect_to(@mission) }
         format.xml  { head :ok }
       else
+        @mission_tags = MissionTag.all
         format.html { render :action => "edit" }
         format.xml  { render :xml => @mission.errors, :status => :unprocessable_entity }
       end

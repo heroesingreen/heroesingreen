@@ -6,7 +6,13 @@ class Mission < ActiveRecord::Base
 	
  attr_accessor :mission_tag_ids
  after_save :update_missions_tag
- 
+
+  validates_format_of :effort, :with => /\A[0-9]{2}:[0-9]{2}\z/,
+    :message => "must be a time field in HH::MM format"
+
+  validates_format_of :duration, :with => /\A[0-9]{2}:[0-9]{2}\z/,
+    :message => "must be a time field in HH::MM format"
+
  def update_missions_tag
     unless mission_tag_ids.nil?
       self.mission_tag_mappings.each do |m|
@@ -46,5 +52,21 @@ class Mission < ActiveRecord::Base
 	def self.find_all_with_tag(tag)
 	  return Mission.find(:all, :conditions=>["tags like '%%#{tag}%%'"])
   end
-  
+
+  def effort
+    if !self[:effort].nil?
+      self[:effort].to_s(:time)
+    else
+      self[:effort]
+    end
+  end
+
+  def duration
+    if !self[:effort].nil?
+      self[:duration].to_s(:time)
+    else
+      self[:effort]
+    end
+  end
+
 end

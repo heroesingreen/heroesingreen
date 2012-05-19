@@ -5,6 +5,8 @@
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script src="/javascripts/jquery-ui-timepicker-addon.js"></script>
+  <link href="/stylesheets/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css"/>
   <style type="text/css">
 #selectable .ui-selecting {
 	background: silver;
@@ -20,11 +22,18 @@
 		selected: function (event, ui) {
       	 console.log($(".ui-selected"));
 	}
+    });
+    $('#mission_effort').timepicker({
+      timeFormat: 'hh:mm',
+      stepMinute: 15
+    });
+    $('#mission_duration').timepicker({
+      timeFormat: 'hh:mm',
+      stepMinute: 15
+    });
   });
-	});
-
-
   </script>
+
 </head>
 
 <body>
@@ -69,10 +78,27 @@
     <%= f.label :unitPoints %><br />
     <%= f.text_field :unitPoints %>
   </p>
+
   <p>
     <%= f.label :unit %><br />
     <%= f.text_field :unit %>
   </p>
+
+  <p>
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost %>
+  </p>
+
+  <p>
+    <%= f.label :effort %><br />
+    <%= f.text_field :effort, :value => @mission.duration %>
+  </p>
+
+  <p>
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration, :value => @mission.duration %>
+  </p>
+
 	<p>
 </div>
 	<div class="left">

@@ -44,6 +44,21 @@
 </p>
 
 <p>
+  <b>Cost:</b>
+  <%=h @mission.cost %>
+</p>
+
+<p>
+  <b>Effort:</b>
+  <%=h @mission.effort %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%=h @mission.duration %>
+</p>
+
+<p>
   <b>Tags:</b>
   <% @mission.mission_tags.each do |mission_tag| %>
 		<%=h mission_tag.mission_tag %>; 
