@@ -565,25 +565,26 @@ div.box {
 	background-color: #E5E5FF;
 }
 
-span.mission_title {
+table.display tr:nth-child(odd) {
+	background-color: #eee;
+}
+
+table td .mission_title {
     color: #438007;
-    font-size: larger;
+	font-weight: bold;
 }
 
-span.mission_task {
+table td .mission_task {
     font-size: smaller;
-    font-weight: bold;
+    color: #555;
 }
 
-td.points {
-    font-size: 150%;
+table td.points {
+    font-size: larger;
     font-weight: bold;
+	text-align: right;
 }
 
 div#missions {
     border: 3px solid #B2E67D;
-}
-
-div#missions h2 {
-    text-align: center;
 }

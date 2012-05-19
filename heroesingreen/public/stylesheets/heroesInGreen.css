@@ -234,8 +234,10 @@ h1, h2, h3 { margin-top: 0 }
 ******************************************************************************/
 
 .halfWidth { float:left; width:50%; }
-.halfWidth.left > * { margin-right: 10px; }
-.halfWidth.right > * { margin-left: 10px; }
+.halfWidth.left > *,
+.line > .unit.left > * { margin-right: 10px; }
+.halfWidth.right > *,
+.line > .unit.right > * { margin-left: 10px; }
 
 .line .unit { float: left; }
 .line .half, .line .w1of2 { width: 50%; }

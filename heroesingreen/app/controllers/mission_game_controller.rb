@@ -154,7 +154,7 @@ class MissionGameController < ApplicationController
   def choose_layout 
     case(action_name)
     when 'find_mission'
-      return 'mission_central'
+      return nil					#'mission_central'
     when 'current_missions'
       return 'mission_central'
     when 'search'

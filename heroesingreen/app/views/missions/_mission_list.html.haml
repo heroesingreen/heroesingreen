@@ -9,38 +9,35 @@
     $('#mission_list').dataTable({bInfo: false, bFilter: false, bPaginate: false});
   });
 
-#missions
-  %h2 Missions
+%table.display
+  %thead
+    %tr
+      %th
+      -#%th Cost
+      %th Points
 
-  %table#mission_list.display
-    %thead
+  %tbody
+    - m_count = 1
+    - missions.each do |mission|
       %tr
-        %th
-        -#%th Cost
-        %th Points
+        %td
+          %span.mission_title= h mission.title
+          %br
+          %span.mission_task= mission.task
+        -#%td= h mission.description
+        -#%td= h mission.reward
+        %td.points= h mission.points
+        -#%td= h mission.repeatable
+        -#%td= h mission.unitPoints
+        -#%td= h mission.unit
+        -#%td
+          - mission.mission_tags.each do |mission_tag|
+            = h mission_tag.mission_tag
 
-    %tbody
-      - m_count = 1
-      - missions.each do |mission|
-        %tr
-          %td
-            %span.mission_title= h mission.title
-            %br
-            %span.mission_task= mission.task
-          -#%td= h mission.description
-          -#%td= h mission.reward
-          %td.points= h mission.points
-          -#%td= h mission.repeatable
-          -#%td= h mission.unitPoints
-          -#%td= h mission.unit
-          -#%td
-            - mission.mission_tags.each do |mission_tag|
-              = h mission_tag.mission_tag
+        -#%td
+          =link_to "popup", "#inline#{@m_count}", :rel => "mission_text", :title => "#{mission.title}"
 
-          -#%td
-            =link_to "popup", "#inline#{@m_count}", :rel => "mission_text", :title => "#{mission.title}"
-
-        %div{:style => "display: none;"}
-          %div{:id => "inline#{m_count}", :style => "width:400px;height:100px;overflow:auto;"}
-            = h mission.reward
-        - m_count = m_count + 1
+      %div{:style => "display: none;"}
+        %div{:id => "inline#{m_count}", :style => "width:400px;height:100px;overflow:auto;"}
+          = h mission.reward
+      - m_count = m_count + 1

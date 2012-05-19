@@ -1,13 +1,50 @@
 <%-content_for :head_content do %>
+	<%= stylesheet_link_tag 'mission_central' %>
 	<%= stylesheet_link_tag 'mission_search' %>
 <% end-%>
-<!--<div class="left_box">Helping at home</div>-->
-<div class="center_box">
-	<%=render :partial=>'mission_search_box'%>
-	<!-- <div class="advisor_box">
-		Ask advisors
-	</div> -->
-</div>
-<!--<div class="right_box">Explore your world</div>-->
-
+<%- #Tab navigation prep
+	#Tab structure = [name, action_name]
+	tabs = []
+	tabs << ["Explore", "explore_world"]
+	tabs << ["Search", "find_mission"]
+	tabs << ["Current", "current_missions"]
 	
+	tab_index = nil
+	@body_action_id ||= action_name
+	tabs.each_index{|index|
+		if tabs[index].include?(@body_action_id) 
+			tab_index = index 
+		end
+	}
+-%>
+<%= render :partial => 'shared/html_head', :locals=>{:body_id => "tab#{tab_index}"}%>
+<div class="mainContent centered">
+	<%= render :partial => 'shared/header'%>
+
+	<%= render :partial=>'shared/display_flashes'%>
+
+	<div class="mission_tabs">
+		<ul id = "tabnav">
+			<%tabs.each_index do |index|%>
+				<%tab = tabs[index]%>
+				<li class="tab<%=index%>"><%=link_to tab[0],tab[1]%></li>
+			<%end%>
+		</ul>
+	</div>
+
+	<div class="line">
+		<div class="unit w3of5 left">
+			<div class="contentBox">
+					<%=render :partial=>'mission_search_box'%>
+			</div>
+		</div>
+		
+		<div class="unit w2of5 right">
+			<div class="contentBox">efgh</div>
+		</div>
+	</div>
+
+	<div class="clear footerHeight"></div>
+</div>
+<%= render :partial => 'shared/footer'%>
+<%= render :partial => 'shared/html_tail'%>	
