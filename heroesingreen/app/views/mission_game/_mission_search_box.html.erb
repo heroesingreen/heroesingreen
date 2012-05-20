@@ -28,9 +28,21 @@
 				'transitionOut' : 'none',
 				'type'			: 'iframe'
 			});
+
 		});
-	</script>
 <% end-%>
+
+<script type="text/javascript">
+    $("table.display tbody tr").live('click', function() {
+        $.ajax({
+            type: "GET",
+            url: "/missions/show_mission_in_a_box/" + $(this).data("id"),
+            dataType: "script"
+        });
+    });
+
+</script>
+
 
 <!--div class="search_box">
 	<h2>Mission Search</h2>

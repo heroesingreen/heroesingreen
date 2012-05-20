@@ -19,7 +19,7 @@
   %tbody
     - m_count = 1
     - missions.each do |mission|
-      %tr
+      %tr{:data => {:id => mission.id}}
         %td
           %span.mission_title= h mission.title
           %br

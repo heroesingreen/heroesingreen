@@ -10,7 +10,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.user_root 'account/home', :controller => 'account', :action => 'home'
 
-  map.resources :missions
+  map.resources :missions, :member => { :show_mission_in_a_box => :get }
+
 
   map.connect 'signup/v2', :controller => 'signup', :action => 'v2'
   map.resources :signup

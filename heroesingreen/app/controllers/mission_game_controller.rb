@@ -146,9 +146,7 @@ class MissionGameController < ApplicationController
     end
     @user = get_user
   end
-  
 
-   	
   private
   
   def choose_layout 

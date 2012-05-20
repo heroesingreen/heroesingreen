@@ -97,4 +97,13 @@ class MissionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def show_mission_in_a_box
+    @mission = Mission.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end
