@@ -37,11 +37,11 @@
         var id = $(this).data("id");
         if ((typeof(id) == "undefined") || (id === "")) {
             id = $(this).attr("data");
-            id = id.gsub(/id/, '')
+            id = id.gsub(/id/, '');
         }
         $.ajax({
             type: "GET",
-            url: "/missions/show_mission_in_a_box/" + $(this).data("id"),
+            url: "/missions/show_mission_in_a_box/" + id,
             dataType: "script"
         });
     });
