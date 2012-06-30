@@ -1,1 +1,1 @@
-$("#missionDetails").html("<%= escape_javascript(render :partial => 'missionInABox', :locals => { :mission => @mission }) %>");
+$("#missionDetails").html("<div class=\"contentBox\"><%= escape_javascript(render :partial => 'missionInABox', :locals => { :mission => @mission }) %></div>");

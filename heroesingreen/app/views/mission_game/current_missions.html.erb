@@ -1,30 +1,11 @@
-<div id="current_missions">
-	<div style="font-size: 20px; margin: 4px;text-align:left;">Current Mission Objectives</div>
-	<% @upcoming_quests.each do |missionStatus| %>
-	<div class="mission" onclick="javascript:Effect.toggle($(this).down('.mission_text'), 'Slide');">
-		<div class="mission_body">
-			<div class="mission_title">
-				<%=missionStatus.mission.title%>
-			</div>
-			<div class="mission_text" style="display:none;">
-				<%=missionStatus.mission.points%> points<br><br>
-				<%=missionStatus.mission.task%><br><br>
-				<div class="needHelp">I need help with this</div>
-				<div class="selectMission"><%= link_to "Complete", :controller => :mission_game, :action => :start, :id => missionStatus.mission.id%></div>
-			</div>
+<%= render :partial=>'shared/display_flashes'%>
+
+<div class="line">
+	<div class="unit w3of5 left">
+		<div class="contentBox">
+				<%=render :partial=>'my_missions_box'%>
 		</div>
-		<div class="more">></div>
 	</div>
-	<%end%>	
-</div>
-<div id="teamObjsAndMyAccomplishments">
-	<div id="team_objs">Team Objectives Placeholder</div>
-	<div id="accomplishments">
-		<div style="font-size:16px;">Recent Amazing Accomplishments (<%= link_to "Go to my accomplishments", :controller => :account, :action => :accomplishments%>):</div>
-		<ul>
-			<% @completed_quests.each do |missionStatus| %>
-				<li><%= missionStatus.mission.reward%></li>
-			<% end %>		
-		</ul>
-	</div>
+	
+	<div class="unit w2of5 right" id="missionDetails"></div>
 </div>

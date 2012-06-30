@@ -46,6 +46,8 @@ class MissionGameController < ApplicationController
   end
   
   def current_missions
+	@missions = get_user.missionStatuses.select{|s| s.activated?}.map{|m| m.mission}
+
     @all_quests = get_user.missionStatuses.find(:all)
     @completed_quests = @all_quests.select{|quest| (quest.completed?)}
     @upcoming_quests = @all_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
@@ -151,10 +153,6 @@ class MissionGameController < ApplicationController
   
   def choose_layout 
     case(action_name)
-    when 'find_mission'
-      return nil					#'mission_central'
-    when 'current_missions'
-      return 'mission_central'
     when 'search'
       return 'mission_central'
     when 'search_by_tag'
@@ -166,7 +164,7 @@ class MissionGameController < ApplicationController
     when 'world_missions'
       return nil
     else
-		  return 'mission_game'
-	  end
+	  return 'mission_game'
+	end
   end 	
 end
