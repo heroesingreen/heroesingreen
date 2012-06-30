@@ -20,7 +20,7 @@
     - m_count = 1
     - missions.each do |mission|
       %tr.missionRow{:data => {:id => mission.id}}
-        %td
+        %td.missionText
           %span.mission_title= h mission.title
           %br
           %span.mission_task= mission.task

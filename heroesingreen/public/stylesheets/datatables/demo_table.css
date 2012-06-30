@@ -595,3 +595,7 @@ table.clickable > tbody > tr{
 .demoTable tr.selected {
 	background-color: #e0eee0 !important;
 }
+.demoTable tr.selected td:first-child {
+	border-left: 3px solid #080;
+	padding-left: 7px; /* 10px side padding, minus 3px border */
+}

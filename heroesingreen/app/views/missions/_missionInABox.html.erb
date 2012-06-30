@@ -9,12 +9,12 @@ $("button.doit").live("click", function() {
 </script>
 
 <div class="missionInABox">
+	<h3>Mission: <%= mission.title %></h3>
 	<div class="sidebar contentBox bgGray">
 		<img class="icon" width="48" height="48" src="http://a.fsdn.com/con/icons/fl/flowersaver@sf.net/Flower%20Saver%20Icon.png" />
 		<div class="carbon">25 lbs CO2</div>
 		<div class="points">20 points</div>
 	</div>
-	<h3><%= mission.title %></h3>
     <p>
 	<span class="copy">
                 What:
@@ -54,7 +54,6 @@ $("button.doit").live("click", function() {
         <% else %>
           <button class="doit">Do it!</button>
         <% end %>
-
 </div>
 
 <div id="mission_accepted_dialog" title="Mission Accepted!">
@@ -81,15 +80,3 @@ $("button.doit").live("click", function() {
      </p>
    </div>
 </div>
-
-
-<style>
-	.missionInABox {
-		width: 100%;
-	}
-	.missionInABox .sidebar {
-		float: right;
-		width: 100px;
-		text-align: center;
-	}
-</style>
