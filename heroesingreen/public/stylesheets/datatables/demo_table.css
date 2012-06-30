@@ -588,3 +588,10 @@ table td.points {
 div#missions {
     border: 3px solid #B2E67D;
 }
+
+table.clickable > tbody > tr{
+	cursor: pointer;
+}
+.demoTable tr.selected {
+	background-color: #e0eee0 !important;
+}

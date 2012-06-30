@@ -36,13 +36,13 @@
     $("table.display tbody tr").live('click', function() {
 		if ( $(this).hasClass("selected") ) return;
 
-		// Highlight the selected row. (Just like Highlander, THERE CAN ONLY BE ONE!)
+        // Highlight the selected row. (Just like Highlander, THERE CAN ONLY BE ONE!)
 		$(".missionList .missionRow.selected").removeClass("selected");
 		$(this).addClass("selected");
 		// http://www.youtube.com/watch?v=pkugCyP7leU
-
+		
 		// Load mission deets
-		var id = $(this).data("id");
+        var id = $(this).data("id");
         if ((typeof(id) == "undefined") || (id === "")) {
             id = $(this).attr("data");
             id = id.gsub(/id/, '');
@@ -56,18 +56,8 @@
 
 </script>
 
-
-<!--div class="search_box">
-	<h2>Mission Search</h2>
-	<%search_term ||= ''%>
-	<%form_tag :action=>'search' do%>
-		<%=text_field_tag 'search_text', search_term, :size=>50%><br/>
-		<%=submit_tag "What missions await?"%>
-	<%end%>	
-</div-->
-
 <div id="search_mission_list">
-	<h2 style="text-align: center">Missions</h2>
+	<h2 style="text-align: center">My Current Missions</h2>
 	<div style="max-height: 500px; overflow-y: auto;">
 		<%= render :partial => "missions/mission_list", :locals => { :missions => @missions } %>
 	</div>

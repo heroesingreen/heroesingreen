@@ -9,7 +9,7 @@
     $('#mission_list').dataTable({bInfo: false, bFilter: false, bPaginate: false});
   });
 
-%table.display
+%table.display.demoTable.clickable.missionList
   %thead
     %tr
       %th
@@ -19,7 +19,7 @@
   %tbody
     - m_count = 1
     - missions.each do |mission|
-      %tr{:data => {:id => mission.id}}
+      %tr.missionRow{:data => {:id => mission.id}}
         %td
           %span.mission_title= h mission.title
           %br
