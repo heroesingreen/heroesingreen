@@ -13,7 +13,8 @@
 .missionInABox {
 	width: 100%;
 }
-.missionInABox h2, .missionInABox h3 { text-align: center; }
+.missionInABox h3 { text-align: center; }
+
 .missionInABox .sidebar {
 	float: right;
 	width: 100px;
@@ -21,6 +22,19 @@
 	padding: 9px;
 	text-align: center;
 }
+.missionInABox .sidebar .carbon,
+.missionInABox .sidebar .points { font-size: small; }
+.missionInABox .sidebar .num {
+	font-size: medium;
+	font-weight: bold;
+}
+
+.missionInABox .copy {
+	font-size: 10pt;
+	line-height: 12pt;
+	color: #555;
+}
+.missionInABox .copy .lead { font-weight: bold; }
 
 #missionDetails > .contentBox {
 	position: relative;
@@ -43,4 +57,10 @@
 	border-width: 9px 28px 9px 0;
 	border-color: transparent white;
 	content: "";
+}
+
+/* Details popup */
+#mission_accepted_dialog {
+	font-size: 10pt;
+	line-height: 12pt;
 }

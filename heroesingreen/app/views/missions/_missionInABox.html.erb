@@ -1,5 +1,5 @@
 <script>
-$("#mission_accepted_dialog").dialog({ autoOpen: false, minWidth: 400 } );
+$("#mission_accepted_dialog").dialog({ autoOpen: false, modal: true, minWidth: 400 } );
 
 $("button.doit").live("click", function() {
   console.log("Opening dialog");
@@ -12,54 +12,51 @@ $("button.doit").live("click", function() {
 	<h3>Mission: <%= mission.title %></h3>
 	<div class="sidebar contentBox bgGray">
 		<img class="icon" width="48" height="48" src="http://a.fsdn.com/con/icons/fl/flowersaver@sf.net/Flower%20Saver%20Icon.png" />
-		<div class="carbon">25 lbs CO2</div>
-		<div class="points">20 points</div>
+		<div class="carbon"><span class="num"><%= mission.points * 0.1 %></span> lbs CO2</div>
+		<div class="points"><span class="num"><%= mission.points %></span> points</div>
 	</div>
-    <p>
-	<span class="copy">
-                What:
+
+	<p class="copy">
+		<span class="lead">What:</span>
 		<%= mission.intro %>
-	</span>
-    </p>
-    <p>
-	<span class="copy">
-                Why:
+	</p>
+    <p class="copy">
+		<span class="lead">Why:</span>
 		<%= mission.description %>
-	</span>
-    </p>
-    <p>
-	<span class="copy">
-                How:
+	</p>
+    <p class="copy">
+		<span class="lead">How:</span>
 		<%= mission.task %>
-	</span>
-    </p>
+	</p>
 
 	<div class="clear"></div>
 
-        <% if !mission.mission_statuses.empty? %>
-          <% if ms = mission.mission_statuses.exists?(:user_id => current_user.id) %>
-            <% ums = mission.mission_statuses.find(:all, :conditions => ["user_id = ?", current_user.id]) %>
-            <% if ums.status == MissionStatus::ACTIVATED_STATUS %>
-              <% time_remaining = ums.time_remaining %>
-              <% if !time_remaining.nil? %>
-                Time remaining: <%= time_ago_in_words(ums.time_remaining) %>
-              <% end %>
-            <% elsif ums.status == MissionStatus::COMPLETED_STATUS %>
-              Completed
-            <% end %>
-          <% else %>
-            <button class="doit">Do it!</button>
-          <% end %>
+	<% if !mission.mission_statuses.empty? %>
+	  <% if ms = mission.mission_statuses.exists?(:user_id => current_user.id) %>
+		<% ums = mission.mission_statuses.find(:all, :conditions => ["user_id = ?", current_user.id]) %>
+		<% if ums.status == MissionStatus::ACTIVATED_STATUS %>
+		  <% time_remaining = ums.time_remaining %>
+		  <% if !time_remaining.nil? %>
+			Time remaining: <%= time_ago_in_words(ums.time_remaining) %>
+		  <% end %>
+		<% elsif ums.status == MissionStatus::COMPLETED_STATUS %>
+		  Completed
+		<% end %>
+	  <% else %>
+		<button class="doit">Do it!</button>
+	  <% end %>
 
-        <% else %>
-          <button class="doit">Do it!</button>
-        <% end %>
+	<% else %>
+	  <button class="doit">Do it!</button>
+	<% end %>
 </div>
 
 <div id="mission_accepted_dialog" title="Mission Accepted!">
-    <p><%= link_to mission.title, mission %> was added to your list.
-      (remove mission)<br/>
-      <%= @mission.task %>
+    <p>
+		<strong><%= link_to mission.title, mission %></strong> was added to your Missions list.
+		<a class="cancel">(remove mission)</a>
+		<p/>
+		<strong>Your task:</strong> <%= @mission.task %>
     </p>
 
     <div>
