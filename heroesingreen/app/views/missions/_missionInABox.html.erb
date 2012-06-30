@@ -1,3 +1,13 @@
+<script>
+$("#mission_accepted_dialog").dialog({ autoOpen: false, minWidth: 400 } );
+
+$("button.doit").live("click", function() {
+  console.log("Opening dialog");
+  $("#mission_accepted_dialog").dialog('open');
+});
+
+</script>
+
 <div class="missionInABox">
 	<div class="sidebar contentBox bgGray">
 		<img class="icon" width="48" height="48" src="http://a.fsdn.com/con/icons/fl/flowersaver@sf.net/Flower%20Saver%20Icon.png" />
@@ -5,12 +15,73 @@
 		<div class="points">20 points</div>
 	</div>
 	<h3><%= mission.title %></h3>
+    <p>
 	<span class="copy">
+                What:
+		<%= mission.intro %>
+	</span>
+    </p>
+    <p>
+	<span class="copy">
+                Why:
+		<%= mission.description %>
+	</span>
+    </p>
+    <p>
+	<span class="copy">
+                How:
 		<%= mission.task %>
 	</span>
+    </p>
+
 	<div class="clear"></div>
-	<button>Let's do it!</button>
+
+        <% if !mission.mission_statuses.empty? %>
+          <% if ms = mission.mission_statuses.exists?(:user_id => current_user.id) %>
+            <% ums = mission.mission_statuses.find(:all, :conditions => ["user_id = ?", current_user.id]) %>
+            <% if ums.status == MissionStatus::ACTIVATED_STATUS %>
+              <% time_remaining = ums.time_remaining %>
+              <% if !time_remaining.nil? %>
+                Time remaining: <%= time_ago_in_words(ums.time_remaining) %>
+              <% end %>
+            <% elsif ums.status == MissionStatus::COMPLETED_STATUS %>
+              Completed
+            <% end %>
+          <% else %>
+            <button class="doit">Do it!</button>
+          <% end %>
+
+        <% else %>
+          <button class="doit">Do it!</button>
+        <% end %>
+
 </div>
+
+<div id="mission_accepted_dialog" title="Mission Accepted!">
+    <p><%= link_to mission.title, mission %> was added to your list.
+      (remove mission)<br/>
+      <%= @mission.task %>
+    </p>
+
+    <div>
+      <div id="dialog_timeleft" class="sidebar contentBox bgGray">
+        Time left
+      </div>
+    </div>
+
+   <div id="dialog_share">
+     Share on Facebook
+   </div>
+
+   <div class="clear"></div>
+
+   <div id="bottombar">
+     <p>
+       <%= link_to "More Missions", missions_path %> <%= link_to "Home", root_path %>
+     </p>
+   </div>
+</div>
+
 
 <style>
 	.missionInABox {

@@ -14,3 +14,15 @@ div.MissionTitle{
 div.MissionText{
 	text-align: center;	
 }
+
+div#dialog_timeleft {
+    float: left;
+}
+
+div#dialog_share {
+    float: right;
+}
+
+div#mission_accepted_dialog div#bottombar {
+    text-align: center;
+}
