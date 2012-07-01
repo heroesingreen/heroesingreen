@@ -1,3 +1,2 @@
-console.log("Opening dialog");
 $("#mission_accepted_dialog").html("<%= escape_javascript(render :partial => 'mission_accepted_dialog', :locals => { :mission_status => @mission_status }) %></div>");
 $("#mission_accepted_dialog").dialog('open');

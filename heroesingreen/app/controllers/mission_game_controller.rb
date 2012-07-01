@@ -103,6 +103,11 @@ class MissionGameController < ApplicationController
       @logged_in_user.add_points(@mission.points)
    		@not_logged_in = false
    	end
+
+    respond_to do |format|
+      format.js
+    end
+
   end
   
   def drop

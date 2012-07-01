@@ -80,8 +80,8 @@ class MissionStatus < ActiveRecord::Base
   def time_remaining
     if mission.timed_mission?
       Rails.logger.info time_elapsed.inspect
-      Rails.logger.info mission[:duration].inspect
-      time_elapsed - mission[:duration]
+      Rails.logger.info mission[:duration].to_i.inspect
+      mission[:duration].to_i - time_elapsed
     else
       nil
     end
