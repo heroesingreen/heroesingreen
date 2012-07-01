@@ -2,48 +2,37 @@
 $("#mission_accepted_dialog").dialog({ autoOpen: false, modal: true, minWidth: 400 } );
 $("#mission_completed_dialog").dialog({ autoOpen: false, modal: true, minWidth: 400 } );
 
+var execMissionAction = function(node, url) {
+  var id = node.data("id");
+  if ((typeof(id) == "undefined") || (id === "")) {
+    id = node.attr("data");
+    id = id.gsub(/id/, '');
+  }
+
+  $.ajaxSetup({
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }
+  });
+
+  $.ajax({
+    type: "POST",
+    url: "/mission_game/" + url + "/" + id,
+    dataType: "script"
+  });
+};
+
 $("button.doit").live("click", function() {
-  var id = $(this).data("id");
-  if ((typeof(id) == "undefined") || (id === "")) {
-    id = $(this).attr("data");
-    id = id.gsub(/id/, '');
-  }
-
-  $.ajaxSetup({
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-    }
-  });
-
-  $.ajax({
-    type: "POST",
-    url: "/mission_game/accept/" + id,
-    dataType: "script"
-  });
+  execMissionAction($(this), "accept");
 });
-
-$("button.complete").live("click", function() {
-  var id = $(this).data("id");
-  if ((typeof(id) == "undefined") || (id === "")) {
-    id = $(this).attr("data");
-    id = id.gsub(/id/, '');
-  }
-
-  $.ajaxSetup({
-    beforeSend: function(xhr) {
-      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-    }
-  });
-
-  $.ajax({
-    type: "POST",
-    url: "/mission_game/complete/" + id,
-    dataType: "script"
-  });
+$("button.completeMission").live("click", function() {
+  execMissionAction($(this), "complete");
 });
-
-
+$("button.forfeitMission").live("click", function() {
+  execMissionAction($(this), "drop");
+});
 </script>
+
 
 <div class="missionInABox">
 	<h3>Mission: <%= mission.title %></h3>
@@ -75,17 +64,18 @@ $("button.complete").live("click", function() {
               <% time_remaining = ums.time_remaining %>
               <% if !time_remaining.nil? %>
                 <% if (time_remaining <= 0) %>
-                  <button class="complete" data-id="<%= mission.id %>">Done!</button>
+                  <button class="completeMission" data-id="<%= mission.id %>">Done!</button>
                 <% else %>
                   Time remaining: <%= time_ago_in_words(ums.time_remaining) %>
                 <% end %>
               <% else %>
-                <button class="complete" data-id="<%= mission.id %>">Done!</button>
-              <% end %>
+			    <button class="completeMission" data-id="<%= mission.id %>">Done!</button>
+			  <% end %>
+			  <button class="forfeitMission" data-id="<%= mission.id %>">I'm a loser, baby</button>
             <% elsif ums.status == MissionStatus::COMPLETED_STATUS %>
               Completed
             <% else %>
-              <button class="complete" data-id="<%= mission.id %>">Done!</button>
+              <button class="completeMission" data-id="<%= mission.id %>">Done!</button>
             <% end %>
           <% else %>
             <button class="doit" data-id="<%= mission.id %>">Do it!</button>
