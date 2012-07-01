@@ -1,6 +1,7 @@
 class Mission < ActiveRecord::Base
-	has_many :mission_statuses
-	
+  has_many :mission_statuses
+  has_many :users, :through => :mission_statuses
+
   has_many :mission_tag_mappings
   has_many :mission_tags, :through => :mission_tag_mappings 
 	
@@ -67,6 +68,11 @@ class Mission < ActiveRecord::Base
     else
       self[:effort]
     end
+  end
+
+  # Return true if this is a timed mission, false otherwise
+  def timed_mission?
+    return !duration.nil?
   end
 
 end

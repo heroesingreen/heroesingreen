@@ -65,17 +65,27 @@ class MissionGameController < ApplicationController
   
   #Mission status is always created when you accept a mission
   def accept
-  	@mission = Mission.find(params[:id])
-     
+    @mission = Mission.find(params[:id])
+
     logged_in_user = get_user
     if(logged_in_user)
-    	@mission_status = logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
-    	@mission_status.activate!
-   		@mission_status.save!
-   	end
+      logger.info "Good!"
+      @mission_status = logged_in_user.missionStatuses.find_or_create_by_mission_id(@mission.id)
+      @mission_status.activate!
+      @mission_status.save!
+
+      logger.info "Mission status!"
+      logger.info @mission_status.inspect
+
+    else
+      logger.info "Bad!"
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
- 
-   
+
   def complete
     unless(params[:id]!=nil)
     	#mission id not found

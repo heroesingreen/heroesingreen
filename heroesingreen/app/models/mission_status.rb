@@ -70,4 +70,19 @@ class MissionStatus < ActiveRecord::Base
 #    @mission_status.status
 #  end
 
+  # Return the time elapsed since this mission was started
+  def time_elapsed
+    Time.now - created_at
+  end
+
+  # Return the time remaining to complete the mission
+  # If there is no duration set on the mission, return nil
+  def time_remaining
+    if mission.timed_mission?
+      time_elapsed - mission.duration
+    else
+      nil
+    end
+  end
+
 end

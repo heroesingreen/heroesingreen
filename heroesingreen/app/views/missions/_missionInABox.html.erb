@@ -2,8 +2,24 @@
 $("#mission_accepted_dialog").dialog({ autoOpen: false, modal: true, minWidth: 400 } );
 
 $("button.doit").live("click", function() {
-  console.log("Opening dialog");
-  $("#mission_accepted_dialog").dialog('open');
+  var id = $(this).data("id");
+  if ((typeof(id) == "undefined") || (id === "")) {
+    id = $(this).attr("data");
+    id = id.gsub(/id/, '');
+  }
+  console.log("id: " + id);
+
+  $.ajaxSetup({
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }
+  });
+
+  $.ajax({
+    type: "POST",
+    url: "/mission_game/accept/" + id,
+    dataType: "script"
+  });
 });
 
 </script>
@@ -31,49 +47,25 @@ $("button.doit").live("click", function() {
 
 	<div class="clear"></div>
 
-	<% if !mission.mission_statuses.empty? %>
-	  <% if ms = mission.mission_statuses.exists?(:user_id => current_user.id) %>
-		<% ums = mission.mission_statuses.find(:all, :conditions => ["user_id = ?", current_user.id]) %>
-		<% if ums.status == MissionStatus::ACTIVATED_STATUS %>
-		  <% time_remaining = ums.time_remaining %>
-		  <% if !time_remaining.nil? %>
-			Time remaining: <%= time_ago_in_words(ums.time_remaining) %>
-		  <% end %>
-		<% elsif ums.status == MissionStatus::COMPLETED_STATUS %>
-		  Completed
-		<% end %>
-	  <% else %>
-		<button class="doit">Do it!</button>
-	  <% end %>
+        <% if !mission.mission_statuses.empty? %>
+          <% if ms = mission.mission_statuses.exists?(:user_id => current_user.id) %>
+            <% ums = mission.mission_statuses.find(:first, :conditions => ["user_id = ?", current_user.id]) %>
+            <% if ums.status == MissionStatus::ACTIVATED_STATUS %>
+              <% time_remaining = ums.time_remaining %>
+              <% if !time_remaining.nil? %>
+                Time remaining: <%= time_ago_in_words(ums.time_remaining) %>
+              <% end %>
+            <% elsif ums.status == MissionStatus::COMPLETED_STATUS %>
+              Completed
+            <% end %>
+          <% else %>
+            <button class="doit" data-id="<%= mission.id %>">Do it!</button>
+          <% end %>
 
-	<% else %>
-	  <button class="doit">Do it!</button>
-	<% end %>
+        <% else %>
+            <button class="doit" data-id="<%= mission.id %>">Do it!</button>
+        <% end %>
 </div>
 
 <div id="mission_accepted_dialog" title="Mission Accepted!">
-    <p>
-		<strong><%= link_to mission.title, mission %></strong> was added to your Missions list.
-		<a class="cancel">(remove mission)</a>
-		<p/>
-		<strong>Your task:</strong> <%= @mission.task %>
-    </p>
-
-    <div>
-      <div id="dialog_timeleft" class="sidebar contentBox bgGray">
-        Time left
-      </div>
-    </div>
-
-   <div id="dialog_share">
-     Share on Facebook
-   </div>
-
-   <div class="clear"></div>
-
-   <div id="bottombar">
-     <p>
-       <%= link_to "More Missions", missions_path %> <%= link_to "Home", root_path %>
-     </p>
-   </div>
 </div>

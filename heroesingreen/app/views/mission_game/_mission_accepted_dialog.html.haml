@@ -1,0 +1,18 @@
+%p
+  =link_to mission_status.mission.title, mission_status.mission
+  was added to your list.  (remove mission)
+  %br
+  = mission_status.mission.task
+
+%div
+  %div#dialog_timeleft.sidebar.contentBox.bgGray
+
+#dialog_share
+  Share on Facebook
+
+.clear
+
+#bottombar
+  %p
+    =link_to "More Missions", missions_path
+    =link_to "Home", root_path

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :missionStatuses
+  has_many :missions, :through => :missionStatuses
   has_many :gardens
   validates_presence_of :email
   validates_uniqueness_of :email
