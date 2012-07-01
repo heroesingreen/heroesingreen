@@ -1,7 +1,12 @@
 %p
-  =link_to mission_status.mission.title, mission_status.mission
-  was added to your list.  (remove mission)
-  %br
+  %strong
+    =link_to mission_status.mission.title, mission_status.mission
+  was added to your list.
+  %a.cancel
+    (remove mission)
+  %p
+  %strong
+    Your task:
   = mission_status.mission.task
 
 %div
