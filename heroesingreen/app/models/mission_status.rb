@@ -79,7 +79,9 @@ class MissionStatus < ActiveRecord::Base
   # If there is no duration set on the mission, return nil
   def time_remaining
     if mission.timed_mission?
-      time_elapsed - mission.duration
+      Rails.logger.info time_elapsed.inspect
+      Rails.logger.info mission[:duration].inspect
+      time_elapsed - mission[:duration]
     else
       nil
     end

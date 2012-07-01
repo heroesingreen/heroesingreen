@@ -1,5 +1,6 @@
 <script>
 $("#mission_accepted_dialog").dialog({ autoOpen: false, modal: true, minWidth: 400 } );
+$("#mission_completed_dialog").dialog({ autoOpen: false, modal: true, minWidth: 400 } );
 
 $("button.doit").live("click", function() {
   var id = $(this).data("id");
@@ -7,7 +8,6 @@ $("button.doit").live("click", function() {
     id = $(this).attr("data");
     id = id.gsub(/id/, '');
   }
-  console.log("id: " + id);
 
   $.ajaxSetup({
     beforeSend: function(xhr) {
@@ -21,6 +21,27 @@ $("button.doit").live("click", function() {
     dataType: "script"
   });
 });
+
+$("button.complete").live("click", function() {
+  var id = $(this).data("id");
+  if ((typeof(id) == "undefined") || (id === "")) {
+    id = $(this).attr("data");
+    id = id.gsub(/id/, '');
+  }
+
+  $.ajaxSetup({
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }
+  });
+
+  $.ajax({
+    type: "POST",
+    url: "/mission_game/complete/" + id,
+    dataType: "script"
+  });
+});
+
 
 </script>
 
@@ -53,10 +74,18 @@ $("button.doit").live("click", function() {
             <% if ums.status == MissionStatus::ACTIVATED_STATUS %>
               <% time_remaining = ums.time_remaining %>
               <% if !time_remaining.nil? %>
-                Time remaining: <%= time_ago_in_words(ums.time_remaining) %>
+                <% if (time_remaining <= 0) %>
+                  <button class="complete" data-id="<%= mission.id %>">Done!</button>
+                <% else %>
+                  Time remaining: <%= time_ago_in_words(ums.time_remaining) %>
+                <% end %>
+              <% else %>
+                <button class="complete" data-id="<%= mission.id %>">Done!</button>
               <% end %>
             <% elsif ums.status == MissionStatus::COMPLETED_STATUS %>
               Completed
+            <% else %>
+              <button class="complete" data-id="<%= mission.id %>">Done!</button>
             <% end %>
           <% else %>
             <button class="doit" data-id="<%= mission.id %>">Do it!</button>
@@ -68,4 +97,7 @@ $("button.doit").live("click", function() {
 </div>
 
 <div id="mission_accepted_dialog" title="Mission Accepted!">
+</div>
+
+<div id="mission_completed_dialog" title="Mission Completed!">
 </div>
