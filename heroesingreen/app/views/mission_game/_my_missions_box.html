@@ -36,11 +36,18 @@
     $("table.display tbody tr").live('click', function() {
 		if ( $(this).hasClass("selected") ) return;
 
-        // Highlight the selected row. (Just like Highlander, THERE CAN ONLY BE ONE!)
+        var deets = $("#missionDetails");
+		var spinner = $("#missionDetailsSpinner.spinnerWidget");
+
+		// Highlight the selected row. (Just like Highlander, THERE CAN ONLY BE ONE!)
 		$(".missionList .missionRow.selected").removeClass("selected");
 		$(this).addClass("selected");
 		// http://www.youtube.com/watch?v=pkugCyP7leU
 		
+		// Delete old mission deets, and show spinner
+		deets.hide();
+		spinner.show();
+
 		// Load mission deets
         var id = $(this).data("id");
         if ((typeof(id) == "undefined") || (id === "")) {
@@ -50,7 +57,8 @@
         $.ajax({
             type: "GET",
             url: "/missions/show_mission_in_a_box/" + id,
-            dataType: "script"
+            dataType: "script",
+			success: function() { spinner.hide(); deets.show(); }
         });
     });
 
