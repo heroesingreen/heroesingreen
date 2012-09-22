@@ -4,10 +4,14 @@ class SignupController < ApplicationController
 
   #Newsletter signup
   def index
-    @signupEmail = SignupEmail.new
-    @signupEmail.email = 'Email Address'
-    respond_to do |format|
+    if user_signed_in?
+      redirect_to(user_root_url)
+    else
+      @signupEmail = SignupEmail.new
+      @signupEmail.email = 'Email Address'
+      respond_to do |format|
         format.html #signup.html.erb
+      end
     end
   end
 
