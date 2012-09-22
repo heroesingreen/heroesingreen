@@ -39,7 +39,10 @@ class AccountController < ApplicationController
         @points_required = next_level.points_required - @user.total_points
       end
     end
-    
+
+    @missions = get_user.missionStatuses.select{|s| s.activated?}.map{|m| m.mission}
+    logger.info "Current missions: " + @missions.inspect
+
   	#Update first name if any
   	if(request.post? && params[:user])
   	   @user.update_attributes(params[:user])
@@ -50,11 +53,15 @@ class AccountController < ApplicationController
   def quest_log
     @upcoming_quests = get_user.missionStatuses.find(:all)
     @upcoming_quests = @upcoming_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
+    @missions = @upcoming_quests.map { |ms| ms.mission }
+    @missions_title = "Upcoming Quests"
   end
   
   # Show accomplishments
   def accomplishments
-    @completed_missions = get_user.missionStatuses.find(:all, :conditions=>["status = ?", MissionStatus::COMPLETED_STATUS])
+    mission_statuses = get_user.missionStatuses.find(:all, :conditions=>["status = ?", MissionStatus::COMPLETED_STATUS])
+    @missions = mission_statuses.map { |ms| ms.mission }
+    @missions_title = "Accomplishments"
   end
   
   # Allow user login

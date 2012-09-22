@@ -1,5 +1,5 @@
 class Mission < ActiveRecord::Base
-  has_many :mission_statuses
+  has_many :mission_statuses, :dependent => :destroy
   has_many :users, :through => :mission_statuses
 
   has_many :mission_tag_mappings
