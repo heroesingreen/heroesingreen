@@ -1,0 +1,12 @@
+
+	<div class="header">
+		<div class="headerContent">
+		Mission Administration
+		</div>
+		<div class="headerLinks">
+			<div id="showMissions" class="headerLink"><%=link_to "Show missions", :controller=>:missions, :action=>:index%></div>
+			<div id="addMissions" class="headerLink"><%=link_to "Add new mission", :controller=>:missions, :action=>:new%></div>
+			<div id="goHome" class="headerLink"><%=link_to "Leave admin, go home", :controller=>:account, :action=>:home%></div>
+		</div>
+	</div>
+	<!-- _footer will close fullHeightPage -->
