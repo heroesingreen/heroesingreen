@@ -75,4 +75,8 @@ class Mission < ActiveRecord::Base
     return !duration.nil?
   end
 
+  def times_completed(user)
+    mission_statuses.find_all_by_user_id(user.id).length
+  end
+
 end

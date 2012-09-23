@@ -72,7 +72,12 @@ $("button.forfeitMission").live("click", function() {
 			  <% end %>
 			  <button class="forfeitMission" data-id="<%= mission.id %>">I'm a loser, baby</button>
             <% elsif ums.status == MissionStatus::COMPLETED_STATUS %>
-              Completed
+              <% if ums.mission.repeatable? %>
+                <button class="doit" data-id="<%= mission.id %>">Do again!</button>
+                Completed <%= mission.times_completed(current_user) %>x
+              <% else %>
+                Completed
+              <% end %>
             <% else %>
               <button class="completeMission" data-id="<%= mission.id %>">Done!</button>
             <% end %>
