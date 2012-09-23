@@ -1,9 +1,10 @@
 <%- content_for:head_content do %>
 	<%= stylesheet_link_tag 'admin' %>
 <% end-%>
+
 <%= render :partial => 'shared/html_head'%>
-<div class="mainContent centered">
 	<%= render :partial => 'shared/header_admin'%>
+<div class="adminContent">
 	
 	<div class="content">
 		<%= render :partial=>'shared/display_flashes'%>
