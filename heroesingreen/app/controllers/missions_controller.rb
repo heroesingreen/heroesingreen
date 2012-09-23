@@ -2,7 +2,7 @@ class MissionsController < ApplicationController
   before_filter :authenticate_user!
   #before_filter :ensure_user
   
-  layout nil
+  layout "missions"
   
   # GET /missions
   # GET /missions.xml
