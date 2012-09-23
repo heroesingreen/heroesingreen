@@ -1,0 +1,88 @@
+
+	.garden {
+		background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
+		width: 695px; 
+		height: 544px;
+		float: left;
+	}	
+	
+	.gardenStats {
+		float: right;
+		width: 215px; 
+		background: white;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-khtml-border-radius: 10px;
+		border-radius: 10px;
+		padding: 15px;
+		margin-bottom:15px;
+	}
+	
+	#history ol {list-style: none;
+	padding-left: 0px;
+	}
+	
+	.history {
+		float: right;
+		width: 215px; 
+		background: white;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-khtml-border-radius: 10px;
+		border-radius: 10px;
+		padding: 15px;
+		margin-bottom:15px;
+		text-align:center;
+	}
+	ol {list-style:none;} 
+
+	#myGarden {
+		background-color: #AA9355;
+	}
+	#myGarden a {
+		color: #FFF;
+	}
+	.submenu_item {
+		min-width: 75px;
+		color: #000;
+		float: left;
+		text-align: center;
+	}
+	.submenu_item a {
+		text-decoration: none;
+		color: #000;
+	}
+	.submenu_item a:hover {
+		color: #FFF;
+	}
+	#submenu_garden {
+		color: #FFF;
+	}
+	.ground {
+		width: 77px;
+		height: 75px;
+		border: 1px black hidden; 
+		float: left;
+		position: relative;
+	}
+	.highlighted {
+		border-style: dotted !important;
+		opacity: 0.5;
+		background: #CEF;
+	}
+	.highlighted:hover {
+		background: #CFE;
+		cursor: hand; 
+		cursor: pointer;
+	}
+	.plant_in_garden {
+		position: absolute;
+		bottom: 0;
+	}
+	.plant_in_garden img {
+		opacity: 0.9;
+	}
+	.plant_in_garden img:hover {
+		opacity:1;
+	}
+	.clear {clear:both;}

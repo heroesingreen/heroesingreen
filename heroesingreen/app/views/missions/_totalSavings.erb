@@ -3,6 +3,6 @@
 	<%@completed_missions.each do |missionStatus| %>
 		<% @totalPoints = @totalPoints + missionStatus.mission_points%>
 	<%end%>
-	<%= SimulationUtilities.pointsToBiomassInKg(@totalPoints) %>kg of Biomass
-    (<%= SimulationUtilities.pointsToCo2InKg(@totalPoints) %>kg of C02)
+	<strong> <%= SimulationUtilities.pointsToBiomassInKg(@totalPoints) %>kg</strong> of Biomass
+    (<strong><%= SimulationUtilities.pointsToCo2InKg(@totalPoints) %>kg</strong> of C02)
 </div>

@@ -1,14 +1,12 @@
-<style>
-	#history {background:#fff; border-radius:16px; text-align:center;}
-	#history > ol {list-style:none; 
-</style>
+	<%= stylesheet_link_tag 'garden' %>
+	
 <div id="history">
-	<h3>History</h3>
+	<h3>Mission History</h3>
 	<ol>
 	<%@completed_missions.each do |missionStatus| %>
 		<li>
 			<div>
-				<%=missionStatus.mission.title%>
+				<strong> <%=missionStatus.mission.title%> </strong>
 			</div>
 			<div>	
 				<%=missionStatus.updated_at.to_date%> - <%=SimulationUtilities.pointsToCo2InKg(missionStatus.mission_points)%> kg C02

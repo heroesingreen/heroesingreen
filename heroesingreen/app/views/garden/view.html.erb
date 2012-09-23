@@ -3,78 +3,8 @@
   <%= stylesheet_link_tag "jquery-ui/smoothness/jquery-ui-1.8.17.custom" %>
 <% end %>
 
-<style>
-	.gardenStats {
-		background-color: #fff;
-		float: right;
-	}
-	.garden {
-		background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
-		width: 718px; 
-		height: 544px;
-		clear: both;
-	}	
-	#myGarden {
-		background-color: #AA9355;
-	}
-	#myGarden a {
-		color: #FFF;
-	}
-	.submenu_item {
-		min-width: 75px;
-		color: #000;
-		float: left;
-		text-align: center;
-	}
-	.submenu_item a {
-		text-decoration: none;
-		color: #000;
-	}
-	.submenu_item a:hover {
-		color: #FFF;
-	}
-	#submenu_garden {
-		color: #FFF;
-	}
-	.ground {
-		width: 77px;
-		height: 75px;
-		border: 1px black hidden; 
-		float: left;
-		position: relative;
-	}
-	.highlighted {
-		border-style: dotted !important;
-		opacity: 0.5;
-		background: #CEF;
-	}
-	.highlighted:hover {
-		background: #CFE;
-		cursor: hand; 
-		cursor: pointer;
-	}
-	.plant_in_garden {
-		position: absolute;
-		bottom: 0;
-	}
-	.plant_in_garden img {
-		opacity: 0.9;
-	}
-	.plant_in_garden img:hover {
-		opacity:1;
-	}
-	.clear {clear:both;}
-</style>
-
-<div class="gardenStats">
-	<h3>Garden Stats</h3>
-	<!-- Include the total savings partial view (app/view/missions/_totalSavings.erb), which has information about the total gains as a results of the completed missions-->
-	<%= render :partial=>'missions/totalSavings', :locals => {:completed_missions => @completed_missions}%>
-	<div>You have <%=@logged_in_user.avail_points%> points (enough for <%= SimulationUtilities.pointsToBiomassInKg(@logged_in_user.avail_points) %> kg more)</div>
-	<div class="BuyMore"><%= button_to "Buy More", :controller=>:store, :action=>:view%></div>
-</div>
-
-Your garden measures your progress.
+Your garden measures your progress by converting the amount of C02 you have conserved into roughly equivalent biomass. 
+<div class="clear"></div>
 
 <%@plantId = params[:pl]%>
 
@@ -109,12 +39,23 @@ Your garden measures your progress.
 	<%end%>
 </div>
 
+<div class="gardenStats">
+	<h3>Garden Stats</h3>
+	<!-- Include the total savings partial view (app/view/missions/_totalSavings.erb), which has information about the total gains as a results of the completed missions-->
+	<%= render :partial=>'missions/totalSavings', :locals => {:completed_missions => @completed_missions}%>
+	<br />
+	<div>You have <strong><%=@logged_in_user.avail_points%> points</strong> (enough for <%= SimulationUtilities.pointsToBiomassInKg(@logged_in_user.avail_points) %> kg more plants!)</div>
+	<div class="BuyMore"><%= button_to "Buy More", :controller=>:store, :action=>:view%></div>
+	<hr />
+	<!-- Include the history partial view (app/view/missions/_history.erb), which has the list of completed missions-->
+	<%= render :partial=>'missions/history', :locals => {:completed_missions => @completed_missions}%>
+</div>
+
 <div id="plant-delete-dialog" class="hidden" title="Delete this plant?">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This plant will be permanently deleted and cannot be recovered. Are you sure?</p>
 </div>
 
-<!-- Include the history partial view (app/view/missions/_history.erb), which has the list of completed missions-->
-<%= render :partial=>'missions/history', :locals => {:completed_missions => @completed_missions}%>
+<div class="clear"></div>
 
 <script>
 	//Try to buy this plant, for planting at position x,y in the garden
