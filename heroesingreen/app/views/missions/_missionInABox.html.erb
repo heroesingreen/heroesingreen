@@ -61,9 +61,8 @@ $("button.forfeitMission").live("click", function() {
           <% if ms = mission.mission_statuses.exists?(:user_id => current_user.id) %>
             <% ums = mission.mission_statuses.find(:first, :conditions => ["user_id = ?", current_user.id]) %>
             <% if ums.status == MissionStatus::ACTIVATED_STATUS %>
-              <% time_remaining = ums.time_remaining %>
-              <% if !time_remaining.nil? %>
-                <% if (time_remaining <= 0) %>
+              <% if !ums.time_remaining.nil? %>
+                <% if (ums.time_remaining <= 0) %>
                   <button class="completeMission" data-id="<%= mission.id %>">Done!</button>
                 <% else %>
                   Time remaining: <%= time_ago_in_words(ums.time_remaining) %>

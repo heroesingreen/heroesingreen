@@ -81,7 +81,7 @@ class MissionStatus < ActiveRecord::Base
     if mission.timed_mission?
       Rails.logger.info time_elapsed.inspect
       Rails.logger.info mission[:duration].to_i.inspect
-      mission[:duration].to_i - time_elapsed
+      mission[:duration].to_i - Time.now.to_i - created_at.to_i
     else
       nil
     end

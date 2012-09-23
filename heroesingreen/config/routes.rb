@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   map.current_missions 'mission_game/current_missions', :controller => 'mission_game', :action => 'current_missions'
 
+  map.find_mission 'mission_game/find_mission', :controller => 'mission_game', :action => 'find_mission'
+
   #map.resources :mission_games, :member => { :accept => :post }
 
   map.connect 'signup/v2', :controller => 'signup', :action => 'v2'
