@@ -25,9 +25,11 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Description</th>
+    <th>Image_Path</th>
+	<th>Thumbnail</th>
     <th>Cost</th>
     <th>Virility</th>
-    <th>Image_Path</th>
     <th>Layer_Max</th>
     <th>Health_Max</th>
     <th>Wetness Tolerance</th>
@@ -46,9 +48,11 @@
 <% @plant_templates.each do |plant_template| %>
   <tr>
     <td><%=h plant_template.name %></td>
+    <td><%=h plant_template.description %></td>	
+	<td><%=h plant_template.image_path %></td>
+	<td><%=h plant_template.thumbnail %></td>
     <td><%=h plant_template.cost %></td>
     <td><%=h plant_template.virility %></td>
-    <td><%=h plant_template.image_path %></td>
     <td><%=h plant_template.layer_max %></td>
     <td><%=h plant_template.health_max %></td>
     <td><%=h plant_template.wetness_tolerance %></td>

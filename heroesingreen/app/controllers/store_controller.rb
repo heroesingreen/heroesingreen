@@ -1,8 +1,6 @@
 class StoreController < ApplicationController
-	
-	layout "mission_game"
-	
-	layout "garden"
+		
+	layout "store"
   
   def index
     redirect_to(:action=>:view)
