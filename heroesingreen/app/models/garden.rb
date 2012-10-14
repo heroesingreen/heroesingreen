@@ -27,16 +27,16 @@ class Garden < ActiveRecord::Base
   end
 
   def add_plant(plant_id, x, y)
-    #if(is_compatible(plant_id, x, y))
+    if(is_compatible(plant_id, x, y))
       found_ground = createGround(x, y)
       
       #need to check if there's a plant like this already here? TODO:agrandhi
       new_plant = PlantTemplate.find(plant_id).createPlant(found_ground)
       new_plant.save!
       return true
-    #else
-    #  return false
-    #end
+    else
+      return false
+    end
   end
  
   def is_there_a_good_ground(plant_type) 

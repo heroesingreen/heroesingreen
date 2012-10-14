@@ -11,19 +11,26 @@ Your garden measures your progress by converting the amount of C02 you have cons
 <div class="garden">
 	<%@garden.size_y.times do |y|%>
 		<%@garden.size_x.times do |x|%>
-			<div class="ground highlighted" onclick="buy(<%=@plantId%>,<%=x%>,<%=y%>)">
+
+                  <% if !@plantId.nil? %>
+                    <% opts = "class=\"ground highlighted\" onclick=\"buy(#{@plantId},#{x},#{y})\"" %>
+                  <% else %>
+                    <% opts = "class=\"ground\"" %>
+                  <% end %>
+			<div <%= opts %>>
 				<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
 				<%if ground != nil%>
 					<%ground.plants.each do |plant|%>
+
 						<%if plant.plant_template.image_path != nil%>
 							<%img_url = "plants/#{plant.plant_template.image_path}"%>
-							<%if @garden.size_y - y == 1%>
-								<%img_url = img_url + "a.png"%>
-							<%elsif @garden.size_y - y == 2%>
-								<%img_url = img_url + "b.png"%>
-							<%elsif @garden.size_y - y == 3%>
-								<%img_url = img_url + "c.png"%>
-							<%end%>
+							<%#if @garden.size_y - y == 1%>
+								<%#img_url = img_url + "a.png"%>
+							<%#elsif @garden.size_y - y == 2%>
+								<%#img_url = img_url + "b.png"%>
+							<%#elsif @garden.size_y - y == 3%>
+								<%img_url = img_url + ".png"%>
+							<%#end%>
 							<div class="plant_in_garden" data-id="<%= plant.id %>" data-del-path="<%= plant_path(plant.id) %>" >
                                                           <%=image_tag(img_url,:title => plant.name) %>
                                                           <br>
