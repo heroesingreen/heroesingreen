@@ -11,9 +11,7 @@ Your garden measures your progress by converting the amount of C02 you have cons
 <div class="garden">
 	<%@garden.size_y.times do |y|%>
 		<%@garden.size_x.times do |x|%>
-			<div class="ground 
-			<%if (y > 3) and @plantId and @garden.is_compatible(@plantId,x,y)%> highlighted" onclick="buy(<%=@plantId%>,<%=x%>,<%=y%>)<%end%>
-			">
+			<div class="ground highlighted" onclick="buy(<%=@plantId%>,<%=x%>,<%=y%>)">
 				<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
 				<%if ground != nil%>
 					<%ground.plants.each do |plant|%>
