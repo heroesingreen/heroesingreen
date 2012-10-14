@@ -1,0 +1,137 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+INSERT INTO "schema_migrations" VALUES('20090522063447');
+INSERT INTO "schema_migrations" VALUES('20090522064722');
+INSERT INTO "schema_migrations" VALUES('20090617031512');
+INSERT INTO "schema_migrations" VALUES('20090617034005');
+INSERT INTO "schema_migrations" VALUES('20090617044610');
+INSERT INTO "schema_migrations" VALUES('20090818033746');
+INSERT INTO "schema_migrations" VALUES('20090818041018');
+INSERT INTO "schema_migrations" VALUES('20090818042050');
+INSERT INTO "schema_migrations" VALUES('20090818051606');
+INSERT INTO "schema_migrations" VALUES('20090818055045');
+INSERT INTO "schema_migrations" VALUES('20090818062015');
+INSERT INTO "schema_migrations" VALUES('20090818062121');
+INSERT INTO "schema_migrations" VALUES('20090922051543');
+INSERT INTO "schema_migrations" VALUES('20090922055355');
+INSERT INTO "schema_migrations" VALUES('20090929042053');
+INSERT INTO "schema_migrations" VALUES('20090929042445');
+INSERT INTO "schema_migrations" VALUES('20090929043042');
+INSERT INTO "schema_migrations" VALUES('20091110072014');
+INSERT INTO "schema_migrations" VALUES('20091117044427');
+INSERT INTO "schema_migrations" VALUES('20091117061752');
+INSERT INTO "schema_migrations" VALUES('20091117070415');
+INSERT INTO "schema_migrations" VALUES('20091215043114');
+INSERT INTO "schema_migrations" VALUES('20091215043528');
+INSERT INTO "schema_migrations" VALUES('20100112055536');
+INSERT INTO "schema_migrations" VALUES('20100112062225');
+INSERT INTO "schema_migrations" VALUES('20100112213800');
+INSERT INTO "schema_migrations" VALUES('20100406045243');
+INSERT INTO "schema_migrations" VALUES('20100525040702');
+INSERT INTO "schema_migrations" VALUES('20100626185340');
+INSERT INTO "schema_migrations" VALUES('20100626231518');
+INSERT INTO "schema_migrations" VALUES('20100626231823');
+INSERT INTO "schema_migrations" VALUES('20100627011800');
+INSERT INTO "schema_migrations" VALUES('20100707054333');
+INSERT INTO "schema_migrations" VALUES('20100707070441');
+INSERT INTO "schema_migrations" VALUES('20100930053208');
+INSERT INTO "schema_migrations" VALUES('20101019041059');
+INSERT INTO "schema_migrations" VALUES('20101019041431');
+INSERT INTO "schema_migrations" VALUES('20101019070236');
+INSERT INTO "schema_migrations" VALUES('20101019070436');
+INSERT INTO "schema_migrations" VALUES('20120318234751');
+INSERT INTO "schema_migrations" VALUES('20120319024308');
+INSERT INTO "schema_migrations" VALUES('20120519210727');
+INSERT INTO "schema_migrations" VALUES('20120922211806');
+CREATE TABLE "mission_statuses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mission_id" integer, "user_id" integer, "status" integer, "int_data" integer, "startDate" date, "created_at" datetime, "updated_at" datetime, "repeats" integer DEFAULT 0);
+INSERT INTO "mission_statuses" VALUES(1,1,2,1,NULL,NULL,'2012-09-22 01:15:02','2012-10-13 00:38:55',1);
+CREATE TABLE "sessions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "session_id" varchar(255) NOT NULL, "data" text, "created_at" datetime, "updated_at" datetime);
+INSERT INTO "sessions" VALUES(1,'bfc593e8511badc116562631cebf3862','BAh7CDoQX2NzcmZfdG9rZW5JIjFTMC96OHY1eVZLZUhseEVielFUSXUyampr
+VVFGdUZEdjdUUzd3YUY5eUJnPQY6BkVGSSIKZmxhc2gGOwZGSUM6J0FjdGlv
+bkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewBJIhl3
+YXJkZW4udXNlci51c2VyLmtleQY7BlRbB2MJVXNlcmkH
+','2012-09-21 22:06:07','2012-09-22 03:26:12');
+INSERT INTO "sessions" VALUES(2,'c9d4dc148dc86d75c7c686086613084e','BAh7CDoQX2NzcmZfdG9rZW5JIjFXZU5WNjRMMGFpbU5VcGxRT1ZNS2ttcllx
+bnhzYUpyN3hjemJuMjNwcUxBPQY6BkVGSSIKZmxhc2gGOwZGSUM6J0FjdGlv
+bkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewBJIhl3
+YXJkZW4udXNlci51c2VyLmtleQY7BlRbB2MJVXNlcmkH
+','2012-10-12 20:27:57','2012-10-12 23:42:27');
+INSERT INTO "sessions" VALUES(3,'bb703b0f895e139d9ebb429567bfe07d','BAh7CDoQX2NzcmZfdG9rZW5JIjFvWEpPbk5lZndMemJLOEVZQ3ZRUy9GY2dU
+RVpwV1k3a1RsU0doRWtnUU5vPQY6BkVGSSIKZmxhc2gGOwZGSUM6J0FjdGlv
+bkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewBJIhl3
+YXJkZW4udXNlci51c2VyLmtleQY7BlRbB2MJVXNlcmkH
+','2012-10-13 00:13:42','2012-10-13 01:13:47');
+CREATE TABLE "gardens" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "size_x" integer, "size_y" integer, "user_id" integer, "created_at" datetime, "updated_at" datetime, "default_wetness" integer, "default_nutrients" integer, "nutrients_replenish" integer, "wetness_replenish" integer);
+INSERT INTO "gardens" VALUES(1,NULL,5,5,2,'2012-09-21 23:25:00','2012-10-13 01:13:33',10,7,3,2);
+CREATE TABLE "plots" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "garden_id" integer, "layer_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "grounds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "garden_id" integer, "x" integer, "y" integer, "wetness" integer, "nutrients" integer, "created_at" datetime, "updated_at" datetime);
+INSERT INTO "grounds" VALUES(1,1,3,4,10,7,'2012-09-21 23:35:40','2012-09-21 23:35:40');
+INSERT INTO "grounds" VALUES(2,1,2,4,10,7,'2012-09-21 23:36:13','2012-09-21 23:36:13');
+INSERT INTO "grounds" VALUES(3,1,4,4,10,7,'2012-09-22 03:11:02','2012-09-22 03:11:02');
+INSERT INTO "grounds" VALUES(4,1,1,4,10,7,'2012-10-12 23:23:32','2012-10-12 23:23:32');
+INSERT INTO "grounds" VALUES(5,1,0,4,10,7,'2012-10-12 23:40:31','2012-10-12 23:40:31');
+INSERT INTO "grounds" VALUES(6,1,4,2,10,7,'2012-10-13 00:35:25','2012-10-13 00:35:25');
+INSERT INTO "grounds" VALUES(7,1,4,3,10,7,'2012-10-13 00:43:20','2012-10-13 00:43:20');
+INSERT INTO "grounds" VALUES(8,1,4,0,10,7,'2012-10-13 00:44:35','2012-10-13 00:44:35');
+INSERT INTO "grounds" VALUES(9,1,3,3,10,7,'2012-10-13 01:13:33','2012-10-13 01:13:33');
+CREATE TABLE "plants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "plant_template_id" integer, "health" integer, "created_at" datetime, "updated_at" datetime, "height" integer, "radius" integer, "ground_id" integer, "layer_id" integer, "growth_ticks" integer);
+INSERT INTO "plants" VALUES(4,1,100,'2012-10-12 23:23:32','2012-10-12 23:23:32',8,5,4,NULL,0);
+INSERT INTO "plants" VALUES(5,4,NULL,'2012-10-12 23:40:32','2012-10-12 23:40:32',NULL,NULL,5,NULL,0);
+INSERT INTO "plants" VALUES(6,5,NULL,'2012-10-13 00:35:25','2012-10-13 00:35:25',NULL,NULL,6,NULL,0);
+INSERT INTO "plants" VALUES(7,7,NULL,'2012-10-13 00:43:20','2012-10-13 00:43:20',NULL,NULL,7,NULL,0);
+INSERT INTO "plants" VALUES(8,6,NULL,'2012-10-13 00:44:35','2012-10-13 00:44:35',NULL,NULL,8,NULL,0);
+INSERT INTO "plants" VALUES(9,3,10,'2012-10-13 01:13:33','2012-10-13 01:13:33',2,2,9,NULL,0);
+CREATE TABLE "plant_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "cost" integer, "health_max" integer, "virility" integer, "light_min" integer, "water_consumption" integer, "layer_max" integer, "created_at" datetime, "updated_at" datetime, "image_path" varchar(255), "light_max" integer, "nutrients_consumption" integer, "vertical_rate" float, "radial_rate" float, "density_rate" float, "nutrients_tolerance" integer, "wetness_tolerance" integer, "nutrients_optimum" integer, "wetness_optimum" integer, "description" varchar(255), "thumbnail" varchar(255), "shadow_block" boolean DEFAULT 0);
+INSERT INTO "plant_templates" VALUES(1,'Cedar',100,100,50,10,20,2,'2012-09-21 21:43:57','2012-10-12 23:16:11','scaled-Tree1',30,8,8.0,5.0,5.0,8,20,8,30,'The friendliest evergreen.','scaled-Tree1-thumb.png','t');
+INSERT INTO "plant_templates" VALUES(2,'Blackberry',50,50,50,5,3,1,'2012-09-21 21:43:57','2012-10-12 23:17:05','Tree_48x48.png',5,3,5.0,5.0,5.0,5,5,5,10,'Sometimes hostile, often invasive, always delicious.','Tree_48x48.png','f');
+INSERT INTO "plant_templates" VALUES(3,'Fern',10,10,10,1,2,1,'2012-09-21 21:43:57','2012-10-12 23:34:50','scaled-Fern',3,1,2.0,2.0,3.0,2,3,7,8,'Like in Ferngully. What kind of fern am I though?','scaled-Fern-thumb.png','f');
+INSERT INTO "plant_templates" VALUES(4,'Birch',20,NULL,NULL,NULL,NULL,2,'2012-10-12 23:29:48','2012-10-12 23:42:10','scaled-birch',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'This tree has a skin condition','scaled-birch-thumb.png','f');
+INSERT INTO "plant_templates" VALUES(5,'Mushroom',5,NULL,NULL,NULL,NULL,1,'2012-10-12 23:38:38','2012-10-12 23:42:22','scaled-shroom',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BADGER BADGER BADGER BADGER ','scaled-shroom-thumb.png','f');
+INSERT INTO "plant_templates" VALUES(6,'Poppy',10,NULL,NULL,NULL,NULL,1,'2012-10-13 00:40:48','2012-10-13 00:43:12','scaled-poppy',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Potentially abusable but oh so pretty.','scaled-poppy-thumb.png','f');
+INSERT INTO "plant_templates" VALUES(7,'Trillium',5,NULL,NULL,NULL,NULL,1,'2012-10-13 00:41:20','2012-10-13 00:43:03','scaled-trillium',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Rare and threeful','scaled-trillium-thumb.png','f');
+CREATE TABLE "levels" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer NOT NULL, "title" varchar(255) NOT NULL, "points_required" integer NOT NULL, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "unlockable_plants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "world_mission_id" integer, "plant_template_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime);
+INSERT INTO "unlockable_plants" VALUES(1,1,2,'2012-09-21 21:43:57','2012-09-21 21:43:57');
+INSERT INTO "unlockable_plants" VALUES(2,2,3,'2012-09-21 21:43:57','2012-09-21 21:43:57');
+INSERT INTO "unlockable_plants" VALUES(3,3,1,'2012-09-21 21:43:57','2012-09-21 21:43:57');
+INSERT INTO "unlockable_plants" VALUES(4,4,1,'2012-09-21 21:43:57','2012-09-21 21:43:57');
+INSERT INTO "unlockable_plants" VALUES(5,5,1,'2012-09-21 21:43:57','2012-09-21 21:43:57');
+INSERT INTO "unlockable_plants" VALUES(6,6,1,'2012-09-21 21:43:57','2012-09-21 21:43:57');
+CREATE TABLE "worlds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "description" text(255) NOT NULL, "map_image" varchar(255) NOT NULL, "prequisite_world_id" integer, "created_at" datetime, "updated_at" datetime);
+INSERT INTO "worlds" VALUES(1,'Meadow World','Welcome to Heroes in Green! <p> Meadow world is a place of simple beauty and tranquility. Here we will take baby steps to start our heroic journey to a greener Earth. Along the way, we have many enjoyable treats and surprises for you! Watch as your efforts get turned back into carbon, which we can use to grow your very own garden! </p>','meadow.gif',NULL,'2012-09-21 21:43:57','2012-09-21 21:43:57');
+CREATE TABLE "world_missions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "world_id" integer NOT NULL, "name" varchar(255) NOT NULL, "description" text(255) NOT NULL, "mission_id" integer, "tag" varchar(255), "required" boolean DEFAULT 'f', "created_at" datetime, "updated_at" datetime, "link_css_top" integer, "link_css_left" integer, "link_css_width" integer, "link_css_padding" integer, "link_css_zindex" integer);
+INSERT INTO "world_missions" VALUES(1,1,'Lavender Patch','<p>Your epic journey begins here...</p>',NULL,NULL,'t','2012-09-21 21:43:57','2012-09-21 21:43:57',338,63,206,191,51);
+INSERT INTO "world_missions" VALUES(2,1,'Cobblestone Path','<p>Take a stroll through the garden.</p>',NULL,'home','t','2012-09-21 21:43:57','2012-09-21 21:43:57',467,195,232,205,50);
+INSERT INTO "world_missions" VALUES(3,1,'Lake Reflection','<p>Let''s stop for a bit of meditation and reflection.</p>',NULL,'water','t','2012-09-21 21:43:57','2012-09-21 21:43:57',307,299,280,132,NULL);
+INSERT INTO "world_missions" VALUES(4,1,'Puffy Clouds','<p>Saving the world is not a pie in the sky.</p>',NULL,'CO2','f','2012-09-21 21:43:57','2012-09-21 21:43:57',17,206,292,131,NULL);
+INSERT INTO "world_missions" VALUES(5,1,'Picnic','<p>How about a cold refreshing drink and tasty snack?</p>',NULL,'corn','f','2012-09-21 21:43:57','2012-09-21 21:43:57',459,536,274,149,NULL);
+INSERT INTO "world_missions" VALUES(6,1,'Sunshine','<p>Enjoy the sun while it lasts!</p>',NULL,'electricity','f','2012-09-21 21:43:57','2012-09-21 21:43:57',22,708,163,156,NULL);
+CREATE TABLE "signup_emails" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "mission_tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mission_tag" varchar(255), "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "mission_tag_mappings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mission_id" integer, "mission_tag_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "mission_tag_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mission_tag_category" varchar(255), "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "mission_tag_category_mappings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mission_tag_id" integer, "mission_tag_category_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "total_points" integer DEFAULT 0, "created_at" datetime, "updated_at" datetime, "available_points" integer DEFAULT 0, "role" integer DEFAULT 0, "first_name" varchar(255), "avatarImg" varchar(255), "encrypted_password" varchar(128) DEFAULT '' NOT NULL, "password_salt" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "remember_token" varchar(255), "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255));
+INSERT INTO "users" VALUES(1,'yowhan@gmail.com',500,'2012-09-21 21:43:57','2012-09-21 21:43:57',500,1,NULL,NULL,'238787d0a772d67cbfdf9eaf124be1ff5de1c203','hcmOkDqe17Bl-sBuNS-L',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
+INSERT INTO "users" VALUES(2,'cooleycr@gmail.com',568,'2012-09-21 21:43:57','2012-10-13 01:13:33',118,1,NULL,NULL,'cc72700fbdcd09056c196df09f7e3efb3ae36b88','kqHQmXKdqG6fe4GnlrOz',NULL,NULL,NULL,4,'2012-10-13 00:13:54','2012-10-12 20:28:08','::1','::1');
+INSERT INTO "users" VALUES(3,'akgrandhi@gmail.com',500,'2012-09-21 21:43:57','2012-09-21 21:43:57',500,1,NULL,NULL,'83177369718a87595748b53be801354b05376ede','UczK2LgfQDFWq0XhMNrA',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
+CREATE TABLE "missions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "intro" varchar(255), "description" varchar(255), "task" varchar(255), "reward" varchar(255), "points" integer, "repeatable" integer, "unitPoints" float, "unit" varchar(255), "created_at" datetime, "updated_at" datetime, "tags" varchar(255), "duration" time, "effort" time, "cost" decimal);
+INSERT INTO "missions" VALUES(1,'Test Mission','Blahdededed','wrorodisjdoifj','adl;skf;alksdf','34',34,1,34.0,'34','2012-09-21 23:29:34','2012-10-12 20:34:58',NULL,'2000-01-01 00:00:00','2000-01-01 00:00:00',34);
+DELETE FROM sqlite_sequence;
+INSERT INTO "sqlite_sequence" VALUES('users',3);
+INSERT INTO "sqlite_sequence" VALUES('plant_templates',7);
+INSERT INTO "sqlite_sequence" VALUES('worlds',1);
+INSERT INTO "sqlite_sequence" VALUES('world_missions',6);
+INSERT INTO "sqlite_sequence" VALUES('unlockable_plants',6);
+INSERT INTO "sqlite_sequence" VALUES('sessions',3);
+INSERT INTO "sqlite_sequence" VALUES('gardens',1);
+INSERT INTO "sqlite_sequence" VALUES('missions',1);
+INSERT INTO "sqlite_sequence" VALUES('grounds',9);
+INSERT INTO "sqlite_sequence" VALUES('plants',9);
+INSERT INTO "sqlite_sequence" VALUES('mission_statuses',1);
+CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
+CREATE INDEX "index_sessions_on_session_id" ON "sessions" ("session_id");
+CREATE INDEX "index_sessions_on_updated_at" ON "sessions" ("updated_at");
+CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token");
+COMMIT;
