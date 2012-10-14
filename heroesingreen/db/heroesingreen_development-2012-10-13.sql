@@ -409,7 +409,6 @@ INSERT INTO "sqlite_sequence" VALUES('plants',11);
 INSERT INTO "sqlite_sequence" VALUES('sessions',44);
 INSERT INTO "sqlite_sequence" VALUES('gardens',5);
 INSERT INTO "sqlite_sequence" VALUES('plant_templates',3);
-
 DROP INDEX IF EXISTS `index_users_on_reset_password_token`;
 CREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`);
 DROP INDEX IF EXISTS `unique_schema_migrations`;
