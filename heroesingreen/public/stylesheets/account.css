@@ -22,11 +22,3 @@ span.name{
 .enter_name{
 	font-size: 0.75em;
 }
-
-.content{
-	float: left;
-}
-
-.clear{
-	clear: both;
-}

@@ -19,19 +19,21 @@
 <%= render :partial => 'shared/html_head', :locals=>{:body_id => "tab#{tab_index}"}%>
 <div class="mainContent centered">
 	<%= render :partial => 'shared/header'%>
-	<div class="mission_container">
-		<h1>Mission Central</h1>
-		<div class="mission_tabs">
-			<ul id = "tabnav">
-				<%tabs.each_index do |index|%>
-					<%tab = tabs[index]%>
-					<li class="tab<%=index%>"><%=link_to tab[0],tab[1]%></li>
-				<%end%>
-			</ul>
-		</div>
-		<div class="mission_content">
-			<%= render :partial=>'shared/display_flashes'%>
-			<%= yield :layout%>
+	<div class="content mainCol">
+		<div class="mission_container">
+			<h1>Mission Central</h1>
+			<div class="mission_tabs">
+				<ul id = "tabnav">
+					<%tabs.each_index do |index|%>
+						<%tab = tabs[index]%>
+						<li class="tab<%=index%>"><%=link_to tab[0],tab[1]%></li>
+					<%end%>
+				</ul>
+			</div>
+			<div class="mission_content">
+				<%= render :partial=>'shared/display_flashes'%>
+				<%= yield :layout%>
+			</div>
 		</div>
 	</div>
 	<div class="clear footerHeight"></div>

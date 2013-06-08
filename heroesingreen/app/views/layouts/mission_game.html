@@ -7,7 +7,9 @@
 <%= render :partial => 'shared/html_head'%>
 <div class="mainContent centered">
 	<%= render :partial => 'shared/header'%>
-	<%= yield :layout%>
+	<div class="content mainCol">
+		<%= yield :layout%>
+	</div>
 	<div class="clear footerHeight"></div>
 </div>
 <!--<%unless @suppress_ajax_login%>

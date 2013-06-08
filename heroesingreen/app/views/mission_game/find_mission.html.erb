@@ -3,17 +3,19 @@
 <% end-%>
 <%= render :partial=>'shared/display_flashes'%>
 
-<div class="line">
-	<div class="unit w3of5 left">
-		<div class="contentBox">
-                  <%= render :partial => 'mission_search_box', :locals=>{:missions=>@missions} %>
+<div class="content mainCol">
+	<div class="line">
+		<div class="unit w3of5 left">
+			<div class="contentBox">
+					  <%= render :partial => 'mission_search_box', :locals=>{:missions=>@missions} %>
+			</div>
 		</div>
-	</div>
-	
-	<div class="unit w2of5 right">
-		<div id="missionDetails"></div>
-		<div id="missionDetailsSpinner" class="spinnerWidget" style="height: 200px;">
-			<div class="spinner"></div>
+		
+		<div class="unit w2of5 right">
+			<div id="missionDetails"></div>
+			<div id="missionDetailsSpinner" class="spinnerWidget" style="height: 200px;">
+				<div class="spinner"></div>
+			</div>
 		</div>
 	</div>
 </div>
