@@ -1,6 +1,7 @@
 <%= render :partial=>'name_module' %>
-<br/>
+
 <hr>
+
 <%if @level%>
 	Level <b><%=@level.number%></b> - You are a <b><%=@level.title%></b>!<br/>
 <%end%>
@@ -10,16 +11,21 @@
 <%end%>
 Earned points: <%=@user.totl_points%><br/>
 Available Points: <%=@user.avail_points%>
-<hr>
 
-<br/>
-<br/>
-Here's what you've got going on.
+<hr>
 
 <div class="line">
   <div class="unit w3of5 left">
     <div class="contentBox">
-      <%=render :partial => 'mission_game/my_missions_box', :locals => {:missions => @missions, :missions_title => @missions_title }  %>
+      <%=render :partial => 'mission_game/my_missions_box', :locals => {:missions => @missions }  %>
+    </div>
+
+    <div class="contentBox">
+      <%=render :partial => 'mission_game/my_missions_box', :locals => {:missions => @futureMissions, :missions_title => "My Upcoming Missions" }  %>
+    </div>
+
+    <div class="contentBox">
+      <%=render :partial => 'mission_game/my_missions_box', :locals => {:missions => @pastMissions, :missions_title => "My Accomplishments" }  %>
     </div>
   </div>
 

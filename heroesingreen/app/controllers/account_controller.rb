@@ -43,6 +43,13 @@ class AccountController < ApplicationController
     @missions = get_user.missionStatuses.select{|s| s.activated?}.map{|m| m.mission}
     logger.info "Current missions: " + @missions.inspect
 
+    mission_statuses = get_user.missionStatuses.find(:all, :conditions=>["status = ?", MissionStatus::COMPLETED_STATUS])
+    @pastMissions = mission_statuses.map { |ms| ms.mission }
+
+    @upcoming_quests = get_user.missionStatuses.find(:all)
+    @upcoming_quests = @upcoming_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
+    @futureMissions = @upcoming_quests.map { |ms| ms.mission }
+
   	#Update first name if any
   	if(request.post? && params[:user])
   	   @user.update_attributes(params[:user])

@@ -70,13 +70,19 @@
 
 <div id="search_mission_list">
         <h2 style="text-align: center">
-          <%- if @missions_title %>
+          <%- if defined?(missions_title) && missions_title %>
+            <%= missions_title %>
+          <% elsif @missions_title %>
             <%= @missions_title %>
           <% else %>
             My Current Missions
           <% end %>
         </h2>
 	<div style="max-height: 500px; overflow-y: auto;">
-		<%= render :partial => "missions/mission_list", :locals => { :missions => @missions } %>
+		<%- if defined?(missions) %>
+			<%= render :partial => "missions/mission_list", :locals => { :missions => missions } %>
+		<% else %>
+			<%= render :partial => "missions/mission_list", :locals => { :missions => @missions } %>
+		<% end %>
 	</div>
 </div>
