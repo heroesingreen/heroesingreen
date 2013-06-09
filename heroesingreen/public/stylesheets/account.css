@@ -22,3 +22,20 @@ span.name{
 .enter_name{
 	font-size: 0.75em;
 }
+
+#overlappingRightCol {
+	position: relative;
+	min-height: 300px; /* for garden */
+}
+
+#overlappingRightCol .miniGarden {
+	zoom: 54%;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+}
+
+#overlappingRightCol #missionDetails {
+	position: relative;
+	z-index: 2; /* above garden */
+}

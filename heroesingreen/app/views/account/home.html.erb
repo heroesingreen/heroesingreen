@@ -31,36 +31,37 @@ Available Points: <%=@user.avail_points%>
     </div>
   </div>
 
-  <div class="unit w2of5 right" id="missionDetails"></div>
+  <div id="overlappingRightCol" class="unit w2of5 right">
+	<div id="missionDetails"></div>
+	<div class="miniGarden">
+      <%garden = current_user.gardens.first%>
+      <%displayGardenOnly = 1%>
+      <%= render :partial=>'garden/view', :locals => { :garden => garden, :displayGardenOnly => 1}%></div>
+	</div>
 </div>
 
 <table border="1">
 
-<%garden = current_user.gardens.first%>
-<%displayGardenOnly = 1%>
-
-<%= render :partial=>'garden/view', :locals => { :garden => garden, :displayGardenOnly => 1}%>
-	
-<%if @plant_templates %> 
-	<% @lowestPricePlantThatCanBeBought = @plant_templates[0]%>
-	<% @plant_templates.each do |plant_template| %>
-   		<%if @user.avail_points > plant_template.cost && @lowestPricePlantThatCanBeBought.cost > plant_template.cost%>
-			<%@lowestPricePlantThatCanBeBought = plant_template%>
+	<%if @plant_templates %> 
+		<% @lowestPricePlantThatCanBeBought = @plant_templates[0]%>
+		<% @plant_templates.each do |plant_template| %>
+			<%if @user.avail_points > plant_template.cost && @lowestPricePlantThatCanBeBought.cost > plant_template.cost%>
+				<%@lowestPricePlantThatCanBeBought = plant_template%>
+			<%end%>
 		<%end%>
-	<%end%>
 
 
-	You can buy a <%=@lowestPricePlantThatCanBeBought.name%> with your available points!
-<% end %>
+		You can buy a <%=@lowestPricePlantThatCanBeBought.name%> with your available points!
+	<% end %>
 
-<div class="mainContent">
-	<div class="content mainCol">
-		<%= render :partial=>'shared/display_flashes'%>
-		<div>
-			<%= yield :layout%>
+	<div class="mainContent">
+		<div class="content mainCol">
+			<%= render :partial=>'shared/display_flashes'%>
+			<div>
+				<%= yield :layout%>
+			</div>
 		</div>
+		<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
-</div>
 
 </table>
