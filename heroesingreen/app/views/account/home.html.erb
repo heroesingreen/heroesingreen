@@ -55,14 +55,4 @@ Available Points: <%=@user.avail_points%>
 		You can buy a <%=@lowestPricePlantThatCanBeBought.name%> with your available points!
 	<% end %>
 
-	<div class="mainContent">
-		<div class="content mainCol">
-			<%= render :partial=>'shared/display_flashes'%>
-			<div>
-				<%= yield :layout%>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
-
 </table>
