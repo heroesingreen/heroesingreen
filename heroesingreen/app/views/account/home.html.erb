@@ -20,9 +20,11 @@ Available Points: <%=@user.avail_points%>
       <%=render :partial => 'mission_game/my_missions_box', :locals => {:missions => @missions }  %>
     </div>
 
+	<%if false %>
     <div class="contentBox">
       <%=render :partial => 'mission_game/my_missions_box', :locals => {:missions => @futureMissions, :missions_title => "My Upcoming Missions" }  %>
     </div>
+	<% end %>
 
     <div class="contentBox">
       <%=render :partial => 'mission_game/my_missions_box', :locals => {:missions => @pastMissions, :missions_title => "My Accomplishments" }  %>

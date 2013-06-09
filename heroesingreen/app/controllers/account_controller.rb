@@ -57,12 +57,12 @@ class AccountController < ApplicationController
   end
   
   # Show upcoming missions
-  def quest_log
-    @upcoming_quests = get_user.missionStatuses.find(:all)
-    @upcoming_quests = @upcoming_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
-    @missions = @upcoming_quests.map { |ms| ms.mission }
-    @missions_title = "Upcoming Quests"
-  end
+  # def quest_log
+  #   @upcoming_quests = get_user.missionStatuses.find(:all)
+  #   @upcoming_quests = @upcoming_quests.select{|quest| (!quest.completed?) || quest.mission.repeatable?}
+  #   @missions = @upcoming_quests.map { |ms| ms.mission }
+  #   @missions_title = "Upcoming Quests"
+  # end
   
   # Show accomplishments
   def accomplishments
