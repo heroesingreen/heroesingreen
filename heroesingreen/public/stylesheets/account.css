@@ -1,3 +1,10 @@
+.headerLinks #myHome {
+	background-color: #5E985A;
+}
+.headerLinks #myHome a {
+	color: #FFF;
+}
+
 .navigation{
 	width: 200px;
 	text-align: center;
