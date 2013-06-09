@@ -87,13 +87,13 @@
 					<%ground.plants.each do |plant|%>
 						<%if plant.plant_template.image_path != nil%>
 							<%img_url = "plants/#{plant.plant_template.image_path}"%>
-							<%if @garden.size_y - y == 1%>
-								<%img_url = img_url + "a.png"%>
-							<%elsif @garden.size_y - y == 2%>
-								<%img_url = img_url + "b.png"%>
-							<%elsif @garden.size_y - y == 3%>
-								<%img_url = img_url + "c.png"%>
-							<%end%>
+							<%#if @garden.size_y - y == 1%>
+								<%#img_url = img_url + "a.png"%>
+							<%#elsif @garden.size_y - y == 2%>
+								<%#img_url = img_url + "b.png"%>
+							<%#elsif @garden.size_y - y == 3%>
+								<%img_url = img_url + ".png"%>
+							<%#end%>
 							<div class="plant_in_garden"><%=image_tag(img_url,:title => plant.name)%><br></div>
 						<%end%>
 					<%end%>
