@@ -13,7 +13,7 @@
 			</div>
             <% if user_signed_in? && current_user %>
 			  <div class="unit">
-			    <a href="/account/password">Change password</a>
+			    <%=link_to "Change password", :controller=>:account, :action=>:password%>
 			  </div>
 			  <div class="unit">
 			    <a href="/users/sign_out">Sign out</a>
