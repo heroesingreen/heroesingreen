@@ -31,14 +31,15 @@ span.name{
 
 #overlappingRightCol {
 	position: relative;
-	min-height: 300px; /* for garden */
+	min-height: 350px; /* for garden */
 }
 
-#overlappingRightCol .miniGarden {
-	zoom: 54%;
+#overlappingRightCol #miniGarden {
 	position: absolute;
 	top: 0;
-	z-index: 1;
+}
+#overlappingRightCol #miniGarden .garden {
+	zoom: 47%;
 }
 
 #overlappingRightCol #missionDetails {
