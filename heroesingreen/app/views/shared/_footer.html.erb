@@ -11,12 +11,14 @@
 			<div class="unit">
 				<a href=".">Amet</a>
 			</div>
-			<div class="unit">
-				<a href=".">Pretend</a>
-			</div>
-			<div class="unit">
-				<a href=".">Footer</a>
-			</div>
+            <% if user_signed_in? && current_user %>
+			  <div class="unit">
+			    <a href="/account/password">Change password</a>
+			  </div>
+			  <div class="unit">
+			    <a href="/users/sign_out">Sign out</a>
+			  </div>
+			<% end %>
 		</div>
 		<div class="copyright lastUnit">
 			(c) Heroes in Green. All rights reserved.
