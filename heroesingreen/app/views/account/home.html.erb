@@ -37,7 +37,9 @@ Available Points: <%=@user.avail_points%>
 		<h2 style="text-align: center;">My Garden</h2>
 		<%garden = current_user.gardens.first%>
 		<%displayGardenOnly = 1%>
-		<%= render :partial=>'garden/view', :locals => { :garden => garden, :displayGardenOnly => 1}%></div>
+		<a href="/garden/view">
+			<%= render :partial=>'garden/view', :locals => { :garden => garden, :displayGardenOnly => 1}%></div>
+		</a>
 	</div>
 </div>
 
