@@ -6,9 +6,10 @@
 }
 
 .Garden {
+	position: relative;
 	background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
-	width: 695px; 
-	height: 544px;
+	width: 690px; 
+	height: 533px;
 	float: left;
 }
 

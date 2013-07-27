@@ -8,40 +8,40 @@ Your garden measures your progress by converting the amount of C02 you have cons
 
 <%@plantId = params[:pl]%>
 
-<div class="garden">
+<div class="Garden">
+  <div class="grounds">
 	<%@garden.size_y.times do |y|%>
 		<%@garden.size_x.times do |x|%>
+		  <% if !@plantId.nil? %>
+			<% opts = "class=\"ground highlighted\" onclick=\"buy(#{@plantId},#{x},#{y})\"" %>
+		  <% else %>
+			<% opts = "class=\"ground\"" %>
+		  <% end %>
 
-                  <% if !@plantId.nil? %>
-                    <% opts = "class=\"ground highlighted\" onclick=\"buy(#{@plantId},#{x},#{y})\"" %>
-                  <% else %>
-                    <% opts = "class=\"ground\"" %>
-                  <% end %>
-			<div <%= opts %>>
-				<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
-				<%if ground != nil%>
-					<%ground.plants.each do |plant|%>
+		  <div <%= opts %>>
+			<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
+			<%if ground != nil%>
+			  <%ground.plants.each do |plant|%>
+				<%if plant.plant_template.image_path != nil%>
+				  <%img_url = "plants/#{plant.plant_template.image_path}"%>
+					<%#if @garden.size_y - y == 1%>
+					  <%#img_url = img_url + "a.png"%>
+					<%#elsif @garden.size_y - y == 2%>
+					  <%#img_url = img_url + "b.png"%>
+					<%#elsif @garden.size_y - y == 3%>
+					  <%img_url = img_url + ".png"%>
+					<%#end%>
 
-						<%if plant.plant_template.image_path != nil%>
-							<%img_url = "plants/#{plant.plant_template.image_path}"%>
-							<%#if @garden.size_y - y == 1%>
-								<%#img_url = img_url + "a.png"%>
-							<%#elsif @garden.size_y - y == 2%>
-								<%#img_url = img_url + "b.png"%>
-							<%#elsif @garden.size_y - y == 3%>
-								<%img_url = img_url + ".png"%>
-							<%#end%>
-							<div class="plant_in_garden" data-id="<%= plant.id %>" data-del-path="<%= plant_path(plant.id) %>" >
-                                                          <%=image_tag(img_url,:title => plant.name) %>
-                                                          <br>
-                                                        </div>
-						<%end%>
-					<%end%>
+					<div class="plant_in_garden" data-id="<%= plant.id %>" data-del-path="<%= plant_path(plant.id) %>" >
+					  <%=image_tag(img_url,:title => plant.name) %> <br>
+					</div>
+				  <%end%>
 				<%end%>
-			</div>
+			<%end%>
+		  </div>
 		<%end%>
-		<div class="clear"></div>
 	<%end%>
+  </div>
 </div>
 
 <div class="gardenStats">
