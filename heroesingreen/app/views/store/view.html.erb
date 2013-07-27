@@ -13,8 +13,7 @@
 				<div id="plant_image" class=>
 				  <%=
 				    image_tag("plants/#{plant_template.thumbnail}",
-					  :alt => plant_template.description,
-					  :alt => plant_template.description )
+					  :title => plant_template.description )
 			      %>
 				</div>
 				<div id="plant_info"><%=h plant_template.name %></div>
