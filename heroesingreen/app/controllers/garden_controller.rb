@@ -2,31 +2,30 @@ class GardenController < ApplicationController
   before_filter :authenticate_user!
 #  before_filter :ensure_user
   
-	layout "garden"
-	
-	def index
-		redirect_to(:action=>:view)
-	end
-	
-	def view
-	  if(params[:admin_ticks])
+  layout "garden"
+  
+  def index
+    redirect_to(:action=>:view)
+  end
+  
+  def view
+    if(params[:admin_ticks])
       @render_admin = true
     end
-	  
+    
     @completed_missions = get_user.missionStatuses.find(:all, :conditions=>["status = ?", MissionStatus::COMPLETED_STATUS])
-	  @garden = get_current_garden
-	  @garden.garden_tick
-	  @logged_in_user = get_user
-	  
-	end
-	
-	def tick
-		@garden  = Garden.find(params[:id])
-		repeat=params[:repeat]
-		repeat ||= 1
-		repeat=repeat.to_i
-		@garden.tick(repeat)
-		redirect_to(:action=>:view)
+    @garden = get_current_garden
+#   @garden.garden_tick
+    @logged_in_user = get_user
+  end
+  
+  def tick
+    @garden  = Garden.find(params[:id])
+    repeat=params[:repeat]
+    repeat ||= 1
+    repeat=repeat.to_i
+    @garden.tick(repeat)
+    redirect_to(:action=>:view)
   end
 
   def remove_plant
