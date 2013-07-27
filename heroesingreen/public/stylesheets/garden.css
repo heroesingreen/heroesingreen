@@ -1,16 +1,24 @@
-#myGarden {
+#myGarden {	
 	background-color: #5E985A;
 }
 #myGarden a {
 	color: #FFF;
 }
 
-.garden {
+.Garden {
 	background:url('../images/Backgrounds/GardenBackgroundSmall.jpg') no-repeat;
 	width: 695px; 
 	height: 544px;
 	float: left;
-}	
+}
+
+.Garden .grounds {
+	position: absolute;
+	bottom: 15px;
+	width: 385px;
+	left: 50%;
+	margin-left: -192px;
+}
 
 .gardenStats {
 	float: right;
