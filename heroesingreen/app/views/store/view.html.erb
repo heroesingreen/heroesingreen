@@ -1,29 +1,32 @@
 
 
 <div id="garden_store">
-
-	<div class="mainContent">
-		<div id="plant_store" class="contentBox">
-			<div id="plant_store_header">
-				<h1>Plant Mart</h1>
-				<div id="availableNumPoints">Available: <%=@logged_in_user.avail_points%> points</div>
-			</div>
-			<ol>
-				<% @plant_templates.each do |plant_template| %>
-				<li>
-				  <div id="plant" >
-					<div id="plant_image"><%= image_tag("plants/#{plant_template.thumbnail}",:title => plant_template.name)%></div>
-					<div id="plant_buy"><%= button_to plant_template.cost.to_s + " pts", :action=>:buy, :id=>plant_template.id %></div>
-					<div id="plant_info"><%=h plant_template.name %></div>
-					<div id="plant_description"><%=h plant_template.description %></div>
-					<div class="clear"></div>
-				  </div>
-				  <div id="divider"></div>
-				</li>
-				<% end %>
-			</ol>
+	<div id="plant_store">
+		<div id="plant_store_header">
+			<h1>Plant Mart</h1>
+			<div id="availableNumPoints">Available: <%=@logged_in_user.avail_points%> points</div>
 		</div>
+		<ol class="plantStoreInventory clearfix">
+			<% @plant_templates.each do |plant_template| %>
+			<li>
+			  <div id="plant" class="PlantForSale contentBox gridBox <%if @logged_in_user.avail_points < plant_template.cost%>unaffordable<%end%>">
+				<div id="plant_image" class=>
+				  <%=
+				    image_tag("plants/#{plant_template.thumbnail}",
+					  :alt => plant_template.description,
+					  :alt => plant_template.description )
+			      %>
+				</div>
+				<div id="plant_info"><%=h plant_template.name %></div>
+				<div id="plant_buy"><%= button_to plant_template.cost.to_s + " pts", :action=>:buy, :id=>plant_template.id %></div>
+				<div class="clear"></div>
+			  </div>
+			  <div id="divider"></div>
+			</li>
+			<% end %>
+		</ol>
 	</div>
+</div>
 
 <script>
 	//Try to buy this plant, for planting at position x,y in the garden

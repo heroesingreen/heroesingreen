@@ -92,3 +92,22 @@ ol {list-style:none;}
 	opacity:1;
 }
 .clear {clear:both;}
+
+ol.plantStoreInventory {
+	
+}
+.PlantForSale {	
+	width: 120px;
+	text-align: center;
+}
+.PlantForSale img {
+	height: 50px;
+	width: auto;
+}
+.PlantForSale.unaffordable input[type="submit"] {
+	background: #fdb;
+	color: gray;
+}
+.PlantForSale.unaffordable input[type="submit"]:hover {
+	text-decoration: line-through;
+}

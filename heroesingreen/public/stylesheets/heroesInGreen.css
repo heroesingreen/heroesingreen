@@ -169,6 +169,23 @@ a:active { color: #0903ff }
 	clear: both;
 }
 
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+    *zoom: 1;
+}
+
+
 .hidden {
 	display: none;
 }
@@ -192,6 +209,11 @@ a:active { color: #0903ff }
 }
 .contentBox.bgGray, .contentBox.bgGrey {
 	background: #ddd;
+}
+
+.gridBox {
+	float: left;
+	margin: 0 5px 10px; /* side-margins do not collapse (wtf) so they double up */
 }
 
 div.loginModule {

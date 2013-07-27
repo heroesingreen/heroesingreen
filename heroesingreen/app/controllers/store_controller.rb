@@ -14,7 +14,7 @@ class StoreController < ApplicationController
     @garden = get_current_garden
 #   @garden.garden_tick
     @logged_in_user = get_user
-    @plant_templates = PlantTemplate.all
+    @plant_templates = PlantTemplate.all.sort{|a,b| a.cost <=> b.cost}
       
       respond_to do |format|
           format.html 
