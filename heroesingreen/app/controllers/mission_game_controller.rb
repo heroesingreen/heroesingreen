@@ -44,7 +44,7 @@ class MissionGameController < ApplicationController
     # TODO: THIS IS HORRIBLE!  Find the proper join syntax for this
     # In addition, it should be in the model probably
     @missions = Mission.all :joins => :mission_statuses, :conditions => ["((mission_statuses.status != ?) AND (mission_statuses.user_id = ? AND missions.repeatable = ?))", MissionStatus::ACTIVATED_STATUS.to_s, get_user.id.to_s, 1]
-    @m = Mission.find(:all, :conditions => ['id not in (SELECT mission_id FROM mission_statuses)'])
+    @m = Mission.find(:all, :conditions => ['id not in (SELECT mission_id FROM mission_statuses where user_id = ?)', get_user.id.to_s])
     @missions = @missions | @m
 	@missions = @missions.sort{|a,b| a.points <=> b.points}
     @m_count = 1
