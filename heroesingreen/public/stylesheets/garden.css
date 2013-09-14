@@ -16,9 +16,9 @@
 .Garden .grounds {
 	position: absolute;
 	bottom: 15px;
-	width: 385px;
+	width: 621px;
 	left: 50%;
-	margin-left: -192px;
+	margin-left: -313px;
 }
 
 .gardenStats {
@@ -89,14 +89,17 @@ ol {list-style:none;}
 	cursor: hand; 
 	cursor: pointer;
 }
-.Garden .ground.highlighted:nth-child(5n) {
+.Garden .ground.highlighted:nth-child(8n) {
 	border-right: 1px dotted black;
 }
 .Garden .ground.highlighted:nth-child(1),
 .Garden .ground.highlighted:nth-child(2),
 .Garden .ground.highlighted:nth-child(3),
 .Garden .ground.highlighted:nth-child(4),
-.Garden .ground.highlighted:nth-child(5) {
+.Garden .ground.highlighted:nth-child(5),
+.Garden .ground.highlighted:nth-child(6),
+.Garden .ground.highlighted:nth-child(7),
+.Garden .ground.highlighted:nth-child(8) {
 	border-top: 1px dotted black;
 }
 .Garden .ground.highlighted:hover {
