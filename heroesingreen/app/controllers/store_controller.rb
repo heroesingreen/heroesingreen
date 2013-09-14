@@ -86,11 +86,11 @@ class StoreController < ApplicationController
                flash[:notice] = "Click on a highlighted garden area to place the " + @plant_template.name + " there"
                redirect_to(:controller=>:garden, :action=>:view, :pl=>@plant_template.id)
            else
-              flash[:notice] = "No room for plant " + @plant_template.name + " in your garden"
+              flash[:warning] = "No room for plant " + @plant_template.name + " in your garden"
               redirect_to(:controller=>:store, :action=>:view)
            end
         else
-          flash[:notice] = "Not enough points to purchase " + @plant_template.name
+          flash[:warning] = "Not enough points to purchase " + @plant_template.name
           redirect_to(:controller=>:store, :action=>:view)
         end
         
@@ -122,15 +122,15 @@ class StoreController < ApplicationController
                   flash[:notice] = @plant_template.name + " has successfully been purchased!"
                   redirect_to(:controller=>:garden, :action=>:view)
               else
-                  flash[:notice] = @plant_template.name + " cannot be planted in this ground."
+                  flash[:warning] = @plant_template.name + " cannot be planted in this ground."
                   redirect_to(:controller=>:garden, :action=>:view)
               end
           else
-              flash[:notice] = "Not enough points to purchase " + @plant_template.name
+              flash[:warning] = "Not enough points to purchase " + @plant_template.name
               redirect_to(:controller=>:store, :action=>:view)
           end
       else
-          flash[:notice] = "You're trying to buy an invalid plant."
+          flash[:error] = "You're trying to buy an invalid plant."
           redirect_to(:controller=>:store, :action=>:view)
       end
   end
