@@ -63,15 +63,17 @@ class StoreController < ApplicationController
   
   def buy
    @logged_in_user = get_user
-    
-    #try to buy if user is logged in        
-    if(@logged_in_user)
+    if(nil == @logged_in_user)
+      flash[:error] = "Please log in to purchase plants!"
+	  # TODO : redirect to login page?
+      redirect_to(:controller=>:store, :action=>:view)
+	else
       if(params[:id]==nil)
         #plant_template id not found
         redirect_to(:action=>:view)         
         return
       end
-          
+
       @plant_template = PlantTemplate.find(params[:id])
       if(@plant_template != nil)
         @user_can_buy = @logged_in_user.avail_points >= @plant_template.cost
@@ -82,7 +84,7 @@ class StoreController < ApplicationController
 #            flash[:notice] = @plant_template.name + " has successfully been purchased!"
 #            redirect_to(:controller=>:garden, :action=>:view)  
 
-           if(get_current_garden.is_there_a_good_ground(@plant_template))
+		   if(get_current_garden.is_there_a_good_ground(@plant_template))
                flash[:notice] = "Click on a highlighted garden area to place the " + @plant_template.name + " there"
                redirect_to(:controller=>:garden, :action=>:view, :pl=>@plant_template.id)
            else
@@ -95,11 +97,6 @@ class StoreController < ApplicationController
         end
         
       end
-    
-    #should we redirect to login/register page?
-    else
-      flash[:notice] = "Please log in to purchase plants!"
-      redirect_to(:controller=>:store, :action=>:view)    
     end
   end 
   

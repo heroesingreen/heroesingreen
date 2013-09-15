@@ -86,7 +86,7 @@ ol {list-style:none;}
 	border-left: 1px dotted black;
 	opacity: 0.5;
 	background: #CEF;
-	cursor: hand; 
+	cursor: hand;
 	cursor: pointer;
 }
 .Garden .ground.highlighted:nth-child(8n) {
@@ -103,7 +103,15 @@ ol {list-style:none;}
 	border-top: 1px dotted black;
 }
 .Garden .ground.highlighted:hover {
-	background: #CFE;
+	opacity: 0.7;
+	background: #9FA;
+}
+.Garden .ground.highlighted.cantPlant {
+	background: #F99;
+}
+.Garden .ground.highlighted.cantPlant:hover {
+	background: #F66;
+	cursor: no-drop;
 }
 .plant_in_garden {
 	position: absolute;

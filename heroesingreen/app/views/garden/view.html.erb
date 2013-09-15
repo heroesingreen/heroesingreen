@@ -13,7 +13,11 @@ Your garden measures your progress by converting the amount of C02 you have cons
 	<%@garden.size_y.times do |y|%>
 		<%@garden.size_x.times do |x|%>
 		  <% if !@plantId.nil? %>
-			<% opts = "class=\"ground highlighted\" onclick=\"buy(#{@plantId},#{x},#{y})\"" %>
+			<%if @garden.is_compatible(@plantId,x,y)%>
+			  <% opts = "class=\"ground highlighted\" onclick=\"buy(#{@plantId},#{x},#{y})\"" %>
+			<%else%>
+			  <% opts = "class=\"ground highlighted cantPlant\"" %>
+			<%end%>
 		  <% else %>
 			<% opts = "class=\"ground\"" %>
 		  <% end %>
