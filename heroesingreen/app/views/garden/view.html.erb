@@ -12,17 +12,7 @@ Your garden measures your progress by converting the amount of C02 you have cons
   <div class="grounds">
 	<%@garden.size_y.times do |y|%>
 		<%@garden.size_x.times do |x|%>
-		  <% if !@plantId.nil? %>
-			<%if @garden.is_compatible(@plantId,x,y)%>
-			  <% opts = "class=\"ground highlighted\" onclick=\"buy(#{@plantId},#{x},#{y})\"" %>
-			<%else%>
-			  <% opts = "class=\"ground highlighted cantPlant\"" %>
-			<%end%>
-		  <% else %>
-			<% opts = "class=\"ground\"" %>
-		  <% end %>
-
-		  <div <%= opts %>>
+		  <div class="ground">
 			<%ground = @garden.grounds.find_by_x_and_y(x,y)%>
 			<%if ground != nil%>
 			  <%ground.plants.each do |plant|%>
@@ -43,6 +33,26 @@ Your garden measures your progress by converting the amount of C02 you have cons
 				<%end%>
 			<%end%>
 		  </div>
+		<%end%>
+	<%end%>
+  </div>
+
+  <div class="grounds">
+	<%@garden.size_y.times do |y|%>
+		<%@garden.size_x.times do |x|%>
+		  <%# ground = @garden.grounds.find_by_x_and_y(x,y)%>
+
+		  <%if !@plantId.nil? %>
+			<%if @garden.is_compatible(@plantId,x,y)%>
+			  <% opts = "class=\"ground highlighted\" onclick=\"buy(#{@plantId},#{x},#{y})\"" %>
+			<%else%>
+			  <% opts = "class=\"ground highlighted cantPlant\"" %>
+			<%end%>
+		  <% else %>
+			<% opts = "class=\"ground\"" %>
+		  <% end %>
+
+		  <div <%= opts %>></div>
 		<%end%>
 	<%end%>
   </div>
